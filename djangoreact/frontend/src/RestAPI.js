@@ -3,7 +3,6 @@ import axios from "axios";
 
 function RestAPI() {
   const [text, setText] = useState([]);
-  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -11,11 +10,10 @@ function RestAPI() {
       <div>
         <button
           onClick={() => {
-            setCount(count+1)
             axios
               .post("http://127.0.0.1:8000/review/", {
-                title: String({count}),
-                content: String({count}),
+                title: "8조",
+                content: "내 팔자가 상팔자",
               })
               .then(function (response) {
                 console.log(response);
@@ -53,7 +51,7 @@ function RestAPI() {
             </span>
             <button
               onClick={() => {
-                axios.delete(`http://127.0.0.1:8000/review/${e.id}`);
+                axios.delete(`http://127.0.0.1:8000/review/${e.id}/`);
                 setText(text.filter((text) => text.id !== e.id));
               }}
             >
