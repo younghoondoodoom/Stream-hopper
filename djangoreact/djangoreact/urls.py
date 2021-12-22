@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('api.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     #re_path('.*', TemplateView.as_view(template_name='index.html')),
-    path('user/', include('users.urls')),
+    path('users/', include('users.urls')),
 ]

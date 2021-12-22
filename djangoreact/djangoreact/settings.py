@@ -43,16 +43,18 @@ INSTALLED_APPS = [
     
     # django-rest-auth
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
+    
     'corsheaders', # cors 관련 추가
-    #로그인 기능 추가
+    
+    #로그인, 회원가입, 로그아웃 관련 추가
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'dj_rest_auth',
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt.token_blacklist',
     'dj_rest_auth.registration',
     
     # app
