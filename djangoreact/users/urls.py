@@ -5,7 +5,7 @@ from dj_rest_auth.registration.views import SocialLoginView
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
-    callback_url = 'http://127.0.0.1:3000'
+    callback_url = 'http://127.0.0.1:3000' #배포 시 서버주소 변경 필요
     client_class = OAuth2Client
     
 urlpatterns = [
