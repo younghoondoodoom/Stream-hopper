@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path(‘api/’, include(‘api.urls’)),
     path('', include('api.urls')),
-    re_path('.*', TemplateView.as_view(template_name='index.html')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls'))
+    #re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
