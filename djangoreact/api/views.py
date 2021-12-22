@@ -31,6 +31,7 @@ class ReviewDetail(APIView):
             return Review.objects.get(pk=pk)
         except Review.DoesNotExist:
             raise Http404
+        
     def get(self, request, pk, format=None):
         review = self.get_object(pk)
         serializer = ReiviewSerializer(review)
@@ -48,3 +49,4 @@ class ReviewDetail(APIView):
         review = self.get_object(pk)
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
