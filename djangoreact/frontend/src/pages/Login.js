@@ -5,9 +5,18 @@ const clientId = '970376354873-eevp45047onshbf3g59gipef5orr7eq4.apps.googleuserc
 
 const Login = () => {
   const Googlelogin = () => {
-    const onSuccess = res => {
-      console.log('[Login Success] currentUser:', res.profileObj);
-    };
+    const onSuccess = useCallback(
+      response => {
+        const idToken = response.tokenId;
+        const data = {
+          email: response.profileObj.email,
+          first_name: response.profileObj.givenName,
+          last_name: response.profileObj.familyName
+        };
+    
+        validateTokenAndObtainSession({ data, idToken })
+      },
+    );
   
     const onFailure = (res) => {
       console.log('[Login failed] res:', res);
@@ -19,9 +28,6 @@ const Login = () => {
           buttonText='Login'
           onSuccess={onSuccess}
           onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          style={{ marginTop:'100px' }}
-          isSignedIn={true}
         />  
       </div>
     );
