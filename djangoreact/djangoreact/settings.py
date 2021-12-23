@@ -38,9 +38,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
+    
+    # install
+    
+    # django-rest-auth
     'rest_framework',
-    'corsheaders' # cors 관련 추가
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
+    
+    'corsheaders', # cors 관련 추가
+    
+    #로그인, 회원가입, 로그아웃 관련 추가
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    
+    # app
+    'api',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +72,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# About CORS
 
 CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:8000',
@@ -96,6 +117,25 @@ DATABASES = {
     }
 }
 
+# AUTH
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# Django All Auth config.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1 
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -141,3 +181,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
 ]
+
+#회원가입을 할 때 이메일을 반드시 받는 것으로 설정하고, 이메일이 맞는지 검증하는 기능은 작동하지 않도록 설정
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+)
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+# Rest Framework config. Add all of this.
+REST_FRAMEWORK = {    
+'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
+'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.TokenAuthentication',    
+],
+}
