@@ -1,15 +1,27 @@
 import { atom, selector } from "recoil";
 
+// 회원가입 post 양식
 export const registerState = atom({
   key: 'registerState',
   default: {
-    "user_email" : "",
-    "user_name" : "",
-    "password" : "",
+    "email" : "",
+    "username" : "",
+    "password1" : "",
+    "password2" : "",
     "sex" : "",
     "age" : ""
   }
 });
+
+// 로그인 post 양식
+export const loginState = atom({
+  key: 'loginState',
+  default: {
+    "email" : "",
+    "password" : ""
+  }
+});
+
 
 export const registerSelector = selector({
   key : 'registerSelector',
