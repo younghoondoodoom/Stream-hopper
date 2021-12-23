@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { registerState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 const Register = () => {
   const [register, setRegister] = useRecoilState(registerState)
@@ -24,7 +23,7 @@ const Register = () => {
       console.log(res)
     }
     catch (error) {
-      alert("입력하신 값이 올바르지 않습니다.")
+      alert(error)
     }
 
   }
@@ -88,7 +87,7 @@ const Register = () => {
             <input type="radio" name="sex" value="F" onChange={onChange}  />
           </div>
          
-           <Link to="/login"><button className='btn btn-primary'>제출</button></Link>
+          <button className='btn btn-primary'>제출</button>
          </form>
        </div>
 

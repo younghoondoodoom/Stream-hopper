@@ -1,11 +1,8 @@
 import './App.scss';
-import RestAPI from './RestAPI';
 import Routing from './components/Routing.js';
 import { RecoilRoot } from 'recoil';
 
 function App() {
-
-  
 
   return (
     <div className="App">
