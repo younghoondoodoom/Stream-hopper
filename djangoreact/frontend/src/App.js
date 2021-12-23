@@ -1,14 +1,16 @@
 import './App.scss';
 import RestAPI from './RestAPI';
 import Routing from './Routing.js';
-import NavBar from './components/NavBar';
+import { RecoilRoot } from 'recoil';
 
 function App() {
 
   return (
     <div className="App">
       {/* <RestAPI></RestAPI> */}
-      <Routing />
+      <RecoilRoot>
+        <Routing />
+      </RecoilRoot>
     </div>
   );
 }

@@ -12,16 +12,17 @@ const HomePage = () => {
   return (
     <div className='HomePage container'>
 
+      {/* 로고 & 이미지 슬라이더 */}
       <img src={logo} className="img-fluid" alt="logo"></img>
 
       <BackgroundSlider
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
 
+      {/* 버튼 컴포넌트 */}
       <div className='container'>
           <Link to="/login"><button className="w-btn" type="button">로그인</button></Link>
           <Link to="/register"><button className="w-btn w-btnreg" type="button">회원가입</button></Link>
-        
           <div>
             <Link to="/intro"><button className="w-btn w-btnintro" type="button">서비스소개</button></Link>
           </div>
@@ -29,7 +30,7 @@ const HomePage = () => {
 
     </div>
 
-    
+  
   )
 }
 
