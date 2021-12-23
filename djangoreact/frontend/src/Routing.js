@@ -13,6 +13,7 @@ import Search from "./pages/Search"
 import Mypage from "./pages/Mypage"
 import ErrorPage from './pages/ErrorPage'
 import NavBar from './components/NavBar';
+
 const Routing = () => {
   return (
     <div>
