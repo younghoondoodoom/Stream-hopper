@@ -1,11 +1,13 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { registerState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import axios from 'axios'
 
 const Register = () => {
+  // recoil에 저장한 registerState를 가져옴
   const [register, setRegister] = useRecoilState(registerState)
 
+  //onChane 될 때마다 registerState에 유저 정보를 담음. 
   const onChange = useCallback((e) => {
     const {name, value} = e.target;
     setRegister({
@@ -15,81 +17,91 @@ const Register = () => {
     console.log(register)
   },[register]);
 
-  async function onSubmit (e)  {
+ // 회원가입 및 register error 처리!
+  async function signUp (e)  {
     e.preventDefault();
     try {
       const res = await axios.post("http://127.0.0.1:8000/users/auth/register", register)
-    
       console.log(res)
-    }
-    catch (error) {
-      alert(error)
-    }
 
+    } catch (error) {
+      const errorList = error.response.data
+      for (const [key, value] of Object.entries(errorList)) {
+        alert(`${key} : ${value}`);
+      }
+    }
   }
- 
+
   return (
     <div className='Register'>
-       <div className='container'>
-         <form className="" onSubmit={onSubmit}>
-          <div className=''>
-            <label htmlFor="username">이름</label>
+       <form onSubmit={signUp}>
+         <div className='container'>
+          <h1>회원가입</h1>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">이름</label>
             <input
-              className="input is-hovered"
+              type="text"
+              id="username"
+              className="form-control"
               name="username"
-              type="name"
-              onChange={onChange}
-              autoComplete='off'/>
+              placeholder="Example input placeholder"
+              autoComplete='off'
+              onChange={onChange} />
           </div>
-         
-          <div className=''>
-            <label htmlFor="email">이메일</label>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">이메일</label>
             <input
-              className=""
+              type="text"
+              id="email"
+              className="form-control"
               name="email"
-              type="email"
-              onChange={onChange}
-              autoComplete='off'/>
+              placeholder="Example input placeholder"
+              autoComplete='off'
+              onChange={onChange} />
           </div>
-         
-          <div className=''>
-            <label htmlFor="password1">비밀번호</label>
+          <div className="mb-3">
+            <label htmlFor="password1" className="form-label">비밀번호</label>
             <input
-              className=""
+              type="password"
+              id="password1"
+              className="form-control"
               name="password1"
-              type="password"
-              onChange={onChange}
-              autoComplete='off'/>
+              placeholder="Example input placeholder"
+              autoComplete='off'
+              onChange={onChange} />
           </div>
-         
-          <div className=''>
-            <label htmlFor="password2">비밀번호 확인</label>
+          <div className="mb-3">
+            <label htmlFor="password2" className="form-label">비밀번호 확인</label>
             <input
-              className=""
+              type="password"
+              id="password2"
+              className="form-control"
               name="password2"
-              type="password"
-              onChange={onChange}
-              autoComplete='off'/>
+              placeholder="Example input placeholder"
+              autoComplete='off'
+              onChange={onChange} />
           </div>
-          <div className=''>
-            <label htmlFor="age">생년월일</label>
+          <div className="mb-3">
+            <label htmlFor="age" className="form-label">나이</label>
             <input
-              className=""
+              type="number"
+              id="age"
+              className="form-control"
               name="age"
-              type="age"
-              onChange={onChange}
-              autoComplete='off'/>
+              placeholder="Example input placeholder"
+              autoComplete='off'
+              onChange={onChange} />
           </div>
-          <div className=''>
-            <label htmlFor="sex">남자</label>
-            <input type="radio" name="sex" value="M" onChange={onChange}  />
-            <label htmlFor="sex">여자</label>
-            <input type="radio" name="sex" value="F" onChange={onChange}  />
+          <div className='mb-3'>
+              <input id="M" type="radio"className='btn-check' name="sex" value="M" onChange={onChange} autoComplete="off" />
+              <label className="btn btn-outline-success" htmlFor="M">남자</label>
+              <input id="F" type="radio" className='btn-check' name="sex" value="F" onChange={onChange} autoComplete="off"  />
+              <label className="btn btn-outline-danger" htmlFor="F">여자</label>
           </div>
          
           <button className='btn btn-primary'>제출</button>
-         </form>
-       </div>
+         </div>
+       </form>
 
     </div>
   )
