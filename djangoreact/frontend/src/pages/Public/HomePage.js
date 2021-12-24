@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import BackgroundSlider from 'react-background-slider';
 
-import main1 from '../images/main1.jpg';
-import main2 from '../images/main2.jpg';
-import main3 from '../images/main3.jpg';
+import main1 from '../../images/main1.jpg';
+import main2 from '../../images/main2.jpg';
+import main3 from '../../images/main3.jpg';
 
-import logo from '../images/logo.png';
-
+import logo from '../../images/logo.png';
 const HomePage = () => {
   return (
     <div className='HomePage container'>

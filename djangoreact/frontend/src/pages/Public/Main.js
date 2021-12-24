@@ -1,11 +1,11 @@
 import React from 'react'
 import BackgroundSlider from 'react-background-slider';
 
-import main1 from '../images/main1.jpg';
-import main2 from '../images/main2.jpg';
-import main3 from '../images/main3.jpg';
+import main1 from '../../images/main1.jpg';
+import main2 from '../../images/main2.jpg';
+import main3 from '../../images/main3.jpg';
 
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 
 const Main = () => {
   return (

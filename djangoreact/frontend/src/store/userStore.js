@@ -22,6 +22,12 @@ export const loginState = atom({
   }
 });
 
+// 로그인 유효성 검사
+export const authAtom = atom({
+  key: 'auth',
+  default: JSON.parse(localStorage.getItem('user'))
+});
+
 
 export const registerSelector = selector({
   key : 'registerSelector',
@@ -30,3 +36,7 @@ export const registerSelector = selector({
     return console.log(res)
   }
 });
+
+
+
+

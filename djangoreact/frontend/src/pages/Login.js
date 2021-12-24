@@ -1,12 +1,13 @@
 import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useResetRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
   const [login, setLogin] = useRecoilState(loginState)
-
+  
+  const reset = useResetRecoilState(loginState)
   const navigate = useNavigate()
 
   const onChange = useCallback((e) => {
@@ -23,17 +24,28 @@ const Login = () => {
     e.preventDefault();
    try {
     const key = await axios.post("http://127.0.0.1:8000/users/auth/login/", login)
-    const data = key.data
-    const ax = await axios.create({
-      headers: { "Authorization" : `Token ${data["key"]}` },
-    });
-    console.log(data)
-    await ax.get("http://127.0.0.1:8000/review/")
+    const data = key.data["key"]
+    
+   
+    localStorage.setItem("key", data) 
+    reset()
 
+    const KEY = localStorage.getItem("key")
+
+    const ax = await axios.create({
+      headers: { "Authorization" : `Token ${KEY}` },
+    });
+
+    await ax.get("http://127.0.0.1:8000/review/")
     navigate("/main")
-   } catch(e) {
-     console.log(e)
-   } 
+
+   } catch (error) {
+    
+    const errorList = error.response.data
+    for (const [key, value] of Object.entries(errorList)) {
+      alert(`${key} : ${value}`);
+    }
+  }
   }; 
  
   return (
@@ -41,7 +53,7 @@ const Login = () => {
       <div className="wrap">
         <form className='container'>
           <div className='login-section'>
-            <div class="row mb-3">
+            <div className="row mb-3">
               <label
                 htmlFor="email"
                 className="form-label">
@@ -56,7 +68,7 @@ const Login = () => {
                   autoComplete='off'
                   onChange={onChange} />
               </div>
-            <div class="row mb-3">
+            <div className="row mb-3">
               <label
                 htmlFor="password"
                 className="form-label">
