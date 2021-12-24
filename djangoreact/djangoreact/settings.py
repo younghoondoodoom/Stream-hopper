@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     # app
     'api',
     'users',
+    'entertainment'
 ]
 
 MIDDLEWARE = [
@@ -192,7 +193,8 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-# Rest Framework config. Add all of this.
+
+# Rest Framework config
 REST_FRAMEWORK = {    
 'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
 'DEFAULT_AUTHENTICATION_CLASSES': [

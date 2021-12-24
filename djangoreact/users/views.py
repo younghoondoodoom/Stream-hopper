@@ -9,5 +9,5 @@ from .serializers import CustomUserSerializer
 
 class UserListView(ListAPIView):
     queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
+    serializer = CustomUserSerializer
     permission_classes = [IsAdminUser]
