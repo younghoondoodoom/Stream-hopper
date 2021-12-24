@@ -9,9 +9,8 @@ const PrivateRoute = ({ children }) => {
   const auth = useRecoilValue(authAtom);
   
 
-  if (!auth) {
-    alert("로그인 후 이용해주세요.")
-    return <Navigate to="/login" />;
+  if (auth) {
+    return <Navigate to="/main" />;
   }
 
   return children;

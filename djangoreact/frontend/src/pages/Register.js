@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Register = () => {
-  // recoil에 저장한 registerState를 가져옴
+  // recoil에 저장한 state 가져옴
   const [register, setRegister] = useRecoilState(registerState)
 
+  
   // history.push와 같은 기능 
   const navigate = useNavigate()
+
 
   //onChane 될 때마다 registerState에 유저 정보를 담음. 
   const onChange = useCallback((e) => {

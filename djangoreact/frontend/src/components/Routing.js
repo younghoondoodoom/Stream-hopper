@@ -16,12 +16,14 @@ import Mypage from "../pages/Private/Mypage"
 import ErrorPage from '../pages/ErrorPage'
 
 import PrivateRoute from './PrivateRote';
+import LogPrivateRoute from './LogPrivateRoute'
+
 //네비게이션 바
 import NavBar from './NavBar';
 
 //로딩 중...
 import Spinner from './Spinner'
-
+<LogPrivateRoute></LogPrivateRoute>
 
 const Routing = () => {
   return (
@@ -36,8 +38,8 @@ const Routing = () => {
                     <Route path="/main" element={<Main />} /> {/* 공용 Public*/}
 
                     {/* 로그인, 회원가입, 서비스소개, 마이 페이지 회원가입 후 선호영화 */}
-                    <Route path="/login" element={<Login />} /> {/* 제한 Private */}
-                    <Route path="/register" element={<Register />} /> {/* 제한 Private */}
+                    <Route path="/login" element={<LogPrivateRoute><Login /></LogPrivateRoute>} /> {/* 제한 Private */}
+                    <Route path="/register" element={<LogPrivateRoute><Register /></LogPrivateRoute>} /> {/* 제한 Private */}
                     <Route path="/intro" element={<Intro />} /> {/* 공용 */}
                     <Route path="/mypage/:username" element={<PrivateRoute><Mypage /></PrivateRoute>} />{/* 제한 Private */}
                     <Route path="/preference" element={<PrivateRoute><Preference /></PrivateRoute>} />{/* 제한 Private */}
