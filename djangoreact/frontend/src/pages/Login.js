@@ -1,10 +1,13 @@
 import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
   const [login, setLogin] = useRecoilState(loginState)
+
+  const navigate = useNavigate()
 
   const onChange = useCallback((e) => {
     const {name, value} = e.target;
@@ -16,7 +19,6 @@ const Login = () => {
   },[login]);
 
   
-  
   async function log(e) {
     e.preventDefault();
    try {
@@ -27,26 +29,51 @@ const Login = () => {
     });
     console.log(data)
     await ax.get("http://127.0.0.1:8000/review/")
+
+    navigate("/main")
    } catch(e) {
      console.log(e)
    } 
-  };
-
+  }; 
+ 
   return (
     <div className='Login'>
-      <div className="container">
-        <div>
-          <label htmlFor="email">아이디</label>
-          <input onChange={onChange} name="email" type="id" />
-        </div>
-
-        <div>
-          <label htmlFor="password">비밀번호</label>
-          <input onChange={onChange} name="password" type="password" />
-        </div>
+      <div className="wrap">
+        <form className='container'>
+          <div className='login-section'>
+            <div class="row mb-3">
+              <label
+                htmlFor="email"
+                className="form-label">
+                Email
+              </label>
+             
+                <input
+                  type="email"
+                  id="email"
+                  className="form-control"
+                  name="email"
+                  autoComplete='off'
+                  onChange={onChange} />
+              </div>
+            <div class="row mb-3">
+              <label
+                htmlFor="password"
+                className="form-label">
+                Password
+              </label>
+              <input
+                  type="password"
+                  id="password"
+                  className="form-control"
+                  name="password"
+                  autoComplete='off'
+                  onChange={onChange} />
+            </div>
+            <button className="btn btn-primary" onClick={log}>로그인</button>
+          </div>
+        </form>
       </div>
-
-      <button onClick={log}>로그인</button>
     </div>
   )
 }
