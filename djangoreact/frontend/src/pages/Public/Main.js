@@ -7,7 +7,11 @@ import main3 from '../../images/main3.jpg';
 
 import logo from '../../images/logo.png';
 
+
 const Main = () => {
+const onClick = () => {
+  console.log(localStorage.getItem('key'))
+}
   return (
     <div className='Main'>
       {/* 로고 & 이미지 슬라이더 */}
@@ -16,6 +20,8 @@ const Main = () => {
       <BackgroundSlider
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
+
+        <button onClick={onClick}>눌러</button>
     </div>
   )
 }

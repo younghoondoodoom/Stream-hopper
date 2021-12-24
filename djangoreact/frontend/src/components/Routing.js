@@ -39,21 +39,23 @@ const Routing = () => {
                     <Route path="/login" element={<Login />} /> {/* 제한 Private */}
                     <Route path="/register" element={<Register />} /> {/* 제한 Private */}
                     <Route path="/intro" element={<Intro />} /> {/* 공용 */}
-                    <Route path="/mypage/:username" element={<Mypage />} />{/* 제한 Private */}
-                    <Route path="/preference" element={<Preference />} />{/* 제한 Private */}
+                    <Route path="/mypage/:username" element={<PrivateRoute><Mypage /></PrivateRoute>} />{/* 제한 Private */}
+                    <Route path="/preference" element={<PrivateRoute><Preference /></PrivateRoute>} />{/* 제한 Private */}
 
                     {/* ott 취향 검사, 영화 검색 */}
-                    <Route path="/additional_info" element={<AdditionalInfo />} /> {/* 제한 Private */}
+                    <Route path="/additional_info" element={<PrivateRoute><AdditionalInfo /></PrivateRoute>} /> {/* 제한 Private */}
                     <Route path="/search" element={<Search />} /> {/* 공용 Public*/}
                     {/* 결과 */}
-                    <Route path="/movie_result" element={<MovieResult />} /> {/* 제한 Private */}
-                    <Route path="/ott_result" element={<OttResult />} />  {/* 제한 Private */}
+                    <Route path="/movie_result" element={<PrivateRoute><MovieResult /></PrivateRoute>} /> {/* 제한 Private */}
+                    <Route path="/ott_result" element={<PrivateRoute><OttResult /></PrivateRoute>} />  {/* 제한 Private */}
                     </Routes>
-                    {/* 에러 페이지 */}
+
+
+                    {/* 에러 페이지
                     <Routes>
                       <Route path="*" element={<ErrorPage />} />
                     </Routes>
-                    
+                     */}
                   
            </Suspense>
       </BrowserRouter>
