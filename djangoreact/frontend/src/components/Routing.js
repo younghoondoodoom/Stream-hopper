@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { BrowserRouter, Route, Routes, Router } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //page import
 import Homepage from "../pages/Public/HomePage" 
@@ -15,8 +15,9 @@ import Search from "../pages/Public/Search"
 import Mypage from "../pages/Private/Mypage"
 import ErrorPage from '../pages/ErrorPage'
 
-import PrivateRoute from './PrivateRote';
-import LogPrivateRoute from './LogPrivateRoute'
+// 페이지 접근 권한 
+import PrivateRoute from './access/PrivateRote';
+import LogPrivateRoute from './access/LogPrivateRoute'
 
 //네비게이션 바
 import NavBar from './NavBar';

@@ -1,15 +1,18 @@
 import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
-import { useRecoilState, useResetRecoilState } from 'recoil'
-import { useNavigate } from 'react-router-dom'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
+import { useNavigate, Navigate } from 'react-router-dom'
 import axios from 'axios'
+import {signIn} from "../api/api"
+import { validLogin } from '../api/api';
+
 
 const Login = () => {
+  // userStore에 있는 loginstate를 가져옴
   const [login, setLogin] = useRecoilState(loginState)
   
-  const reset = useResetRecoilState(loginState)
-  const navigate = useNavigate()
 
+  // loginState에 값 저장
   const onChange = useCallback((e) => {
     const {name, value} = e.target;
     setLogin({
@@ -19,35 +22,12 @@ const Login = () => {
     console.log(login)
   },[login]);
 
-  
-  async function log(e) {
-    e.preventDefault();
-   try {
-    const key = await axios.post("http://127.0.0.1:8000/users/auth/login/", login)
-    const data = key.data["key"]
-    
-   
-    localStorage.setItem("key", data) 
-    reset()
-
-    const KEY = localStorage.getItem("key")
-
-    const ax = await axios.create({
-      headers: { "Authorization" : `Token ${KEY}` },
-    });
-
-    await ax.get("http://127.0.0.1:8000/review/")
-    navigate("/main")
-
-   } catch (error) {
-    
-    const errorList = error.response.data
-    for (const [key, value] of Object.entries(errorList)) {
-      alert(`${key} : ${value}`);
-    }
+ // 로그인 시 성공하면 메인페이지로 이동
+  function onClick (e) {
+    e.preventDefault()
+    signIn(login)
   }
-  }; 
- 
+
   return (
     <div className='Login'>
       <div className="wrap">
@@ -82,7 +62,7 @@ const Login = () => {
                   autoComplete='off'
                   onChange={onChange} />
             </div>
-            <button className="btn btn-primary" onClick={log}>로그인</button>
+            <button className="btn btn-primary" onClick={onClick}>로그인</button>
           </div>
         </form>
       </div>

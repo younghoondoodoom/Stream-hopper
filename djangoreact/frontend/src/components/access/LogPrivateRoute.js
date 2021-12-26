@@ -2,11 +2,12 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { authAtom } from '../store/userStore'
+//로그인 후 페이지 권한을 제한
+import { validLogin } from '../../api/api';
 
 const PrivateRoute = ({ children }) => {
 
-  const auth = useRecoilValue(authAtom);
+  const auth = useRecoilValue(validLogin);
   
 
   if (auth) {

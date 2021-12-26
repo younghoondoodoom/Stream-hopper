@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { registerState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { signUp } from '../api/api'
 
 const Register = () => {
   // recoil에 저장한 state 가져옴
@@ -13,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate()
 
 
-  //onChane 될 때마다 registerState에 유저 정보를 담음. 
+  //onChange 될 때마다 registerState에 유저 정보를 담음. 
   const onChange = useCallback((e) => {
     const {name, value} = e.target;
     setRegister({
@@ -23,40 +23,17 @@ const Register = () => {
     console.log(register)
   },[register]);
 
-
-  // 회원가입 및 register error 처리!
-  async function signUp (e)  {
+  //회원가입 요청
+  function onSubmit(e) {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://127.0.0.1:8000/users/auth/register", register)
-      console.log(res)
-      alert("회원가입에 성공하였습니다.")
-      navigate("/login")
-
-    } catch (error) {
-      const errorList = error.response.data
-      for (const [key, value] of Object.entries(errorList)) {
-        alert(`${key} : ${value}`);
-      }
-    }
+    signUp(register)
   }
 
   return (
     <div className='Register'>
-       <form onSubmit={signUp}>
+       <form onSubmit={onSubmit}>
          <div className='container'>
           <h1>회원가입</h1>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">이름</label>
-            <input
-              type="text"
-              id="username"
-              className="form-control"
-              name="username"
-              placeholder="이름을 입력해주세요."
-              autoComplete='off'
-              onChange={onChange} />
-          </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">이메일</label>
             <input
@@ -68,6 +45,19 @@ const Register = () => {
               autoComplete='off'
               onChange={onChange} />
           </div>
+
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">이름</label>
+            <input
+              type="text"
+              id="username"
+              className="form-control"
+              name="username"
+              placeholder="이름을 입력해주세요."
+              autoComplete='off'
+              onChange={onChange} />
+          </div>
+
           <div className="mb-3">
             <label htmlFor="password1" className="form-label">비밀번호</label>
             <input
@@ -79,6 +69,7 @@ const Register = () => {
               autoComplete='off'
               onChange={onChange} />
           </div>
+          
           <div className="mb-3">
             <label htmlFor="password2" className="form-label">비밀번호 확인</label>
             <input

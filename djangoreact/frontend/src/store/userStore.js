@@ -22,11 +22,13 @@ export const loginState = atom({
   }
 });
 
-// 로그인 유효성 검사
-export const authAtom = atom({
-  key: 'auth',
-  default: localStorage.getItem('key')
-});
+
+// // 로그아웃
+// export const logOutAtom = atom({
+//   key: 'logout',
+//   default: localStorage.removeItem()
+// });
+
 
 
 export const registerSelector = selector({
