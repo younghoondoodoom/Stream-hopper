@@ -1,10 +1,7 @@
 import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { useNavigate, Navigate } from 'react-router-dom'
-import axios from 'axios'
+import { useRecoilState } from 'recoil'
 import {signIn} from "../api/api"
-import { validLogin } from '../api/api';
 
 
 const Login = () => {
