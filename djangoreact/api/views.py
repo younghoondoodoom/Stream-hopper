@@ -11,8 +11,9 @@ from .models import Review
 
 class ReviewList(APIView):
     def get(self, request):
+        print(request.user)
+        print(request.auth)
         reviews = Review.objects.all()
-
         serializer = ReiviewSerializer(reviews, many=True)
         return Response(serializer.data)
     
