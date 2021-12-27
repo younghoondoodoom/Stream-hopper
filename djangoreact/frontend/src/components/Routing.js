@@ -45,13 +45,15 @@ const Routing = () => {
                     <Route path="/mypage/:username" element={<PrivateRoute><Mypage /></PrivateRoute>} />{/* 제한 Private */}
                     <Route path="/preference" element={<PrivateRoute><Preference /></PrivateRoute>} />{/* 제한 Private */}
 
-                    {/* ott 취향 검사, 영화 검색 */}
+                    {/* ott 취향 검사, 영화 검색 */} 
                     <Route path="/additional_info" element={<PrivateRoute><AdditionalInfo /></PrivateRoute>} /> {/* 제한 Private */}
+                    {/* <Route path="/additional_info" element={<PrivateRoute><AdditionalInfo /></PrivateRoute>} /> 제한 Private */}
                     <Route path="/search" element={<Search />} /> {/* 공용 Public*/}
+                    
                     {/* 결과 */}
                     <Route path="/movie_result" element={<PrivateRoute><MovieResult /></PrivateRoute>} /> {/* 제한 Private */}
                     <Route path="/ott_result" element={<PrivateRoute><OttResult /></PrivateRoute>} />  {/* 제한 Private */}
-                    </Routes>
+                    </Routes> 
 
 
                     {/* 에러 페이지

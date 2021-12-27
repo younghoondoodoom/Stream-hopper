@@ -8,10 +8,11 @@ import main3 from '../../images/main3.jpg';
 import logo from '../../images/logo.png';
 
 
+import { logout } from '../../api/api';
+
 const Main = () => {
-const onClick = () => {
-  console.log(localStorage.getItem('key'))
-}
+
+
   return (
     <div className='Main'>
       {/* 로고 & 이미지 슬라이더 */}
@@ -21,7 +22,7 @@ const onClick = () => {
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
 
-        <button onClick={onClick}>눌러</button>
+        <button onClick={logout}>로그아웃</button>
     </div>
   )
 }
