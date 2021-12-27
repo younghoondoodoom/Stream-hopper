@@ -24,21 +24,17 @@ class Movies(models.Model):
     def __str__(self):
         return self.title
 
-SNS_CHOICES = (
-        ('G', 'Google'),
-        ('E', 'Email')
-    )
 
 class MovieReviews(models.Model):
     
-    type_of_user = models.CharField(max_length=1, choices = SNS_CHOICES)
     email_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     google_user = models.ForeignKey(SocialAccount, on_delete=models.CASCADE, null=True)
     movie_id = models.ForeignKey(Movies, on_delete=models.CASCADE)
     review = models.TextField(blank=True)
     rating = models.IntegerField(validators =[MinValueValidator(0), MaxValueValidator(5)], default=0)
     
-    
+    def __str__(self):
+        return self.movie_id
 
 
     

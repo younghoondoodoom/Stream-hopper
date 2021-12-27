@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import serializers
+from rest_framework import generics
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 from django.db.models import Q
 from django.http import Http404
 from rest_framework.exceptions import ParseError
 
-from.serializers import MovieSerializer, MovieReviewSerializer
+from .serializers import MovieSerializer, MovieReviewSerializer
 from .models import Movies, MovieReviews
+from .pagination import SearchMoviePageNumberPagination
 
 # Create your views here.
 
@@ -36,17 +39,11 @@ class MovieDetailAPIView(APIView):
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
     
-class MovieSearchAPIView(APIView):
-    def get(self, request):
-        if not 'keyword' in request.GET:
-            raise ParseError(detail="검색 형식이 맞지 않습니다.")
+
+class MovieSearchAPIView(ModelViewSet):
+    queryset = Movies.objects.all()
+    serializer_class = MovieSerializer
+    pagination_class = SearchMoviePageNumberPagination
         
-        keyword = request.GET.get('keyword')
-        print(keyword)
-        search_movie = Movies.objects.filter(title__icontains=keyword)
-        serializer = MovieSerializer(search_movie, many=True)
-        
-        # 204 처리 아직 안함.
-        
-        return Response(serializer.data)
-        
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'countrty', 'actor', 'director']
