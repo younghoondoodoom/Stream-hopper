@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import {signIn} from "../api/api"
-
+import Google from '../components/Google/GoogleLogin'
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴
@@ -60,6 +60,7 @@ const Login = () => {
                   onChange={onChange} />
             </div>
             <button className="btn btn-primary" onClick={onClick}>로그인</button>
+            <Google />
           </div>
         </form>
       </div>
@@ -68,3 +69,5 @@ const Login = () => {
 }
 
 export default Login
+
+

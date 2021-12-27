@@ -15,14 +15,16 @@ const Main = () => {
 
   return (
     <div className='Main'>
-      {/* 로고 & 이미지 슬라이더 */}
-      <img src={logo} className="img-fluid" alt="logo"></img>
 
       <BackgroundSlider
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
+      <div>
+        <h4>찾고싶은 영화를 검색하세요.</h4>
+        <input type="text" />
+      </div>
 
-        <button onClick={logout}>로그아웃</button>
+
     </div>
   )
 }

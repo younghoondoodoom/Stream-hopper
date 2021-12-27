@@ -22,6 +22,9 @@
   .nav-link{
     color: black;
   }
+  .offcanvas-title{
+    color: black;
+  }
 }
 
 
@@ -94,6 +97,13 @@
   }
 }
 
+//메인 페이지 /main
+.Main {
+  img {
+    margin-top: 90px;
+    width: 50%;
+  }
+}
 
 //회원가입 페이지 /register
 .Register {
@@ -160,11 +170,6 @@
       margin-top: 10px;
 
     }
-  }
-  
-
-  
-  
-  
+  } 
 }
 

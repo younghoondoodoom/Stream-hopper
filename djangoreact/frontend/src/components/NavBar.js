@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { validLogin, logout } from '../api/api'
 import { useRecoilValue } from 'recoil';
+import Google from './Google/GoogleLogin';
 
 // 내비게이션 바
 const NavBar = () => {
@@ -66,7 +67,9 @@ const NavBar = () => {
                         </li>
                         <li><Link className="dropdown-item" to="#">오늘 뭐볼까?</Link></li>
                       </ul>
-                    
+                      <hr className="dropdown-divider" />
+                      <Google />
+                        
                     </li>
                   </div>
                 </ul>
