@@ -25,6 +25,13 @@
   .offcanvas-title{
     color: black;
   }
+
+  .logbutton {
+    padding-top: 30px;
+    font-size: 13px;
+    border: none;
+    background-color: white;
+  }
 }
 
 
@@ -58,23 +65,19 @@
     border: none;
     min-width: 150px;
     min-height: 50px;
-    background: linear-gradient(to right, #cb2d3e, #ef473a); 
-    border-radius: 1000px;
-    color: white;
+    background: linear-gradient(to right, #ca858c, #ef473a); 
+    border-radius: 1rem;
+    color: rgb(201, 216, 214);
     cursor: pointer;
-    box-shadow: 5px 5px 12px #cb2d3e;
     font-weight: 700;
     transition: 0.3s;
     
     &reg {
-      background: linear-gradient(to right, #0575E6, #021B79);
-      box-shadow: 5px 5px 12px #021B79;
-      
+      background: linear-gradient(to right, #0575E6, #021B79);      
     }
 
     &intro {
-      background: linear-gradient(to right, #C33764, #1D2671);
-      box-shadow: 5px 5px 12px #C33764; 
+      background: linear-gradient(to right, #dd9db2, #545ca0);
     }
 
     &:hover {
@@ -85,7 +88,7 @@
         width: 5px;
         height: 5px;
         border-radius: 100%;
-        border: 6px solid #A7BFE8;
+        border: 6px solid #e07e21;
         position: absolute;
         z-index: -1;
         top: 50%;
@@ -100,10 +103,14 @@
 //메인 페이지 /main
 .Main {
   text-align: center;
+  background-color: black;
+  height: 100vh;
 
   img {
-    margin-top: 90px;
-    width: 50%;
+    margin-top: 10px;
+    width: 80%;
+    height: 80%;
+    border: orange 3px solid;
   }
   
 
@@ -148,6 +155,7 @@
     text-align: center;
     width: 60%;
     margin-left: 20%;
+    
 
    
   }

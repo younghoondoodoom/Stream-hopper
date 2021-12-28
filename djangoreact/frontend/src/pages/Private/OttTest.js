@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MovieResult = () => {
+const OttTest = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const MovieResult = () => {
   )
 }
 
-export default MovieResult
+export default OttTest

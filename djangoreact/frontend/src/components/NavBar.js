@@ -62,17 +62,18 @@ const NavBar = () => {
                         추천 서비스
                       </Link>
                       <ul className="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                        <li><Link className="dropdown-item" to="#">나와 맞는 OTT는?</Link></li>
+                        <li><Link className="dropdown-item" to="ott_recommended">나와 맞는 OTT는?</Link></li>
                         <li>
                           <hr className="dropdown-divider" />
                         </li>
-                        <li><Link className="dropdown-item" to="#">오늘 뭐볼까?</Link></li>
+                        <li><Link className="dropdown-item" to="contents_recommended">오늘 뭐볼까?</Link></li>
                       </ul>
                       <hr className="dropdown-divider" />
                       {/* <Google /> */}
-                        
                     </li>
                   </div>
+
+
                 </ul>
 
             </div>
