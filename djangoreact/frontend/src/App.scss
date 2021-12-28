@@ -66,7 +66,7 @@
     min-height: 50px;
     background: #ef473a; 
     border-radius: 1rem;
-    color: rgb(201, 216, 214);
+    color: white;
     cursor: pointer;
     font-weight: 700;
     transition: 0.3s;
@@ -104,12 +104,13 @@
   text-align: center;
   background-color: black;
   height: 100vh;
+  align-items: center;
 
   img {
     margin-top: 10px;
-    width: 80%;
-    height: 80%;
-    border: orange 3px solid;
+    border: rgb(235, 235, 235) 3px solid;
+    height: 60%;
+    
   }
   
 
@@ -123,10 +124,23 @@
     border: black 1px solid;
   }
 
-  h1 {
+  h3 {
     margin-top: 60px;
     text-align: left;
   }
+
+  h5 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .wrap {
+    max-width: 1000px;
+    min-height: 100%;
+    vertical-align: middle;
+    margin: 0 auto;
+  }
+
 }
 
 //회원가입 페이지 /register

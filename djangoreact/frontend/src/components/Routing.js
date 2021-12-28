@@ -9,7 +9,7 @@ import Main from "../pages/Public/Main"
 import ContentsResult from "../pages/Private/ContentsResult"
 import OttResult from "../pages/Private/OttResult"
 import Register from "../pages/Register"
-import Search from "../pages/Public/Search" 
+import SearchResult from "../pages/Public/SearchResult" 
 import Mypage from "../pages/Private/Mypage"
 import ErrorPage from '../pages/ErrorPage'
 import OttTest from '../pages/Private/OttTest';
@@ -22,7 +22,6 @@ import LogPrivateRoute from './access/LogPrivateRoute'
 import NavBar from './NavBar';
 
 //로딩 중...
-import Spinner from './Spinner'
 import ContentsTest from '../pages/Private/ContentsTest';
 <LogPrivateRoute></LogPrivateRoute>
 
@@ -45,7 +44,7 @@ const Routing = () => {
                     <Route path="/mypage/:username" element={<PrivateRoute><Mypage /></PrivateRoute>} />{/* 제한 Private */}
 
                     {/* 영화 검색 */} 
-                    <Route path="/search" element={<Search />} /> {/* 공용 Public*/}
+                    <Route path="/search" element={<SearchResult />} /> {/* 공용 Public*/}
                     
                     {/* 추천서비스 */}
                     <Route path="/contents_recommended" element={<PrivateRoute><ContentsTest /></PrivateRoute>} /> {/* 제한 Private */}

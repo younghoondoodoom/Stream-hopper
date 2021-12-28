@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import { registerState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
-import { useNavigate } from 'react-router-dom'
 import { signUp } from '../api/api'
 import logo from '../images/logo2.png'
 
@@ -9,11 +8,6 @@ import logo from '../images/logo2.png'
 const Register = () => {
   // recoil에 저장한 state 가져옴
   const [register, setRegister] = useRecoilState(registerState)
-
-  
-  // history.push와 같은 기능 
-  const navigate = useNavigate()
-
 
   //onChange 될 때마다 registerState에 유저 정보를 담음. 
   const onChange = useCallback((e) => {
