@@ -50,6 +50,10 @@ const NavBar = () => {
                   </li>
                   
                   <li className="nav-item">
+                    <Link className="nav-link active" aria-current="page" to="/register" hidden={auth}>회원가입</Link>
+                  </li>
+
+                  <li className="nav-item">
                     <Link className="nav-link" to="/intro">서비스 소개</Link>
                   </li>
 

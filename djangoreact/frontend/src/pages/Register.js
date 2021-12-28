@@ -3,6 +3,8 @@ import { registerState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
 import { signUp } from '../api/api'
+import logo from '../images/logo2.png'
+
 
 const Register = () => {
   // recoil에 저장한 state 가져옴
@@ -31,8 +33,10 @@ const Register = () => {
 
   return (
     <div className='Register'>
-       <form onSubmit={onSubmit}>
+       <form className="wrap" onSubmit={onSubmit}>
          <div className='container'>
+         <img src={logo} className="img-fluid rounded mx-auto d-block" alt="logo"></img>
+          <h1>Stream Hopper</h1>
           <h1>회원가입</h1>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">이메일</label>
@@ -83,7 +87,7 @@ const Register = () => {
           </div>
           
          
-          <button className='btn btn-lg btn-outline-warning'>제출</button>
+          <button className='btn btn-primary'>제출</button>
          </div>
        </form>
 

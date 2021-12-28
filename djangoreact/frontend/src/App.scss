@@ -9,7 +9,8 @@
   text-align: center;
   width: 100%;
 }
-  
+
+//네비바
 .NavBar {
   .navbar-brand{
     color: white;
@@ -33,8 +34,6 @@
     background-color: white;
   }
 }
-
-
 
 // 홈페이지 /
 .HomePage {
@@ -65,7 +64,7 @@
     border: none;
     min-width: 150px;
     min-height: 50px;
-    background: linear-gradient(to right, #ca858c, #ef473a); 
+    background: #ef473a; 
     border-radius: 1rem;
     color: rgb(201, 216, 214);
     cursor: pointer;
@@ -73,11 +72,11 @@
     transition: 0.3s;
     
     &reg {
-      background: linear-gradient(to right, #0575E6, #021B79);      
+      background: #2C5364;      
     }
 
     &intro {
-      background: linear-gradient(to right, #dd9db2, #545ca0);
+      background: #545ca0;
     }
 
     &:hover {
@@ -132,32 +131,38 @@
 
 //회원가입 페이지 /register
 .Register {
-  padding-top: 50px;
   background-color: black;
-  height: 100vh;
+  height: 100%;
   align-items: center;
   
 
   h1 {
     padding-bottom: 25px;
   }
+
+  img {
+    width: 60%;
+  }
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
   .container {
     background-color: white;
     color: black;
     border: solid 2px white;
     padding: 50px;
-    width: 70%;
-    height: 70%;
     
   }
 
   input{
     text-align: center;
-    width: 60%;
-    margin-left: 20%;
-    
-
-   
+    width: 70%;
+    margin-left: 15%; 
   }
   
   .btn {
@@ -168,7 +173,7 @@
 //로그인 페이지 /login
 .Login {
   background-color: black;
-  height: 100vh;
+  height: 100%;
   align-items: center;
 
   .container {
@@ -185,16 +190,27 @@
     vertical-align: middle;
   }
 
+  h1{
+    margin-top: 30px;
+  }
+  
+  img {
+    width: 60%;
+  }
+  
   .login-section {
     min-height: 402px;
-    padding-bottom: 20px;
+    padding: 0;
     margin-top: 60px;
     display: inline-block;
     
 
     input {
       margin-top: 10px;
+    }
 
+    button {
+      margin-top: 30px;
     }
   } 
 }
