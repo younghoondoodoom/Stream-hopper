@@ -46,4 +46,4 @@ class MovieSearchAPIView(ModelViewSet):
     pagination_class = SearchMoviePageNumberPagination
         
     filter_backends = [SearchFilter]
-    search_fields = ['title', 'countrty', 'actor', 'director']
+    search_fields = ['title', 'country', 'actor', 'director']
