@@ -10,6 +10,7 @@ const NavBar = () => {
 
   // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate()
+  
   function handleLogin () {
     if (auth) {
       logout()
@@ -68,7 +69,7 @@ const NavBar = () => {
                         <li><Link className="dropdown-item" to="#">오늘 뭐볼까?</Link></li>
                       </ul>
                       <hr className="dropdown-divider" />
-                      <Google />
+                      {/* <Google /> */}
                         
                     </li>
                   </div>

@@ -99,9 +99,27 @@
 
 //메인 페이지 /main
 .Main {
+  text-align: center;
+
   img {
     margin-top: 90px;
     width: 50%;
+  }
+  
+
+  input {
+    margin-top: 60px;
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 1rem;
+    border: black 1px solid;
+  }
+
+  h1 {
+    margin-top: 60px;
+    text-align: left;
   }
 }
 

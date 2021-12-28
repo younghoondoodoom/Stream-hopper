@@ -19,9 +19,18 @@ const Main = () => {
       <BackgroundSlider
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
-      <div>
-        <h4>찾고싶은 영화를 검색하세요.</h4>
-        <input type="text" />
+
+
+      <div className='container'>
+        
+        <div className='inputDiv'>
+          <input type="text" placeholder='제목, 감독, 배우, 영화를 입력하세요' />
+          
+        </div>
+        
+        
+        <h1>TOP rated</h1>
+        
       </div>
 
 

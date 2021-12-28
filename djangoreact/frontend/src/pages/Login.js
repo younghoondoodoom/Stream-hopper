@@ -60,7 +60,7 @@ const Login = () => {
                   onChange={onChange} />
             </div>
             <button className="btn btn-primary" onClick={onClick}>로그인</button>
-            <Google />
+            {/* <Google /> */}
           </div>
         </form>
       </div>
