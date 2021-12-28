@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { loginState }  from '../store/userStore'
 import { useRecoilState } from 'recoil'
 import {signIn} from "../api/api"
+import logo from '../images/logo2.png'
 import Google from '../components/Google/GoogleLogin'
 
 const Login = () => {
@@ -29,12 +30,15 @@ const Login = () => {
     <div className='Login'>
       <div className="wrap">
         <form className='container'>
+          <img src={logo} className="img-fluid rounded mx-auto d-block" alt="logo"></img>
+          <h1>Stream Hopper</h1>
+          
           <div className='login-section'>
             <div className="row mb-3">
               <label
                 htmlFor="email"
                 className="form-label">
-                Email
+                이메일
               </label>
              
                 <input
@@ -49,7 +53,7 @@ const Login = () => {
               <label
                 htmlFor="password"
                 className="form-label">
-                Password
+                비밀번호
               </label>
               <input
                   type="password"
@@ -60,7 +64,7 @@ const Login = () => {
                   onChange={onChange} />
             </div>
             <button className="btn btn-primary" onClick={onClick}>로그인</button>
-            <Google />
+            {/* <Google /> */}
           </div>
         </form>
       </div>

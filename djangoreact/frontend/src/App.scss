@@ -9,7 +9,8 @@
   text-align: center;
   width: 100%;
 }
-  
+
+//네비바
 .NavBar {
   .navbar-brand{
     color: white;
@@ -25,9 +26,14 @@
   .offcanvas-title{
     color: black;
   }
+
+  .logbutton {
+    padding-top: 30px;
+    font-size: 13px;
+    border: none;
+    background-color: white;
+  }
 }
-
-
 
 // 홈페이지 /
 .HomePage {
@@ -58,23 +64,19 @@
     border: none;
     min-width: 150px;
     min-height: 50px;
-    background: linear-gradient(to right, #cb2d3e, #ef473a); 
-    border-radius: 1000px;
-    color: white;
+    background: #ef473a; 
+    border-radius: 1rem;
+    color: rgb(201, 216, 214);
     cursor: pointer;
-    box-shadow: 5px 5px 12px #cb2d3e;
     font-weight: 700;
     transition: 0.3s;
     
     &reg {
-      background: linear-gradient(to right, #0575E6, #021B79);
-      box-shadow: 5px 5px 12px #021B79;
-      
+      background: #2C5364;      
     }
 
     &intro {
-      background: linear-gradient(to right, #C33764, #1D2671);
-      box-shadow: 5px 5px 12px #C33764; 
+      background: #545ca0;
     }
 
     &:hover {
@@ -85,7 +87,7 @@
         width: 5px;
         height: 5px;
         border-radius: 100%;
-        border: 6px solid #A7BFE8;
+        border: 6px solid #e07e21;
         position: absolute;
         z-index: -1;
         top: 50%;
@@ -99,39 +101,68 @@
 
 //메인 페이지 /main
 .Main {
+  text-align: center;
+  background-color: black;
+  height: 100vh;
+
   img {
-    margin-top: 90px;
-    width: 50%;
+    margin-top: 10px;
+    width: 80%;
+    height: 80%;
+    border: orange 3px solid;
+  }
+  
+
+  input {
+    margin-top: 60px;
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border-radius: 1rem;
+    border: black 1px solid;
+  }
+
+  h1 {
+    margin-top: 60px;
+    text-align: left;
   }
 }
 
 //회원가입 페이지 /register
 .Register {
-  padding-top: 50px;
   background-color: black;
-  height: 100vh;
+  height: 100%;
   align-items: center;
   
 
   h1 {
     padding-bottom: 25px;
   }
+
+  img {
+    width: 60%;
+  }
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
   .container {
     background-color: white;
     color: black;
     border: solid 2px white;
     padding: 50px;
-    width: 70%;
-    height: 70%;
     
   }
 
   input{
     text-align: center;
-    width: 60%;
-    margin-left: 20%;
-
-   
+    width: 70%;
+    margin-left: 15%; 
   }
   
   .btn {
@@ -142,7 +173,7 @@
 //로그인 페이지 /login
 .Login {
   background-color: black;
-  height: 100vh;
+  height: 100%;
   align-items: center;
 
   .container {
@@ -159,16 +190,27 @@
     vertical-align: middle;
   }
 
+  h1{
+    margin-top: 30px;
+  }
+  
+  img {
+    width: 60%;
+  }
+  
   .login-section {
     min-height: 402px;
-    padding-bottom: 20px;
+    padding: 0;
     margin-top: 60px;
     display: inline-block;
     
 
     input {
       margin-top: 10px;
+    }
 
+    button {
+      margin-top: 30px;
     }
   } 
 }

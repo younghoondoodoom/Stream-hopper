@@ -10,6 +10,7 @@ const NavBar = () => {
 
   // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate()
+  
   function handleLogin () {
     if (auth) {
       logout()
@@ -49,6 +50,10 @@ const NavBar = () => {
                   </li>
                   
                   <li className="nav-item">
+                    <Link className="nav-link active" aria-current="page" to="/register" hidden={auth}>회원가입</Link>
+                  </li>
+
+                  <li className="nav-item">
                     <Link className="nav-link" to="/intro">서비스 소개</Link>
                   </li>
 
@@ -61,17 +66,18 @@ const NavBar = () => {
                         추천 서비스
                       </Link>
                       <ul className="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                        <li><Link className="dropdown-item" to="#">나와 맞는 OTT는?</Link></li>
+                        <li><Link className="dropdown-item" to="ott_recommended">나와 맞는 OTT는?</Link></li>
                         <li>
                           <hr className="dropdown-divider" />
                         </li>
-                        <li><Link className="dropdown-item" to="#">오늘 뭐볼까?</Link></li>
+                        <li><Link className="dropdown-item" to="contents_recommended">오늘 뭐볼까?</Link></li>
                       </ul>
                       <hr className="dropdown-divider" />
-                      <Google />
-                        
+                      {/* <Google /> */}
                     </li>
                   </div>
+
+
                 </ul>
 
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { validLogin } from '../../api/api';
+import { logout } from '../../api/api';
 
 //슬라이드 라이브러리
 import BackgroundSlider from 'react-background-slider';
@@ -25,9 +26,20 @@ const HomePage = () => {
         images={[main1, main2, main3,]}
         duration={5} transition={2} />
 
-      {/* 버튼 컴포넌트 */}
+      {/* 로그인/로그아웃 버튼 */}
       <div className='container'>
-          <Link to="/login"><button className="w-btn" type="button" hidden={auth}>로그인</button></Link>
+          {!auth?
+            <Link to="/login"><button className="w-btn" type="button">로그인</button></Link>
+            : null
+          }
+
+          {auth?
+            <button className="w-btn" type="button" onClick={logout}>로그아웃</button>
+            : null
+          }
+          
+
+
           <Link to="/register"><button className="w-btn w-btnreg" type="button" hidden={auth}>회원가입</button></Link>
           <div>
             <Link to="/intro"><button className="w-btn w-btnintro" type="button">서비스소개</button></Link>

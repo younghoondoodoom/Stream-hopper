@@ -29,9 +29,9 @@ export const signIn = async (login) => {
    } catch (error) {
     // 에러처리
     const errorList = error.response.data
-    for (const [key, value] of Object.entries(errorList)) {
-      alert(`${key} : ${value}`);
-    }
+    // for (const [key, value] of Object.entries(errorList)) {
+    //   alert(`${key} : ${value}`);
+    // }
   }
 }; 
 
@@ -55,7 +55,7 @@ export const logout = async (login) => {
 //회원가입 요청 API
 export const signUp = async(register) => {
   try {
-    const res = await axios.post("http://127.0.0.1:8000/users/auth/register", register)
+    const res = await axios.post("users/auth/register", register)
     console.log(res)
     alert("회원가입에 성공하였습니다.")
     window.location.replace("/login")
