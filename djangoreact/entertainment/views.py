@@ -6,22 +6,22 @@ from rest_framework.generics import ListCreateAPIView
 from django.db.models import Q
 from rest_framework.exceptions import ParseError
 
-from .serializers import MovieSerializer, MovieReviewSerializer
-from .models import Movies, MovieReviews
-from .pagination import SearchMoviePageNumberPagination
+from .serializers import *
+from .models import *
+from .pagination import SearchContentPageNumberPagination
 
 # Create your views here.
 
-# movie 관련 APIView
+# CONTENTS APIVIEWS
 
-class MovieListAPIView(APIView):
+class ContentListAPIView(APIView):
     def get(self, request):
-        movies = Movies.objects.all().order_by('-vote_count', '-rating')[:3]
-        serializer = MovieSerializer(movies, many=True)
+        contents = Contents.objects.all().order_by('-vote_count', '-rating')[:3]
+        serializer = ContentSerializer(contents, many=True)
         return Response(serializer.data)
     
     def post(self, request):
-        serializer = MovieSerializer(data=request.data)
+        serializer = ContentSerializer(data=request.data)
         
         if serializer.is_valid():
             serializer.save()
@@ -30,24 +30,24 @@ class MovieListAPIView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class MovieDetailAPIView(APIView):
+class ContentsDetailAPIView(APIView):
     def get_object(self, pk):
-        return get_object_or_404(Movies, pk=pk)
+        return get_object_or_404(Contents, pk=pk)
     
     def get(self, request, pk, format=None):
         movie = self.get_object(pk)
-        serializer = MovieSerializer(movie)
+        serializer = ContentSerializer(movie)
         return Response(serializer.data)
     
-# Movie Search
+# CONTENTS SEARCH
 
 class ContentSearchCreateView(ListCreateAPIView):
     name = 'content-list'
-    serializer_class = MovieSerializer
-    pagination_class = SearchMoviePageNumberPagination
+    serializer_class = ContentSerializer
+    pagination_class = SearchContentPageNumberPagination
     
     def get_queryset(self):
-        queryset = Movies.objects.all()
+        queryset = Contents.objects.all()
         return queryset
     
     def list(self, request, *args, **kwargs):
@@ -67,7 +67,10 @@ class ContentSearchCreateView(ListCreateAPIView):
         director = request.query_params.get('director', None)
         
         if title is not None and actor is None and director is None:
-            queryset = queryset.filter(title__contains=title)
+            if queryset.filter(kor_title__icontains=title):
+                queryset = queryset.filter(kor_title__icontains=title)
+            else:
+                queryset = queryset.filter(title__icontains=title)
         
         if actor is not None and title is None and director is None:
             queryset = queryset.filter(actor__icontains=actor)
@@ -76,12 +79,13 @@ class ContentSearchCreateView(ListCreateAPIView):
             queryset = queryset.filter(director__icontains=director)
             
         if title is not None and actor is not None and director is not None:
-            queryset = queryset.filter(
-                Q(title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
-            )
+            if queryset.filter(kor_title__icontains=title):
+                queryset = queryset.filter(
+                    Q(kor_title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
+                )
+            else:
+                queryset = queryset.filter(
+                    Q(title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
+                )
 
         return queryset
-
-
-
-    

@@ -2,10 +2,7 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
-# Movies
-admin.site.register(Movies)
-admin.site.register(MovieReviews)
+# Contents
+admin.site.register(Contents)
+admin.site.register(ContentReviews)
 
-# TVshows
-admin.site.register(TVshows)
-admin.site.register(TVshowReviews)

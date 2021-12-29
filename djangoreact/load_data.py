@@ -5,47 +5,31 @@ import csv
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoreact.settings')
 django.setup()
 
-from entertainment.models import Movies, TVshows
+from entertainment.models import Contents
 
-MOVIE_CSV_PATH = './data/Movies.csv'
+MOVIE_CSV_PATH = './data/Contents.csv'
 
-with open(MOVIE_CSV_PATH, newline='', encoding="latin_1") as movies:
-    data_reader = csv.DictReader(movies)
+with open(MOVIE_CSV_PATH, newline='', encoding="utf-8") as contents:
+    data_reader = csv.DictReader(contents)
     for row in data_reader:
-        Movies.objects.create(
+        Contents.objects.create(
             title = row['title'],
-            genre = row['genre'],
-            country = row['country'],
-            actor = row['actor'],
+            rating = float(row['rating']),
+            image_path = row['image_path'],
+            overview = row['overview'],
+            vote_count = row['vote_count'],
             director = row['director'],
-            runtime = row['runtime'],
-            overview = row['overview'],
-            image_path = row['image_path'],
-            release = row['release'],
-            vote_count = int(row['vote_count']),
-            rating = float(row['rating']),
-            movie_rating = row['movie_rating'],
-            description = row['description'],
-            ott = row['ott']
-        )
-        
-TV_CSV_PATH = './data/TVshows.csv'
-
-with open(TV_CSV_PATH, newline='', encoding="latin_1") as tvshows:
-    data_reader = csv.DictReader(tvshows)
-    for row in data_reader:
-        TVshows.objects.create(
-            title = row['title'],
-            genre = row['genre'],
+            actor = row['actor'],
             country = row['country'],
-            actor = row['cast'],
-            duration = row['duration'],
-            overview = row['overview'],
-            image_path = row['image_path'],
             release = row['release'],
-            vote_count = int(row['vote_count']),
-            rating = float(row['rating']),
-            tv_rating = row['tv_rating'],
+            content_rating = row['content_rating'],
+            runtime = row['runtime'],
+            genre = row['genre'],
             description = row['description'],
-            ott = row['ott']
+            ott = row['ott'],
+            kor_title = row['kor_title'],
+            kor_overview = row['kor_overview'],
+            kor_image_path = row['kor_image_path'],
+            type = row['type']
         )
+

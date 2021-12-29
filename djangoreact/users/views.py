@@ -13,7 +13,7 @@ from dj_rest_auth.registration.views import SocialLoginView
 class UserListView(ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser,]
     
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
