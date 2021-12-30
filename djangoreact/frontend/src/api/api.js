@@ -29,9 +29,9 @@ export const signIn = async (login) => {
    } catch (error) {
     // 에러처리
     const errorList = error.response.data
-    // for (const [key, value] of Object.entries(errorList)) {
-    //   alert(`${key} : ${value}`);
-    // }
+    for (const [key, value] of Object.entries(errorList)) {
+      alert(`${key} : ${value}`);
+    }
   }
 }; 
 
