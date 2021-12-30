@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'django_filters',
     
     # app
-    'api',
     'users',
     'entertainment'
 ]

@@ -68,19 +68,21 @@ class ContentSearchCreateView(ListCreateAPIView):
         
         if title is not None and actor is None and director is None:
             if queryset.filter(kor_title__icontains=title):
-                queryset = queryset.filter(kor_title__icontains=title)
+                queryset = queryset.filter(kor_title__icontains=title).order_by('-vote_count', '-rating')
             else:
-                queryset = queryset.filter(title__icontains=title)
+                queryset = queryset.filter(title__icontains=title).order_by('-vote_count', '-rating')
         
         if actor is not None and title is None and director is None:
-            queryset = queryset.filter(actor__icontains=actor)
+            queryset = queryset.filter(actor__icontains=actor).order_by('-vote_count', '-rating')
             
         if director is not None and title is None and actor is None:
-            queryset = queryset.filter(director__icontains=director)
+            queryset = queryset.filter(director__icontains=director).order_by('-vote_count', '-rating')
             
         if title is not None and actor is not None and director is not None:
                 queryset = queryset.filter(
                     Q(title__icontains=title) | Q(kor_title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
-                )
+                ).order_by('-vote_count', '-rating')
 
         return queryset
+
+
