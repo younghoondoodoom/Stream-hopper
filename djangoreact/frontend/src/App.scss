@@ -112,7 +112,6 @@
     height: 60%;
     
   }
-  
 
   input {
     margin-top: 60px;
@@ -140,7 +139,76 @@
     vertical-align: middle;
     margin: 0 auto;
   }
+  
+  .imgmodal {
+    max-height: 500px;
+    overflow: hidden;
+  }
+  
 
+}
+
+//모달
+.ReactModal__Body--open {
+  
+  .mymodal {
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    right: 0;
+    bottom: 15%;
+    max-width: 50%;
+    border: 0px solid #ccc;
+    background: #141414;
+    overflow: auto;
+    border-radius: 1rem;
+    outline: none;
+    padding: 0px;
+
+    .container{
+      position: relative; 
+      width: 100%; 
+      height: 50%;
+      
+
+    }
+    img {
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      transform: translate(50, 50); 
+      width: 100%; height: 100%; 
+      object-fit: cover; 
+      margin: auto
+    }
+
+    .modal-title{
+      padding-top: 10px;
+      color: rgb(206, 118, 18);
+    }
+
+    .detailBox{
+      padding-top: 15px;
+    }
+    p {
+      font-size: 1.125rem;
+    }
+    .smfont{
+      font-size: 0.9rem;
+      margin: 0 5% 0 5%;
+    }
+
+    
+  }
+  
+  .myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
 }
 
 //회원가입 페이지 /register

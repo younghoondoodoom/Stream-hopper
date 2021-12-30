@@ -3,6 +3,7 @@ import './App.scss';
 // import Routing from './components/Routing';
 import { RecoilRoot } from 'recoil';
 import Spinner from './components/Spinner';
+import ReactModal from 'react-modal';
 
 function App() {
   // 나중에 footer 만들어 넣기
@@ -20,3 +21,5 @@ function App() {
 }
 
 export default App;
+ReactModal.setAppElement('#root')
+

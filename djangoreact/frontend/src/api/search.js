@@ -1,20 +1,30 @@
 import { axios } from "./instance";
-import { selector } from "recoil";
+import { selector, selectorFamily } from "recoil";
 
 
 //프로그램 검색
-export const searchProgram = async(str) => {
-  try {
-    const res = await axios.get(`entertainment/movie/?search=${str}`)
-    console.log(res)
-  } catch (error) {
-    // error 발생 시 서버에서 넘겨준 error 메시지 출력
-    const errorList = error.response.data
-    // for (const [key, value] of Object.entries(errorList)) {
-    //   alert(`${key} : ${value}`);
-    // }
+// export const searchProgram = selectorFamily({
+//   key: 'searchProgram',
+//   get: async (str) => {
+//     try {
+//       const res = await axios.get(`entertainment/movie/?search=${str}`)
+//       return res.data
+//     } catch(e) {
+//       console.log(e)
+//       return false
+//     }
+//   }
+// });
+
+export const searchProgram = selectorFamily({
+  key: 'searchProgram',
+  get: (str) => async () => {
+    if (!str) return '...';
+    const response = await axios.get(`entertainment/movie/?search=${str}`);
+    const res = await response.data;
+    return res;
   }
-}
+});
 
 // TOP Rated 요청
 export const topMovies = selector({
