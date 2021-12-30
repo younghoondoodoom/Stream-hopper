@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import { topMovieModal } from '../../store/movieStore';
 
 const Main = () => {
+
   //검색할 영화
   const [str, setStr] = useState("");
 
@@ -18,9 +19,12 @@ const Main = () => {
   // modal에 띄울 영화의 index값
   const [topModal, setTopModal] = useRecoilState(topMovieModal)
 
-  // const setSearch = useRecoilValue(searchProgram(str))
+  const query = useRecoilValue(searchProgram(str))
 
-
+    function onClick() {
+      console.log(query)
+    }
+    
   // 검색 시 str에 담음
   // str이 변할 때마다 영화 데이터 조회
   const searching = useCallback((e) => {
@@ -35,16 +39,25 @@ const Main = () => {
     setModalIsOpen(true)
   }
 
-
   return (
     <div className='Main'>
 
       <div className='wrap'>
         <div className='container'>
-        
           <div className='inputDiv'>
-            <input type="text" placeholder='제목/감독/배우를 입력하세요' value={str} onChange={searching}/>
-        
+            <form action="">
+              <select name="" id="">
+                <option value="">전체</option>
+                <option value="">제목</option>
+                <option value="">배우</option>
+                <option value="">감독</option>
+              </select>
+              <input 
+                type="text" 
+                placeholder='제목/감독/배우를 입력하세요' 
+                onChange={searching} 
+                value={str} />
+            </form> 
           </div>
         
           <h3>TOP Rated Movies</h3>
@@ -58,19 +71,18 @@ const Main = () => {
                       <h5>Top {idx+1}</h5>
                       <img
                       name={idx}
-                      src={"https://image.tmdb.org/t/p/w500"+newMovie[idx]["image_path"]}
+                      src={"https://image.tmdb.org/t/p/w500"+newMovie[idx]["kor_image_path"]}
                       alt="topMovie"
                       className='img-fluid'
                       onClick={handleModal}
                       />
-                      <h5>{newMovie[idx]["title"]}</h5>
+                      <h5>{newMovie[idx].kor_title}</h5>
                     </div> 
                 )
               })
             }
           </div>
 
-          
             <Modal
               isOpen={modalIsOpen}
               // style={modalStyle}
@@ -78,21 +90,30 @@ const Main = () => {
               overlayClassName="myoverlay"
               onRequestClose={() => setModalIsOpen(false)}
             >
-                  <div className='container'>
-                    <img src={`https://image.tmdb.org/t/p/original${topM[topModal]["image_path"]}`} className="img-fluid" alt={topM[topModal]["title"]} />
-                  </div>
-                  <h5 className="modal-title">{topM[topModal]["title"]}({topM[topModal]["release"]})</h5>
-                  <p className='smfont'>{topM[topModal]["runtime"]}</p>
+              <div className='container'>
+                <img 
+                  src={`https://image.tmdb.org/t/p/original${topM[topModal].kor_image_path}`} 
+                  className="img-fluid" 
+                  alt={topM[topModal].kor_title} />
+              </div>
+
+                    <h5 className="modal-title">
+                      {topM[topModal].kor_title}({topM[topModal].release})
+                    </h5>
+
+                    <p className='smfont'>{topM[topModal]["runtime"]}</p>
+        
+
                   <div className='detailBox'>
                     
-                    <p>장르<br/><span className='smfont'>{topM[topModal]["genre"]}</span></p>
-                    <p>평점 : {topM[topModal]["rating"]} / {topM[topModal]["ott"]} </p>
+                    <p>장르<span className='smfont'>{topM[topModal]["genre"]}</span></p>
+                    <p>평점 : {topM[topModal]["rating"]} / {topM[topModal].ott} </p>
                   </div>
                     
-                    <p className="smfont">{topM[topModal]["overview"]}</p>
+                    <p className="smfont">{topM[topModal]["kor_overview"]}</p>
             </Modal>
           
-          
+          <button onClick={onClick}>눌러</button>
         </div>
       </div>
     </div>

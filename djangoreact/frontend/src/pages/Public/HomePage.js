@@ -18,9 +18,12 @@ const HomePage = () => {
   const auth = useRecoilValue(validLogin)
   return (
     <div className='HomePage container'>
-
+      {/* 변수명 명확하게, 2개 이상 줄바꿈 */}
       {/* 로고 & 이미지 슬라이더 */}
-      <img src={logo} className="img-fluid" alt="logo"></img>
+      <img 
+        src={logo} 
+        className="img-fluid" 
+        alt="logo"></img>
 
       <BackgroundSlider
         images={[main1, main2, main3,]}
@@ -37,9 +40,6 @@ const HomePage = () => {
             <button className="w-btn" type="button" onClick={logout}>로그아웃</button>
             : null
           }
-          
-
-
           <Link to="/register"><button className="w-btn w-btnreg" type="button" hidden={auth}>회원가입</button></Link>
           <div>
             <Link to="/intro"><button className="w-btn w-btnintro" type="button">서비스소개</button></Link>

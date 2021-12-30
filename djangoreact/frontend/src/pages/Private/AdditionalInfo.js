@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const AdditionalInfo = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default AdditionalInfo
+export default AdditionalInfo;

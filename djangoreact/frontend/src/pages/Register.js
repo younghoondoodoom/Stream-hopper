@@ -1,92 +1,108 @@
-import React, { useCallback } from 'react'
-import { registerState }  from '../store/userStore'
-import { useRecoilState } from 'recoil'
-import { signUp } from '../api/api'
-import logo from '../images/logo2.png'
-
+import React, { useCallback } from "react";
+import { registerState } from "../store/userStore";
+import { useRecoilState } from "recoil";
+import { signUp } from "../api/api";
+import logo from "../images/logo2.png";
 
 const Register = () => {
   // recoil에 저장한 state 가져옴
-  const [register, setRegister] = useRecoilState(registerState)
+  const [register, setRegister] = useRecoilState(registerState);
 
-  //onChange 될 때마다 registerState에 유저 정보를 담음. 
-  const onChange = useCallback((e) => {
-    const {name, value} = e.target;
-    setRegister({
-      ...register,
-      [name]: value,
-    })
-    console.log(register)
-  },[register]);
+  //onChange 될 때마다 registerState에 유저 정보를 담음.
+  const onChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setRegister({
+        ...register,
+        [name]: value,
+      });
+      console.log(register);
+    },
+    [register]
+  );
 
   //회원가입 요청
   function onSubmit(e) {
     e.preventDefault();
-    signUp(register)
+    signUp(register);
   }
 
   return (
-    <div className='Register'>
-       <form className="wrap" onSubmit={onSubmit}>
-         <div className='container'>
-         <img src={logo} className="img-fluid rounded mx-auto d-block" alt="logo"></img>
+    <div className="Register">
+      <form className="wrap" onSubmit={onSubmit}>
+        <div className="container">
+          <img
+            src={logo}
+            className="img-fluid rounded mx-auto d-block"
+            alt="logo"
+          ></img>
           <h1>Stream Hopper</h1>
           <h1>회원가입</h1>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">이메일</label>
+            <label htmlFor="email" className="form-label">
+              이메일
+            </label>
             <input
               type="text"
               id="email"
               className="form-control"
               name="email"
               placeholder="이메일을 입력해주세요"
-              autoComplete='off'
-              onChange={onChange} />
+              autoComplete="off"
+              onChange={onChange}
+            />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">이름</label>
+            <label htmlFor="username" className="form-label">
+              이름
+            </label>
             <input
               type="text"
               id="username"
               className="form-control"
               name="username"
               placeholder="이름을 입력해주세요."
-              autoComplete='off'
-              onChange={onChange} />
+              autoComplete="off"
+              onChange={onChange}
+            />
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password1" className="form-label">비밀번호</label>
+            <label htmlFor="password1" className="form-label">
+              비밀번호
+            </label>
             <input
               type="password"
               id="password1"
               className="form-control"
               name="password1"
               placeholder="비밀번호를 입력해주세요."
-              autoComplete='off'
-              onChange={onChange} />
+              autoComplete="off"
+              onChange={onChange}
+            />
           </div>
-          
+
           <div className="mb-3">
-            <label htmlFor="password2" className="form-label">비밀번호 확인</label>
+            <label htmlFor="password2" className="form-label">
+              비밀번호 확인
+            </label>
             <input
               type="password"
               id="password2"
               className="form-control"
               name="password2"
               placeholder="비밀번호를 확인해주세요."
-              autoComplete='off'
-              onChange={onChange} />
+              autoComplete="off"
+              onChange={onChange}
+            />
           </div>
-          
-         
-          <button className='btn btn-primary'>제출</button>
-         </div>
-       </form>
 
+          <button className="btn btn-primary">제출</button>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
