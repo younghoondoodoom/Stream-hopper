@@ -1,14 +1,18 @@
 from rest_framework import serializers
-from .models import Movies, MovieReviews
+from .models import *
 
 
 # ModelSerializer는 기본적으로 create와 update 기능이 추가 되어있다.
-class MovieSerializer(serializers.ModelSerializer):
+
+# Contents Serializers
+
+class ContentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Movies
+        model = Contents
         fields = '__all__'
         
-class MovieReviewSerializer(serializers.ModelSerializer):
+class ContentReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MovieReviews
+        model = ContentReviews
         fields = '__all__'
+

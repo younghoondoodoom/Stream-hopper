@@ -1,12 +1,17 @@
 from django.urls import path, include
-from .views import MovieListAPIView, MovieDetailAPIView, MovieSearchAPIView
+from .views import *
 
-# main에 띄우는 movie top3 : domain/entertainment/movie/list
-# movie detail: domain/entertainment/movie/detail/<int:id>
-# movie search: domain/entertainment/movie/?search=str
+# content top 3: /entertainment/content/list
+# content detail: /entertainment/content/detail/<int:id>
+# content search
+# - title만 : /entertainment/content/search/?title={str}
+# - actor만 : /entertainment/content/search/?actor={str}
+# - director만 : /entertainment/content/search/?director={str}
+# -3개 다 : /entertainment/content/search/?title={str}&actor={str}&director={str}
+
 
 urlpatterns = [
-    path('movie/list', MovieListAPIView.as_view()),
-    path('movie/detail/<int:pk>', MovieDetailAPIView.as_view()),
-    path('movie/', MovieSearchAPIView.as_view({'get':'list'})),
+    path('content/list', ContentListAPIView.as_view()),
+    path('content/detail/<int:pk>', ContentsDetailAPIView.as_view()),
+    path('content/search/', ContentSearchCreateView.as_view()),
 ]
