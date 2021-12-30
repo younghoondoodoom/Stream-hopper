@@ -3,8 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
-from rest_framework.exceptions import ParseError
 
 from .serializers import *
 from .models import *
@@ -79,13 +79,8 @@ class ContentSearchCreateView(ListCreateAPIView):
             queryset = queryset.filter(director__icontains=director)
             
         if title is not None and actor is not None and director is not None:
-            if queryset.filter(kor_title__icontains=title):
                 queryset = queryset.filter(
-                    Q(kor_title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
-                )
-            else:
-                queryset = queryset.filter(
-                    Q(title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
+                    Q(title__icontains=title) | Q(kor_title__icontains=title) | Q(actor__icontains=actor) | Q(director__icontains=director)
                 )
 
         return queryset
