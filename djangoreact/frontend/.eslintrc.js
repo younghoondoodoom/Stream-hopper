@@ -6,16 +6,13 @@ module.exports = {
     node: true,
   },
   extends: [
-    "plugin:@typescript-eslint/recommended",
     // typescript 표준 규칙 모음
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript",
     // import 관련 규칙 모음
-
+    "react-app",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint",
-    "prettier/react",
+    "prettier",
     // prettier 관련 규칙 모음
   ],
   parserOptions: {
@@ -24,9 +21,8 @@ module.exports = {
     // tsconfig 파일의 경로를 참조 해줍니다.
     // 기준은 root 입니다.
   },
-  plugins: ["import"],
+  plugins: ["prettier"],
   rules: {
-    // 추가하고 싶은 rule을 더 추가해줍니다.
-    "no-console": "off",
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
   },
 };

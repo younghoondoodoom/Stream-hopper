@@ -1,16 +1,28 @@
-import React, { useEffect, useCallback, useState } from "react";
-import { searchProgram } from "../../api/search";
-import { topMovies } from "../../api/search";
-import { useRecoilValue, useRecoilState, useRecoilCallback } from "recoil";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  queryAtom,
+  searchFilter,
+  searchProgram,
+  topMovies,
+} from "../../api/search";
+
+import { useRecoilValue, useRecoilState, useRecoilValueLoadable } from "recoil";
 import Modal from "react-modal";
 import { topMovieIdx } from "../../store/movieStore";
+import SearchResult from "./SearchResult";
 
 const Main = () => {
+  const navigate = useNavigate();
+
   //검색할 영화
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useRecoilState(queryAtom);
+  const [filter, setFilter] = useRecoilState(searchFilter);
 
   // 모달 on off
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [handleSearch, setHandleSearch] = useState(false);
 
   //top rated Movie List
   const topMovieRecoil = useRecoilValue(topMovies);
@@ -18,30 +30,20 @@ const Main = () => {
   // modal에 띄울 영화의 index값
   const [modalIdx, setmodalIdx] = useRecoilState(topMovieIdx);
 
-  // const queryRecoil = useRecoilValue(searchProgram);
-
-  // function CartInfoDebug() {
-  //   const logCartItems = useRecoilCallback(({ snapshot }) => async () => {
-  //     // setQuery(e.target.value);
-  //     const numItemsInCart = snapshot.getPromise(query);
-  //     console.log("Items in cart: ", numItemsInCart);
-  //   });
-  // }
+  const queryLodable = useRecoilValueLoadable(searchProgram);
 
   function onSubmit(e) {
-    e.preventDefault();
-    searchProgram(query);
-    // CartInfoDebug();
-    // console.log(queryRecoil);
+    console.log(queryLodable.contents);
+    navigate("/search");
+    // setHandleSearch(true);
   }
+
   // 검색 시 query에 담음
   // query이 변할 때마다 영화 데이터 조회
-  const searching = useCallback(
-    (e) => {
-      setQuery(e.target.value);
-    },
-    [query]
-  );
+  const searching = (e) => {
+    setQuery(e.target.value);
+    setHandleSearch(true);
+  };
 
   function handleModal(e) {
     const index = e.target.name;
@@ -55,11 +57,11 @@ const Main = () => {
         <div className="container">
           <div className="inputDiv">
             <form onSubmit={onSubmit}>
-              <select name="" id="">
-                <option value="">전체</option>
-                <option value="">제목</option>
-                <option value="">배우</option>
-                <option value="">감독</option>
+              <select onChange={(e) => setFilter(e.target.value)}>
+                <option value="all">전체</option>
+                <option value="title">제목</option>
+                <option value="actor">배우</option>
+                <option value="director">감독</option>
               </select>
               <input
                 type="text"
@@ -68,6 +70,7 @@ const Main = () => {
                 value={query}
               />
             </form>
+            {query.length >= 2 && <SearchResult />}
           </div>
 
           <h3>TOP Rated Movies</h3>
@@ -93,6 +96,7 @@ const Main = () => {
                 </div>
               );
             })}
+            {query.length >= 2 ? <SearchResult /> : null}
           </div>
 
           <Modal

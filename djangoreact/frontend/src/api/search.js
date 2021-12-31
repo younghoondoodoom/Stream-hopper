@@ -1,14 +1,48 @@
 import { api } from "./instance";
-import { selector, selectorFamily } from "recoil";
+import { atom, selector, selectorFamily, useRecoilValueLoadable } from "recoil";
 
-export const searchProgram = selectorFamily({
+export const queryAtom = atom({
+  key: "queryAtom",
+  default: "",
+});
+
+export const searchFilter = atom({
+  key: "searchFilter",
+  default: "all",
+});
+
+export const searchProgram = selector({
   key: "searchProgram",
-  get: async (query) => {
-    if (!query) return "...";
-    // useRecoilCallback();
-    const response = api.get(`/entertainment/content/search/?title=${query}`);
-    const res = response.data;
-    return res;
+
+  get: async ({ get }) => {
+    const filter = get(searchFilter);
+    const query = get(queryAtom);
+
+    if (filter === "all") {
+      const response = await api.get(
+        `/entertainment/content/search/?title=${query}&actor=${query}&director=${query}`
+      );
+      const res = await response.data;
+      return res;
+    } else if (filter === "title") {
+      const response = await api.get(
+        `/entertainment/content/search/?title=${query}`
+      );
+      const res = await response.data;
+      return res;
+    } else if (filter === "actor") {
+      const response = await api.get(
+        `/entertainment/content/search/?actor=${query}`
+      );
+      const res = await response.data;
+      return res;
+    } else {
+      const response = await api.get(
+        `/entertainment/content/search/?director=${query}`
+      );
+      const res = await response.data;
+      return res;
+    }
   },
 });
 
