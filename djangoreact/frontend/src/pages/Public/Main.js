@@ -37,6 +37,7 @@ const Main = () => {
     navigate("/search");
     // setHandleSearch(true);
   }
+  console.log(queryLodable);
 
   // 검색 시 query에 담음
   // query이 변할 때마다 영화 데이터 조회
@@ -80,7 +81,7 @@ const Main = () => {
               const newMovie = {};
               newMovie[idx] = movie;
               return (
-                <div key={"top" + idx} className="col">
+                <div key={"search" + idx} className="col">
                   <h5>Top {idx + 1}</h5>
                   <img
                     name={idx}
@@ -96,12 +97,10 @@ const Main = () => {
                 </div>
               );
             })}
-            {query.length >= 2 ? <SearchResult /> : null}
           </div>
 
           <Modal
             isOpen={modalIsOpen}
-            // style={modalStyle}
             className="mymodal"
             overlayClassName="myoverlay"
             onRequestClose={() => setModalIsOpen(false)}

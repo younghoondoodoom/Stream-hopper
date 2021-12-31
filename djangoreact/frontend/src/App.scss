@@ -8,6 +8,7 @@
 
 .App {
   text-align: center;
+  height: 100vh;
   width: 100%;
 }
 
@@ -293,4 +294,11 @@
 //검색페이지
 .SearchResult {
   background-color: black;
+  height: 100vh;
+  .row {
+    height: 100%;
+  }
+  img {
+    width: 100%;
+  }
 }

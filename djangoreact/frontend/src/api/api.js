@@ -50,6 +50,7 @@ export const signUp = async (register) => {
     const res = await api.post("users/auth/register/", register);
     console.log(res);
     alert("회원가입에 성공하였습니다.");
+    // 분리해
     window.location.replace("/login");
   } catch (error) {
     // error 발생 시 서버에서 넘겨준 error 메시지 출력
