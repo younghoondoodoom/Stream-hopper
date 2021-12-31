@@ -3,10 +3,11 @@ import { selector, selectorFamily } from "recoil";
 
 export const searchProgram = selectorFamily({
   key: "searchProgram",
-  get: (query) => async () => {
+  get: async (query) => {
     if (!query) return "...";
-    const response = await api.get(`/entertainment/content/search/?${query}`);
-    const res = await response.data;
+    // useRecoilCallback();
+    const response = api.get(`/entertainment/content/search/?title=${query}`);
+    const res = response.data;
     return res;
   },
 });

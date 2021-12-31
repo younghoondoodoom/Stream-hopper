@@ -6,9 +6,9 @@ import { useRecoilValue } from "recoil";
 import { validLogin } from "../../api/api";
 
 const PrivateRoute = ({ children }) => {
-  const auth = useRecoilValue(validLogin);
+  const isLogin = useRecoilValue(validLogin);
 
-  if (auth) {
+  if (isLogin) {
     return <Navigate to="/main" />;
   }
 

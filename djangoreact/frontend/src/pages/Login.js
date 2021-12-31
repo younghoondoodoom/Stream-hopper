@@ -3,29 +3,31 @@ import { loginState } from "../store/userStore";
 import { useRecoilState } from "recoil";
 import { signIn } from "../api/api";
 import logo from "../images/logo2.png";
-import Google from "../components/Google/GoogleLogin";
+import Google from "../components/google/GoogleLogin";
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴
-  const [login, setLogin] = useRecoilState(loginState);
+  const [loginInfo, setLoginInfo] = useRecoilState(loginState);
 
   // loginState에 값 저장
-  const onChange = useCallback(
+  const handleInput = useCallback(
     (e) => {
       const { name, value } = e.target;
-      setLogin({
-        ...login,
+      setLoginInfo({
+        ...loginInfo,
         [name]: value,
       });
-      console.log(login);
     },
-    [login]
+    [loginInfo]
   );
 
   // 로그인 시 성공하면 메인페이지로 이동
-  function onClick(e) {
+  function handleLogin(e) {
     e.preventDefault();
-    signIn(login);
+    signIn(loginInfo);
+    if (localStorage.getItem("key")) {
+      window.location.replace("/main");
+    }
   }
 
   return (
@@ -51,7 +53,7 @@ const Login = () => {
                 className="form-control"
                 name="email"
                 autoComplete="off"
-                onChange={onChange}
+                onChange={handleInput}
               />
             </div>
             <div className="row mb-3">
@@ -64,10 +66,10 @@ const Login = () => {
                 className="form-control"
                 name="password"
                 autoComplete="off"
-                onChange={onChange}
+                onChange={handleInput}
               />
             </div>
-            <button className="btn btn-primary" onClick={onClick}>
+            <button className="btn btn-primary" onClick={handleLogin}>
               로그인
             </button>
             {/* <Google /> */}

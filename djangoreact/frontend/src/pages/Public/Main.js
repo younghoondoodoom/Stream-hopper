@@ -1,123 +1,141 @@
-import React, { useEffect, useCallback, useState } from 'react'
-import { searchProgram } from '../../api/search';
-import  { topMovies }  from '../../api/search';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import Modal from 'react-modal';
-import { topMovieModal } from '../../store/movieStore';
+import React, { useEffect, useCallback, useState } from "react";
+import { searchProgram } from "../../api/search";
+import { topMovies } from "../../api/search";
+import { useRecoilValue, useRecoilState, useRecoilCallback } from "recoil";
+import Modal from "react-modal";
+import { topMovieIdx } from "../../store/movieStore";
 
 const Main = () => {
-
   //검색할 영화
-  const [str, setStr] = useState("");
+  const [query, setQuery] = useState("");
 
   // 모달 on off
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   //top rated Movie List
-  const topM = useRecoilValue(topMovies)
+  const topMovieRecoil = useRecoilValue(topMovies);
 
   // modal에 띄울 영화의 index값
-  const [topModal, setTopModal] = useRecoilState(topMovieModal)
+  const [modalIdx, setmodalIdx] = useRecoilState(topMovieIdx);
 
-  const query = useRecoilValue(searchProgram(str))
+  // const queryRecoil = useRecoilValue(searchProgram);
 
-    function onClick() {
-      console.log(query)
-    }
-    
-  // 검색 시 str에 담음
-  // str이 변할 때마다 영화 데이터 조회
-  const searching = useCallback((e) => {
-    setStr(e.target.value);
-    // setSearch(str);
-  },[str]);
+  // function CartInfoDebug() {
+  //   const logCartItems = useRecoilCallback(({ snapshot }) => async () => {
+  //     // setQuery(e.target.value);
+  //     const numItemsInCart = snapshot.getPromise(query);
+  //     console.log("Items in cart: ", numItemsInCart);
+  //   });
+  // }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    searchProgram(query);
+    // CartInfoDebug();
+    // console.log(queryRecoil);
+  }
+  // 검색 시 query에 담음
+  // query이 변할 때마다 영화 데이터 조회
+  const searching = useCallback(
+    (e) => {
+      setQuery(e.target.value);
+    },
+    [query]
+  );
 
   function handleModal(e) {
     const index = e.target.name;
-    setTopModal(index)
-    setModalIsOpen(true)
+    setmodalIdx(index);
+    setModalIsOpen(true);
   }
 
   return (
-    <div className='Main'>
-
-      <div className='wrap'>
-        <div className='container'>
-          <div className='inputDiv'>
-            <form action="">
+    <div className="Main">
+      <div className="wrap">
+        <div className="container">
+          <div className="inputDiv">
+            <form onSubmit={onSubmit}>
               <select name="" id="">
                 <option value="">전체</option>
                 <option value="">제목</option>
                 <option value="">배우</option>
                 <option value="">감독</option>
               </select>
-              <input 
-                type="text" 
-                placeholder='제목/감독/배우를 입력하세요' 
-                onChange={searching} 
-                value={str} />
-            </form> 
+              <input
+                type="text"
+                placeholder="제목/감독/배우를 입력하세요"
+                onChange={searching}
+                value={query}
+              />
+            </form>
           </div>
-        
+
           <h3>TOP Rated Movies</h3>
-            <div className="row">
-              {/* topMovie 리스트를 받아 map으로 화면에 뿌려줌 */}
-              {topM.map((movie, idx) => {
-                const newMovie = {};
-                newMovie[idx] = movie;
-                return (     
-                    <div key={"top"+idx} className='col'>
-                      <h5>Top {idx+1}</h5>
-                      <img
-                      name={idx}
-                      src={"https://image.tmdb.org/t/p/w500"+newMovie[idx]["kor_image_path"]}
-                      alt="topMovie"
-                      className='img-fluid'
-                      onClick={handleModal}
-                      />
-                      <h5>{newMovie[idx].kor_title}</h5>
-                    </div> 
-                )
-              })
-            }
+          <div className="row">
+            {/* topMovie 리스트를 받아 map으로 화면에 뿌려줌 */}
+            {topMovieRecoil.map((movie, idx) => {
+              const newMovie = {};
+              newMovie[idx] = movie;
+              return (
+                <div key={"top" + idx} className="col">
+                  <h5>Top {idx + 1}</h5>
+                  <img
+                    name={idx}
+                    src={
+                      "https://image.tmdb.org/t/p/w500" +
+                      newMovie[idx].kor_image_path
+                    }
+                    alt="topMovie"
+                    className="img-fluid"
+                    onClick={handleModal}
+                  />
+                  <h5>{newMovie[idx].kor_title}</h5>
+                </div>
+              );
+            })}
           </div>
 
-            <Modal
-              isOpen={modalIsOpen}
-              // style={modalStyle}
-              className="mymodal"
-              overlayClassName="myoverlay"
-              onRequestClose={() => setModalIsOpen(false)}
-            >
-              <div className='container'>
-                <img 
-                  src={`https://image.tmdb.org/t/p/original${topM[topModal].kor_image_path}`} 
-                  className="img-fluid" 
-                  alt={topM[topModal].kor_title} />
-              </div>
+          <Modal
+            isOpen={modalIsOpen}
+            // style={modalStyle}
+            className="mymodal"
+            overlayClassName="myoverlay"
+            onRequestClose={() => setModalIsOpen(false)}
+          >
+            <div className="container">
+              <img
+                src={`https://image.tmdb.org/t/p/original${topMovieRecoil[modalIdx].kor_image_path}`}
+                className="img-fluid"
+                alt={topMovieRecoil[modalIdx].kor_title}
+              />
+            </div>
 
-                    <h5 className="modal-title">
-                      {topM[topModal].kor_title}({topM[topModal].release})
-                    </h5>
+            <h5 className="modal-title">
+              {topMovieRecoil[modalIdx].kor_title}(
+              {topMovieRecoil[modalIdx].release})
+            </h5>
 
-                    <p className='smfont'>{topM[topModal]["runtime"]}</p>
-        
+            <p className="smfont">{topMovieRecoil[modalIdx].runtime}</p>
 
-                  <div className='detailBox'>
-                    
-                    <p>장르<span className='smfont'>{topM[topModal]["genre"]}</span></p>
-                    <p>평점 : {topM[topModal]["rating"]} / {topM[topModal].ott} </p>
-                  </div>
-                    
-                    <p className="smfont">{topM[topModal]["kor_overview"]}</p>
-            </Modal>
-          
-          <button onClick={onClick}>눌러</button>
+            <div className="detailBox">
+              <p>
+                장르
+                <span className="smfont">{topMovieRecoil[modalIdx].genre}</span>
+              </p>
+              <p>
+                평점 : {topMovieRecoil[modalIdx].rating} /
+                {topMovieRecoil[modalIdx].ott}
+              </p>
+            </div>
+
+            <p className="smfont">{topMovieRecoil[modalIdx].kor_overview}</p>
+          </Modal>
+
+          <button onClick={onSubmit}>눌러</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

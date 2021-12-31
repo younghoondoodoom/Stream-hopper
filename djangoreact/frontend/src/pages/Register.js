@@ -9,7 +9,7 @@ const Register = () => {
   const [register, setRegister] = useRecoilState(registerState);
 
   //onChange 될 때마다 registerState에 유저 정보를 담음.
-  const onChange = useCallback(
+  const handleInput = useCallback(
     (e) => {
       const { name, value } = e.target;
       setRegister({
@@ -22,14 +22,14 @@ const Register = () => {
   );
 
   //회원가입 요청
-  function onSubmit(e) {
+  function submitRegister(e) {
     e.preventDefault();
     signUp(register);
   }
 
   return (
     <div className="Register">
-      <form className="wrap" onSubmit={onSubmit}>
+      <form className="wrap" onSubmit={submitRegister}>
         <div className="container">
           <img
             src={logo}
@@ -49,7 +49,7 @@ const Register = () => {
               name="email"
               placeholder="이메일을 입력해주세요"
               autoComplete="off"
-              onChange={onChange}
+              onChange={handleInput}
             />
           </div>
 
@@ -64,7 +64,7 @@ const Register = () => {
               name="username"
               placeholder="이름을 입력해주세요."
               autoComplete="off"
-              onChange={onChange}
+              onChange={handleInput}
             />
           </div>
 
@@ -79,7 +79,7 @@ const Register = () => {
               name="password1"
               placeholder="비밀번호를 입력해주세요."
               autoComplete="off"
-              onChange={onChange}
+              onChange={handleInput}
             />
           </div>
 
@@ -94,7 +94,7 @@ const Register = () => {
               name="password2"
               placeholder="비밀번호를 확인해주세요."
               autoComplete="off"
-              onChange={onChange}
+              onChange={handleInput}
             />
           </div>
 

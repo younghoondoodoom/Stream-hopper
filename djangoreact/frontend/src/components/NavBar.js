@@ -1,19 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { validLogin, logout } from "../api/api";
+import { validLogin, signOut } from "../api/api";
 import { useRecoilValue } from "recoil";
-import Google from "./Google/GoogleLogin";
+import Google from "./google/GoogleLogin";
 
 // 내비게이션 바
 const NavBar = () => {
-  const auth = useRecoilValue(validLogin);
+  const isLogin = useRecoilValue(validLogin);
 
   // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate();
 
   function handleLogin() {
-    if (auth) {
-      logout();
+    if (isLogin) {
+      signOut();
       //localStorage에 지움.
       localStorage.removeItem("key");
       navigate("/");
@@ -71,7 +71,7 @@ const NavBar = () => {
 
                 <li className="nav-item" onClick={handleLogin}>
                   <Link className="nav-link active" aria-current="page" to="#">
-                    {auth ? "로그아웃" : "로그인"}
+                    {isLogin ? "로그아웃" : "로그인"}
                   </Link>
                 </li>
 
@@ -80,7 +80,7 @@ const NavBar = () => {
                     className="nav-link active"
                     aria-current="page"
                     to="/register"
-                    hidden={auth}
+                    hidden={isLogin}
                   >
                     회원가입
                   </Link>
@@ -92,7 +92,7 @@ const NavBar = () => {
                   </Link>
                 </li>
 
-                <div hidden={!auth}>
+                <div hidden={!isLogin}>
                   <li className="nav-item">
                     <Link
                       className="nav-link active"

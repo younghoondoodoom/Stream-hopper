@@ -2,18 +2,18 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //page import
-import Homepage from "../pages/Public/HomePage";
-import Intro from "../pages/Public/Intro";
+import Homepage from "../pages/public/HomePage";
+import Intro from "../pages/public/Intro";
 import Login from "../pages/Login";
-import Main from "../pages/Public/Main";
-import ContentsResult from "../pages/Private/ContentsResult";
-import OttResult from "../pages/Private/OttResult";
+import Main from "../pages/public/Main";
+import ContentsResult from "../pages/private/ContentsResult";
+import OttResult from "../pages/private/OttResult";
 import Register from "../pages/Register";
-import SearchResult from "../pages/Public/SearchResult";
-import Mypage from "../pages/Private/Mypage";
+import SearchResult from "../pages/public/SearchResult";
+import Mypage from "../pages/private/Mypage";
 import ErrorPage from "../pages/ErrorPage";
-import OttTest from "../pages/Private/OttTest";
-
+import OttTest from "../pages/private/OttTest";
+import ContentsTest from "../pages/private/ContentsTest";
 // 페이지 접근 권한 0
 import PrivateRoute from "./access/PrivateRote";
 import LogPrivateRoute from "./access/LogPrivateRoute";
@@ -22,7 +22,6 @@ import LogPrivateRoute from "./access/LogPrivateRoute";
 import NavBar from "./NavBar";
 
 //로딩 중...
-import ContentsTest from "../pages/Private/ContentsTest";
 
 const Routing = () => {
   return (
@@ -31,8 +30,8 @@ const Routing = () => {
         <NavBar />
         <Routes>
           {/* 메인 홈페이지 */}
-          <Route path="/" element={<Homepage />} /> {/* 공용 Public*/}
-          <Route path="/main" element={<Main />} /> {/* 공용 Public*/}
+          <Route path="/" element={<Homepage />} /> {/* 공용 public*/}
+          <Route path="/main" element={<Main />} /> {/* 공용 public*/}
           {/* 로그인, 회원가입, 서비스소개, 마이 페이지 회원가입 */}
           <Route
             path="/login"
@@ -63,7 +62,7 @@ const Routing = () => {
           />
           {/* 제한 Private */}
           {/* 영화 검색 */}
-          <Route path="/search" element={<SearchResult />} /> {/* 공용 Public*/}
+          <Route path="/search" element={<SearchResult />} /> {/* 공용 public*/}
           {/* 추천서비스 */}
           <Route
             path="/contents_recommended"

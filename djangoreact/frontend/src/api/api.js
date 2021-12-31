@@ -6,7 +6,7 @@ export const validLogin = selector({
   key: "validLogin",
   get: async () => {
     try {
-      const response = await loginAuth.get("/review/");
+      const response = await loginAuth.get("review/");
       return response;
     } catch (e) {
       console.log(e);
@@ -23,11 +23,10 @@ export const signIn = async (login) => {
     const data = key.data["key"];
     //성공하면 localStorage에 토큰을 담음.
     localStorage.setItem("key", data);
-
-    window.location.replace("/main");
   } catch (error) {
     // 에러처리
     const errorList = error.response.data;
+    alert(error);
     for (const [key, value] of Object.entries(errorList)) {
       alert(`${key} : ${value}`);
     }
@@ -35,7 +34,7 @@ export const signIn = async (login) => {
 };
 
 // 로그아웃 요청 API
-export const logout = async () => {
+export const signOut = async () => {
   // login 정보를 서버로 post 후 에러처리
   try {
     await api.post("users/auth/logout/");
@@ -44,7 +43,6 @@ export const logout = async () => {
     console.log(error);
   }
 };
-// 하나의 역할만, 파람 명확히
 
 //회원가입 요청 API
 export const signUp = async (register) => {

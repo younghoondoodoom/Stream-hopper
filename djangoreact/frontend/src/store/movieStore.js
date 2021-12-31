@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const topMovieModal = atom({
-  key: "topMovieModal",
+export const topMovieIdx = atom({
+  key: "topMovieIdx",
   default: 0,
 });
