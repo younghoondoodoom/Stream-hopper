@@ -65,8 +65,6 @@ INSTALLED_APPS = [
     'entertainment',
     'service',
     
-    # django-apscheduler
-    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
@@ -172,7 +170,9 @@ TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_L10N = True
+
+USE_TZ = False  
 
 
 # Static files (CSS, JavaScript, Images)
@@ -220,3 +220,5 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 
 # django-apscheduler config
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25 
+SCHEDULER_DEFAULT = True

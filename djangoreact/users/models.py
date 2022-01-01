@@ -5,6 +5,7 @@ from allauth.socialaccount.models import SocialAccount
 
 
 class CustomUser(AbstractUser):
+    # email을 id로 사용하기 위함.
     USERNAME_FIELD = 'email'
     
     email = models.EmailField(max_length=254, unique=True)

@@ -14,7 +14,8 @@ class UserListView(ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = [IsAdminUser,]
-    
+
+# 구글 로그인 미완
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
     callback_url = 'http://127.0.0.1:3000' #배포 시 서버주소 변경 필요

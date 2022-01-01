@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from .views import *
 
 # content top 3: /entertainment/content/list
@@ -7,7 +7,7 @@ from .views import *
 # - title만 : /entertainment/content/search/?title={str}
 # - actor만 : /entertainment/content/search/?actor={str}
 # - director만 : /entertainment/content/search/?director={str}
-# -3개 다 : /entertainment/content/search/?title={str}&actor={str}&director={str}
+# - 3개 다 : /entertainment/content/search/?title={str}&actor={str}&director={str}
 
 
 urlpatterns = [
