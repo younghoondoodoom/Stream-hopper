@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework.generics import ListCreateAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import ListAPIView
 from django.db.models import Q
 
 from .serializers import *
@@ -14,23 +12,13 @@ from .pagination import SearchContentPageNumberPagination
 
 # CONTENTS APIVIEWS
 
-class ContentListAPIView(APIView):
-    def get(self, request):
-        contents = Contents.objects.all().order_by('-vote_count', '-rating')[:3]
-        serializer = ContentSerializer(contents, many=True)
-        return Response(serializer.data)
-    
-    def post(self, request):
-        serializer = ContentSerializer(data=request.data)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-
-        return Response(serializer.errors, status=400)
-
+class ContentListAPIView(ListAPIView):
+    name = "Content TOP3"
+    serializer_class = ContentSerializer
+    queryset = Contents.objects.all().order_by('-vote_count', '-rating')[:3]
 
 class ContentsDetailAPIView(APIView):
+    name = "Detail Contents"
     def get_object(self, pk):
         return get_object_or_404(Contents, pk=pk)
     
@@ -39,16 +27,22 @@ class ContentsDetailAPIView(APIView):
         serializer = ContentSerializer(movie)
         return Response(serializer.data)
     
+    def post(self, request, pk):
+        movie = self.get_object(pk)
+        serializer = ContentSerializer(movie)
+        print(request.user.id)
+        print(request.auth)
+        return Response(serializer.data)
+
+        
+    
 # CONTENTS SEARCH
 
-class ContentSearchCreateView(ListCreateAPIView):
+class ContentSearchCreateView(ListAPIView):
     name = 'content-list'
     serializer_class = ContentSerializer
     pagination_class = SearchContentPageNumberPagination
-    
-    def get_queryset(self):
-        queryset = Contents.objects.all()
-        return queryset
+    queryset = Contents.objects.all()
     
     def list(self, request, *args, **kwargs):
         queryset = self.set_filters(self.get_queryset(), request)
@@ -70,7 +64,7 @@ class ContentSearchCreateView(ListCreateAPIView):
             if queryset.filter(kor_title__icontains=title):
                 queryset = queryset.filter(kor_title__icontains=title).order_by('-vote_count', '-rating')
             else:
-                queryset = queryset.filter(title__icontains=title).order_by('-vote_count', '-rating')
+                queryset = queryset.filter(title__icontains=title)
         
         if actor is not None and title is None and director is None:
             queryset = queryset.filter(actor__icontains=actor).order_by('-vote_count', '-rating')
@@ -84,5 +78,4 @@ class ContentSearchCreateView(ListCreateAPIView):
                 ).order_by('-vote_count', '-rating')
 
         return queryset
-
 

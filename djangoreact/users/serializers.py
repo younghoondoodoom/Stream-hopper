@@ -7,5 +7,5 @@ from .models import CustomUser
 class CustomUserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('id', 'email', 'username', 'password', 'sex', 'age', 'register_at') # issue possible
+        fields = '__all__' # issue possible
         

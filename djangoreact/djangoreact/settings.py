@@ -62,7 +62,11 @@ INSTALLED_APPS = [
     
     # app
     'users',
-    'entertainment'
+    'entertainment',
+    'service',
+    
+    # django-apscheduler
+    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
@@ -209,10 +213,10 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE' : 20,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework.parsers.JSONParser',
-    ]
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 
+
+# django-apscheduler config
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
