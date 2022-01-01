@@ -5,4 +5,3 @@ class ReiviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ('id', 'title', 'content', 'updated_at')
-
