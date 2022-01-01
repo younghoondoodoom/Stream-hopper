@@ -2,7 +2,7 @@ import React from "react";
 import { queryAtom, searchFilter, pageUrl } from "../../api/search";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import SearchResult from "../../components/SearchResult";
-import TopMovie from "../../components/topMovie";
+import TopMovie from "../../components/TopMovie";
 
 const Main = () => {
   //검색할 영화
