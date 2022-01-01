@@ -9,7 +9,6 @@ import Main from "../pages/public/Main";
 import ContentsResult from "../pages/private/ContentsResult";
 import OttResult from "../pages/private/OttResult";
 import Register from "../pages/Register";
-import SearchResult from "../pages/public/SearchResult";
 import Mypage from "../pages/private/Mypage";
 import ErrorPage from "../pages/ErrorPage";
 import OttTest from "../pages/private/OttTest";
@@ -61,8 +60,6 @@ const Routing = () => {
             }
           />
           {/* 제한 Private */}
-          {/* 영화 검색 */}
-          <Route path="/search" element={<SearchResult />} /> {/* 공용 public*/}
           {/* 추천서비스 */}
           <Route
             path="/contents_recommended"

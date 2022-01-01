@@ -11,19 +11,31 @@ export const searchFilter = atom({
   default: "all",
 });
 
+export const pageUrl = atom({
+  key: "pageUrl",
+  default: null,
+});
+
 export const searchProgram = selector({
   key: "searchProgram",
 
   get: async ({ get }) => {
     const filter = get(searchFilter);
     const query = get(queryAtom);
+    const page = get(pageUrl);
 
     if (filter === "all") {
-      const response = await api.get(
-        `/entertainment/content/search/?title=${query}&actor=${query}&director=${query}`
-      );
-      const res = await response.data;
-      return res;
+      if (page !== null) {
+        const response = await api.get(page);
+        const res = response.data;
+        return res;
+      } else {
+        const response = await api.get(
+          `/entertainment/content/search/?title=${query}&actor=${query}&director=${query}`
+        );
+        const res = await response.data;
+        return res;
+      }
     } else if (filter === "title") {
       const response = await api.get(
         `/entertainment/content/search/?title=${query}`
@@ -46,7 +58,6 @@ export const searchProgram = selector({
   },
 });
 
-//useRecoilCallback 사용해봐라
 // TOP Rated 요청
 export const topMovies = selector({
   key: "topMovies",
