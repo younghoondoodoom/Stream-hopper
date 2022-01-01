@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //page import
@@ -10,7 +10,6 @@ import ContentsResult from "../pages/private/ContentsResult";
 import OttResult from "../pages/private/OttResult";
 import Register from "../pages/Register";
 import Mypage from "../pages/private/Mypage";
-import ErrorPage from "../pages/ErrorPage";
 import OttTest from "../pages/private/OttTest";
 import ContentsTest from "../pages/private/ContentsTest";
 // 페이지 접근 권한 0
@@ -28,10 +27,10 @@ const Routing = () => {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          {/* 메인 홈페이지 */}
+          {/* 홈페이지, 메인페이지*/}
           <Route path="/" element={<Homepage />} /> {/* 공용 public*/}
           <Route path="/main" element={<Main />} /> {/* 공용 public*/}
-          {/* 로그인, 회원가입, 서비스소개, 마이 페이지 회원가입 */}
+          {/* 로그인 */}
           <Route
             path="/login"
             element={
@@ -39,8 +38,8 @@ const Routing = () => {
                 <Login />
               </LogPrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
+          />
+          {/* 회원가입 */}
           <Route
             path="/register"
             element={
@@ -48,9 +47,10 @@ const Routing = () => {
                 <Register />
               </LogPrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
-          <Route path="/intro" element={<Intro />} /> {/* 공용 */}
+          />
+          {/* 서비스소개 */}
+          <Route path="/intro" element={<Intro />} />
+          {/* 마이페이지 */}
           <Route
             path="/mypage/:username"
             element={
@@ -59,8 +59,7 @@ const Routing = () => {
               </PrivateRoute>
             }
           />
-          {/* 제한 Private */}
-          {/* 추천서비스 */}
+          {/* 영화 추천서비스 */}
           <Route
             path="/contents_recommended"
             element={
@@ -68,8 +67,8 @@ const Routing = () => {
                 <ContentsTest />
               </PrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
+          />
+          {/* ott 추천서비스 */}
           <Route
             path="/ott_recommended"
             element={
@@ -77,9 +76,8 @@ const Routing = () => {
                 <OttTest />
               </PrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
-          {/* 결과 */}
+          />
+          {/* 영화 추천 결과 */}
           <Route
             path="/movie_result"
             element={
@@ -87,8 +85,8 @@ const Routing = () => {
                 <ContentsResult />
               </PrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
+          />
+          {/* ott 추천 결과 */}
           <Route
             path="/ott_result"
             element={
@@ -96,15 +94,8 @@ const Routing = () => {
                 <OttResult />
               </PrivateRoute>
             }
-          />{" "}
-          {/* 제한 Private */}
+          />
         </Routes>
-
-        {/* 에러 페이지
-                    <Routes>
-                      <Route path="*" element={<ErrorPage />} />
-                    </Routes>
-                     */}
       </BrowserRouter>
     </div>
   );

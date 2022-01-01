@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 
 // 회원가입 post 양식
 export const registerState = atom({
@@ -21,17 +21,3 @@ export const loginState = atom({
     password: "",
   },
 });
-
-// // 로그아웃
-// export const logOutAtom = atom({
-//   key: 'logout',
-//   default: localStorage.removeItem()
-// });
-
-// export const registerSelector = selector({
-//   key : 'registerSelector',
-//   get: ({ get }) => {
-//     const res = get(registerState);
-//     return console.log(res)
-//   }
-// });

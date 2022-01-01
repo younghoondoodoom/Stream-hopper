@@ -1,3 +1,4 @@
+// 폰트
 @font-face {
   font-family: "GmarketSansBold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
@@ -119,7 +120,6 @@
     height: 40px;
     text-align: center;
     background-color: white;
-    // border-radius: 1rem;
     border: black 1px solid;
   }
 
@@ -300,19 +300,29 @@
     height: 100%;
   }
   img {
+    margin-top: 50px;
     width: 100%;
+    object-fit: cover;
+    display: block;
   }
   .page-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 50px auto;
+    width: 250px;
 
     button {
       color: white;
+      margin-right: 10px;
       border: none;
-      width: 70px;
+      width: 100px;
       background: none;
+
+      svg {
+        margin-right: 7px;
+      }
+
+      .next {
+        margin-left: 7px;
+      }
     }
   }
 }

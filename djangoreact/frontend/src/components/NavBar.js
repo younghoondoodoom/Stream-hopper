@@ -16,7 +16,7 @@ const NavBar = () => {
       signOut();
       //localStorage에 지움.
       localStorage.removeItem("key");
-      navigate("/");
+      window.location.replace("/");
     } else {
       navigate("/login");
     }
