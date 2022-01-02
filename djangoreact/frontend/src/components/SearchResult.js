@@ -86,7 +86,11 @@ const SearchResult = () => {
             </button>
           </div>
         </div>
-
+        {result.count === 0 && (
+          <div>
+            <p>검색결과가 없습니다.</p>
+          </div>
+        )}
         {/* 한글 데이터 없을 시 표현 할 값들 */}
         {modalIsOpen === true && (
           <Modal

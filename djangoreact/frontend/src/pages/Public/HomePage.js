@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { validLogin } from "../../api/api";
-import { signOut } from "../../api/api";
+import { validLogin, signOut } from "../../api/api";
 
 //슬라이드 라이브러리
 import BackgroundSlider from "react-background-slider";
@@ -54,9 +53,9 @@ const HomePage = () => {
           </button>
         </Link>
         <div>
-          <Link to="/intro">
+          <Link to="/main">
             <button className="w-btn w-btnintro" type="button">
-              서비스소개
+              go Home
             </button>
           </Link>
         </div>

@@ -1,12 +1,18 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { validLogin, signOut } from "../api/api";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import Google from "./google/GoogleLogin";
+import { searchFilter, queryAtom, pageUrl } from "../api/search";
 
 // 내비게이션 바
 const NavBar = () => {
   const isLogin = useRecoilValue(validLogin);
+
+  // 검색기능
+  const setFilter = useSetRecoilState(searchFilter);
+  const [query, setQuery] = useRecoilState(queryAtom);
+  const setPageUrl = useSetRecoilState(pageUrl);
 
   // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate();
@@ -22,6 +28,19 @@ const NavBar = () => {
     }
   }
 
+  // 검색 시 query에 담음
+  // query이 변할 때마다 영화 데이터 조회
+  const searching = (e) => {
+    setQuery(e.target.value);
+    setPageUrl(null);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      navigate("/main");
+    }
+  };
+
   return (
     <div className="NavBar">
       <nav className="navbar bg-dark">
@@ -29,6 +48,24 @@ const NavBar = () => {
           <Link className="navbar-brand opacity-100" to="/">
             Stream Hopper
           </Link>
+          <div className="d-flex search-box">
+            <select onChange={(e) => setFilter(e.target.value)}>
+              <option value="all">전체</option>
+              <option value="title">제목</option>
+              <option value="actor">배우</option>
+              <option value="director">감독</option>
+            </select>
+            <input
+              className="form-control me-2 "
+              type="search"
+              placeholder="제목/감독/배우 등을 검색하세요."
+              aria-label="Search"
+              onChange={searching}
+              value={query}
+              onKeyPress={handleKeyPress}
+            />
+          </div>
+
           <button
             className="navbar-toggler custom-toggler"
             type="button"
