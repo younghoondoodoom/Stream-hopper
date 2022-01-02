@@ -15,7 +15,7 @@ import { useRecoilValue } from "recoil";
 const HomePage = () => {
   const isLogin = useRecoilValue(validLogin);
 
-  function handleLogout() {
+  function handleSignOut() {
     signOut();
     localStorage.removeItem("key");
     window.location.replace("/");
@@ -43,7 +43,7 @@ const HomePage = () => {
         ) : null}
 
         {isLogin ? (
-          <button className="w-btn" type="button" onClick={handleLogout}>
+          <button className="w-btn" type="button" onClick={handleSignOut}>
             로그아웃
           </button>
         ) : null}

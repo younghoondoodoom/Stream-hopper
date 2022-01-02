@@ -5,11 +5,15 @@ import { selector } from "recoil";
 export const validLogin = selector({
   key: "validLogin",
   get: async () => {
+    const KEY = localStorage.getItem("key");
     try {
-      const response = await loginAuth.get("review/");
+      const response = await api.get("review/", {
+        headers: {
+          Authorization: `Token ${KEY}`,
+        },
+      });
       return response;
     } catch (e) {
-      console.log(e);
       return false;
     }
   },
@@ -40,7 +44,7 @@ export const signOut = async () => {
     await api.post("users/auth/logout/");
   } catch (error) {
     // 에러처리
-    console.log(error);
+    return false;
   }
 };
 

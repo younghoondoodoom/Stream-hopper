@@ -13,11 +13,11 @@ const TopMovie = () => {
   const topMovieRecoil = useRecoilValue(topMovies);
 
   // modal에 띄울 영화의 index값
-  const [modalIdx, setmodalIdx] = useRecoilState(topMovieIdx);
+  const [modalIdx, setModalIdx] = useRecoilState(topMovieIdx);
 
   function handleModal(e) {
     const index = e.target.name;
-    setmodalIdx(index);
+    setModalIdx(index);
     setModalIsOpen(true);
   }
   return (

@@ -17,7 +17,7 @@ const NavBar = () => {
   // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate();
 
-  function handleLogin() {
+  function handleSign() {
     if (isLogin) {
       signOut();
       //localStorage에 지움.
@@ -106,7 +106,7 @@ const NavBar = () => {
                   </Link>
                 </li>
 
-                <li className="nav-item" onClick={handleLogin}>
+                <li className="nav-item" onClick={handleSign}>
                   <Link className="nav-link active" aria-current="page" to="#">
                     {isLogin ? "로그아웃" : "로그인"}
                   </Link>

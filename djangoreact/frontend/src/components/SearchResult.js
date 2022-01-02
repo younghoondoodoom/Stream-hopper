@@ -12,13 +12,13 @@ const SearchResult = () => {
   const queryLodable = useRecoilValueLoadable(searchProgram);
   const result = queryLodable.contents;
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalIdx, setmodalIdx] = useRecoilState(movieIdx);
+  const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
   const resultModal = result.results;
   const setPageUrl = useSetRecoilState(pageUrl);
 
   function handleModal(e) {
     const index = e.target.name;
-    setmodalIdx(index);
+    setModalIdx(index);
     setModalIsOpen(true);
   }
   function nextPage() {

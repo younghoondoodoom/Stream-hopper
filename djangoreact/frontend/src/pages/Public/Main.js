@@ -4,7 +4,6 @@ import { queryAtom } from "../../api/search";
 import { useRecoilValue } from "recoil";
 import SearchResult from "../../components/SearchResult";
 import TopMovie from "../../components/TopMovie";
-import logo from "../../images/mainlogo.png";
 const Main = () => {
   //검색할 영화
   const query = useRecoilValue(queryAtom);

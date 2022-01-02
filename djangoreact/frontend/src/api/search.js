@@ -68,7 +68,6 @@ export const topMovies = selector({
       const res = await api.get(`entertainment/content/list`);
       return res.data;
     } catch (e) {
-      console.log(e);
       return false;
     }
   },

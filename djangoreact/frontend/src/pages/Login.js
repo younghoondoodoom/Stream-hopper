@@ -22,7 +22,7 @@ const Login = () => {
   );
 
   // 로그인 시 성공하면 메인페이지로 이동
-  function handleLogin(e) {
+  function handleSignIn(e) {
     e.preventDefault();
     signIn(loginInfo);
     if (localStorage.getItem("key")) {
@@ -69,7 +69,7 @@ const Login = () => {
                 onChange={handleInput}
               />
             </div>
-            <button className="btn btn-primary" onClick={handleLogin}>
+            <button className="btn btn-primary" onClick={handleSignIn}>
               로그인
             </button>
             {/* <Google /> */}
