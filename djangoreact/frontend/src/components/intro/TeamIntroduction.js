@@ -13,7 +13,6 @@ const TeamIntroduction = () => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item">김한예슬</li>
             <li className="list-group-item">팀장 or 베지터</li>
-            <li className="list-group-item">코멘트 : on Fire 🔥🔥🔥</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
@@ -22,7 +21,6 @@ const TeamIntroduction = () => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item">남기범</li>
             <li className="list-group-item">졸병1</li>
-            <li className="list-group-item">코멘트 : foo... bar...</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
@@ -31,7 +29,6 @@ const TeamIntroduction = () => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item">박수영</li>
             <li className="list-group-item">눈사람(졸병2)</li>
-            <li className="list-group-item">코멘트 : 녹기싫어!</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
@@ -40,7 +37,6 @@ const TeamIntroduction = () => {
           <ul className="list-group list-group-flush">
             <li className="list-group-item">최영훈</li>
             <li className="list-group-item">군기담당(졸병3)</li>
-            <li className="list-group-item">코멘트 : Dododom!</li>
           </ul>
         </div>
       </div>

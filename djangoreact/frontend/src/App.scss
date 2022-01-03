@@ -463,7 +463,7 @@ $orange: rgb(255, 187, 0);
     width: 30%;
   }
   h3 {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   img {
     object-fit: cover;
@@ -482,44 +482,74 @@ $orange: rgb(255, 187, 0);
   }
   .StreamHopper {
     padding-top: 30px;
-    text-align: left;
-    color: grey;
-    height: 100vh;
+    color: rgb(255, 255, 255);
+    height: 100%;
 
-    h1 {
+    h4 {
+      line-height: normal;
+    }
+
+    span {
       color: $orange;
-      vertical-align: middle;
     }
-    p {
-      font-style: italic;
+
+    .bi-arrow-down {
+      color: $orange;
     }
-    .intro2-text {
+
+    .intro-start {
+      padding: 30px;
+      height: 25%;
       background: linear-gradient(
-        to right,
-        rgba(20, 20, 20, 0) 10%,
+        to bottom,
+        rgba(209, 164, 16, 0) 10%,
         rgba(20, 20, 20, 0.25) 25%,
         rgba(20, 20, 20, 0.5) 50%,
         rgba(20, 20, 20, 0.75) 75%,
         rgba(20, 20, 20, 1) 100%
       );
+      h3 {
+        text-align: center;
+        color: $orange;
+        line-height: normal;
+      }
     }
-    .intro2 {
+
+    .example-box {
       background: linear-gradient(
-          to left,
-          rgba(20, 20, 20, 0) 10%,
-          rgba(20, 20, 20, 0.25) 25%,
-          rgba(20, 20, 20, 0.5) 50%,
-          rgba(20, 20, 20, 0.75) 75%,
-          rgba(20, 20, 20, 1) 100%
-        ),
-        url("./images/intro2.jpg");
-      background-size: cover;
-      // width: 100%;
+        to bottom,
+        rgba(209, 164, 16, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+
+      .bi-check {
+        color: $orange;
+        border: $orange 3px solid;
+        margin-right: 10px;
+      }
+      h3 {
+        text-align: center;
+        color: $orange;
+        padding: 25px;
+        margin: 30px auto;
+      }
+      h4 {
+        padding: 25px;
+        margin: 30px auto;
+        text-align: left;
+      }
+    }
+
+    .intro-result {
+      color: white;
     }
   }
 
   .TeamIntroduction {
-    height: 70vh;
+    height: 100vh;
     object-fit: cover;
     padding-top: 50px;
 
@@ -534,7 +564,7 @@ $orange: rgb(255, 187, 0);
     }
 
     h5 {
-      padding-bottom: 30px;
+      padding: 30px 0 30px 0;
     }
 
     img {

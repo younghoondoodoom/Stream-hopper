@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { validLogin, signOut } from "../api/api";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import Google from "./google/GoogleLogin";
 import { searchFilter, queryAtom, pageUrl } from "../api/search";
 
 // 내비게이션 바

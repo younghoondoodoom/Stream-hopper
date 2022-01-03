@@ -1,14 +1,12 @@
 import React, { useCallback } from "react";
 import { loginState } from "../store/userStore";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { signIn, validLogin } from "../api/api";
+import { useRecoilState } from "recoil";
+import { signIn } from "../api/api";
 import logo from "../images/logo2.png";
-import Google from "../components/google/GoogleLogin";
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴
   const [loginInfo, setLoginInfo] = useRecoilState(loginState);
-  const isLogin = useRecoilValue(validLogin);
 
   // loginState에 값 저장
   const handleInput = useCallback(

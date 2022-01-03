@@ -21,6 +21,7 @@ const SearchResult = () => {
     setModalIdx(index);
     setModalIsOpen(true);
   }
+
   function nextPage() {
     const url = result.next;
     setPageUrl(url);
