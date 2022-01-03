@@ -459,7 +459,7 @@ $orange: rgb(255, 187, 0);
   background-color: black;
   height: 100%;
   .logo {
-    margin: 50px;
+    margin: 20px;
     width: 30%;
   }
   h3 {
@@ -467,5 +467,22 @@ $orange: rgb(255, 187, 0);
   }
   img {
     object-fit: cover;
+  }
+  ul {
+    text-align: center;
+  }
+  .nav-item {
+    a {
+      color: $orange;
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+
+  .TeamIntroduction {
+    height: 70vh;
+    margin-top: 80px;
   }
 }

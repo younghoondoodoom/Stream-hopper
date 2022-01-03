@@ -1,4 +1,4 @@
-import { api, loginAuth } from "./instance";
+import { api } from "./instance";
 import { selector } from "recoil";
 
 //로그인을 확인하는 API

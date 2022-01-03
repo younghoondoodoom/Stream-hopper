@@ -1,13 +1,14 @@
 import React, { useCallback } from "react";
 import { loginState } from "../store/userStore";
-import { useRecoilState } from "recoil";
-import { signIn } from "../api/api";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { signIn, validLogin } from "../api/api";
 import logo from "../images/logo2.png";
 import Google from "../components/google/GoogleLogin";
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴
   const [loginInfo, setLoginInfo] = useRecoilState(loginState);
+  const isLogin = useRecoilValue(validLogin);
 
   // loginState에 값 저장
   const handleInput = useCallback(
@@ -22,11 +23,11 @@ const Login = () => {
   );
 
   // 로그인 시 성공하면 메인페이지로 이동
-  function handleSignIn(e) {
+  async function handleSignIn(e) {
     e.preventDefault();
-    signIn(loginInfo);
+    await signIn(loginInfo);
     if (localStorage.getItem("key")) {
-      window.location.replace("/main");
+      return window.location.replace("/main");
     }
   }
 

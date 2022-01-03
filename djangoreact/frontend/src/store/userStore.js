@@ -8,8 +8,6 @@ export const registerState = atom({
     username: "",
     password1: "",
     password2: "",
-    sex: "",
-    age: "",
   },
 });
 
