@@ -9,12 +9,12 @@ const Intro = () => {
       <ul className="nav nav-tabs">
         <li className="nav-item">
           <Link className="nav-link" aria-current="page" to="">
-            배경
+            Stream Hopper란?
           </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="streamhopper">
-            Stream Hopper란?
+            배경
           </Link>
         </li>
         <li className="nav-item">

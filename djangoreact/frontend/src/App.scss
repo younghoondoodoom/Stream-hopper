@@ -480,9 +480,66 @@ $orange: rgb(255, 187, 0);
       }
     }
   }
+  .StreamHopper {
+    padding-top: 30px;
+    text-align: left;
+    color: grey;
+    height: 100vh;
+
+    h1 {
+      color: $orange;
+      vertical-align: middle;
+    }
+    p {
+      font-style: italic;
+    }
+    .intro2-text {
+      background: linear-gradient(
+        to right,
+        rgba(20, 20, 20, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+    }
+    .intro2 {
+      background: linear-gradient(
+          to left,
+          rgba(20, 20, 20, 0) 10%,
+          rgba(20, 20, 20, 0.25) 25%,
+          rgba(20, 20, 20, 0.5) 50%,
+          rgba(20, 20, 20, 0.75) 75%,
+          rgba(20, 20, 20, 1) 100%
+        ),
+        url("./images/intro2.jpg");
+      background-size: cover;
+      // width: 100%;
+    }
+  }
 
   .TeamIntroduction {
     height: 70vh;
-    margin-top: 80px;
+    object-fit: cover;
+    padding-top: 50px;
+
+    .data {
+      color: rgb(232, 142, 240);
+    }
+    .frontend {
+      color: rgb(39, 91, 235);
+    }
+    .backend {
+      color: brown;
+    }
+
+    h5 {
+      padding-bottom: 30px;
+    }
+
+    img {
+      min-height: 250px;
+      max-height: 25%;
+    }
   }
 }

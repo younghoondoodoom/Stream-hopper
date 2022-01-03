@@ -1,55 +1,46 @@
 import React from "react";
-
+import Choi from "../../images/Choi.png";
+import Kim from "../../images/Kim.png";
+import Park from "../../images/Park.png";
+import Nam from "../../images/Nam.jpg";
 const TeamIntroduction = () => {
   return (
     <div className="TeamIntroduction">
-      <div className="row row row-cols-2 row-cols-sm-2 row-cols-md-4">
+      <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4">
         <div className="card col" style={{ background: "black" }}>
-          <img
-            src="https://images.unsplash.com/photo-1587504218914-44346092cef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
-            className="card-img-top"
-            alt="..."
-          />
+          <h5 className="data">DS(PM)</h5>
+          <img src={Kim} className="card-img-top" alt="..." />
           <ul className="list-group list-group-flush">
             <li className="list-group-item">김한예슬</li>
-            <li className="list-group-item">데이터 분석</li>
-            <li className="list-group-item">팀장</li>
+            <li className="list-group-item">팀장 or 베지터</li>
+            <li className="list-group-item">코멘트 : on Fire 🔥🔥🔥</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
-          <img
-            src="https://images.unsplash.com/photo-1587504218914-44346092cef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
-            className="card-img-top"
-            alt="..."
-          />
+          <h5 className="frontend">Frontend</h5>
+          <img src={Nam} className="card-img-top" alt="..." />
           <ul className="list-group list-group-flush">
             <li className="list-group-item">남기범</li>
-            <li className="list-group-item">프론트엔드</li>
-            <li className="list-group-item">갈굼대상</li>
+            <li className="list-group-item">졸병1</li>
+            <li className="list-group-item">코멘트 : foo... bar...</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
-          <img
-            src="https://images.unsplash.com/photo-1587504218914-44346092cef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
-            className="card-img-top"
-            alt="..."
-          />
+          <h5 className="data">DS</h5>
+          <img src={Park} className="card-img-top" alt="..." />
           <ul className="list-group list-group-flush">
             <li className="list-group-item">박수영</li>
-            <li className="list-group-item">데이터 분석</li>
-            <li className="list-group-item">마스코트</li>
+            <li className="list-group-item">눈사람(졸병2)</li>
+            <li className="list-group-item">코멘트 : 녹기싫어!</li>
           </ul>
         </div>
         <div className="card col" style={{ background: "black" }}>
-          <img
-            src="https://images.unsplash.com/photo-1587504218914-44346092cef8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
-            className="card-img-top"
-            alt="..."
-          />
+          <h5 className="backend">Backend</h5>
+          <img src={Choi} className="card-img-top" alt="..." />
           <ul className="list-group list-group-flush">
             <li className="list-group-item">최영훈</li>
-            <li className="list-group-item">백엔드</li>
-            <li className="list-group-item">군기담당</li>
+            <li className="list-group-item">군기담당(졸병3)</li>
+            <li className="list-group-item">코멘트 : Dododom!</li>
           </ul>
         </div>
       </div>

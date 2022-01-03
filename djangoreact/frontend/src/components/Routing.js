@@ -54,8 +54,8 @@ const Routing = () => {
           />
           {/* 서비스소개 */}
           <Route path="/intro/*" element={<Intro />}>
-            <Route path="" element={<ServiceBackground />} />
-            <Route path="streamhopper" element={<StreamHopper />} />
+            <Route path="" element={<StreamHopper />} />
+            <Route path="streamhopper" element={<ServiceBackground />} />
             <Route path="team-intro" element={<TeamIntroduction />} />
           </Route>
           {/* 마이페이지 */}
