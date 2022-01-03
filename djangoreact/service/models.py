@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import CustomUser
-from entertainment.models import Contents
  
 
 # Create your models here.
@@ -14,5 +13,4 @@ class OTTservice(models.Model):
     genre = models.CharField(max_length=100,  blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return self.user_id
+ 

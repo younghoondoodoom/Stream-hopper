@@ -19,19 +19,17 @@ class ContentListAPIView(ListAPIView):
 
 class ContentsDetailAPIView(APIView):
     name = "Detail Contents"
-    def get_object(self, pk):
+    def _get_object(self, pk):
         return get_object_or_404(Contents, pk=pk)
     
     def get(self, request, pk, format=None):
-        movie = self.get_object(pk)
+        movie = self._get_object(pk)
         serializer = ContentSerializer(movie)
         return Response(serializer.data)
     
     def post(self, request, pk):
-        movie = self.get_object(pk)
+        movie = self._get_object(pk)
         serializer = ContentSerializer(movie)
-        print(request.user.id)
-        print(request.auth)
         return Response(serializer.data)
 
         

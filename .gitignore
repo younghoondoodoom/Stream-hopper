@@ -141,3 +141,5 @@ cython_debug/
 
 node_modules
 
+secrets.josn
+djangoreact/secrets.json

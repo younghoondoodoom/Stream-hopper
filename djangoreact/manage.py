@@ -2,7 +2,7 @@ import os
 import sys
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoreact.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoreact.development_settings') # 배포시에 변경!!
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

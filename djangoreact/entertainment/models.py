@@ -8,24 +8,24 @@ from users.models import CustomUser
 # id, title, genre, img_path, country, release, runtime, actor, director, overview, vote_count, rating,
 
 class Contents(models.Model):
-    title = models.CharField(max_length = 255)
+    title = models.CharField(max_length = 2000)
     rating = models.FloatField(default=0)
-    image_path = models.CharField(max_length = 255, blank=True)
+    image_path = models.CharField(max_length = 2000, blank=True)
     overview = models.TextField(blank = True)
     vote_count = models.IntegerField(default=0)
-    director = models.CharField(max_length =255, blank=True)
-    actor = models.CharField(max_length = 255, blank=True)
-    country = models.CharField(max_length = 100, blank=True)
-    release = models.CharField(max_length = 100, blank=True)
-    content_rating = models.CharField(max_length = 100, blank = True)
-    runtime = models.CharField(max_length =  100, blank=True)
-    genre = models.CharField(max_length = 100, blank=True)
+    director = models.CharField(max_length = 2000, blank=True)
+    actor = models.CharField(max_length = 2000, blank=True)
+    country = models.CharField(max_length = 2000, blank=True)
+    release = models.CharField(max_length = 2000, blank=True)
+    content_rating = models.CharField(max_length = 2000, blank = True)
+    runtime = models.CharField(max_length =  2000, blank=True)
+    genre = models.CharField(max_length = 2000, blank=True)
     description = models.TextField(blank = True)
-    ott = models.CharField(max_length = 100, blank = True)
-    kor_title = models.CharField(max_length = 255, blank = True)
+    ott = models.CharField(max_length = 2000, blank = True)
+    kor_title = models.CharField(max_length = 2000, blank = True)
     kor_overview = models.TextField(blank = True)
-    kor_image_path = models.CharField(max_length = 255, blank = True)
-    type = models.CharField(max_length = 50, blank = True)
+    kor_image_path = models.CharField(max_length = 2000, blank = True)
+    type = models.CharField(max_length = 2000, blank = True)
     
     def __str__(self):
         return self.title
