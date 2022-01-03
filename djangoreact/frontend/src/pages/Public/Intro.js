@@ -14,7 +14,7 @@ const Intro = () => {
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="streamhopper">
-            배경
+            인사이트
           </Link>
         </li>
         <li className="nav-item">

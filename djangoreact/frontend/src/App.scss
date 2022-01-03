@@ -572,4 +572,26 @@ $orange: rgb(255, 187, 0);
       max-height: 25%;
     }
   }
+
+  .ServiceBg {
+    height: 100%;
+    padding: 50px 0;
+    h3 {
+      padding-top: 30px;
+    }
+
+    .netflix {
+      color: red;
+    }
+
+    .diseny {
+      color: rgb(9, 56, 184);
+    }
+    .amazon {
+      color: #00a8e1;
+    }
+    .hulu {
+      color: #66aa33;
+    }
+  }
 }
