@@ -10,6 +10,13 @@
 3. requirements.txt 설치
   pip install -r requirements.txt
 
+4. secrets.json 생성
+  stream-hopper/djangoreact에 secrets.json 파일을 만들어서 
+  ```
+  {
+	"SECRET_KEY": "50글자 공백없이"
+  }
+
 
 ## 실행(stream-hopper/djangoreact에서 실행)
 1. migrate
