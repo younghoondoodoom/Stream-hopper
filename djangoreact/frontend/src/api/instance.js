@@ -1,12 +1,7 @@
-import Axios from "axios";
+import axios from "axios";
 
-const KEY = localStorage.getItem("key");
-
-export const axios = Axios.create({
-  "baseURL": 'http://127.0.0.1:8000/',
-})
-
-export const axiosAuth = axios.create({
-  headers: { "Authorization" : `Token ${KEY}` }
+//기본 api
+export const api = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  setimeout: 3000,
 });
-
