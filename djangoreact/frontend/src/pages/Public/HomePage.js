@@ -59,6 +59,7 @@ const HomePage = () => {
             </button>
           </Link>
         </div>
+        <button onClick={console.log(isLogin)}>눌러</button>
       </div>
     </div>
   );

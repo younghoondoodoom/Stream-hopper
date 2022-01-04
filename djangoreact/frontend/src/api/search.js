@@ -65,7 +65,7 @@ export const topMovies = selector({
   get: async () => {
     try {
       const res = await api.get(`entertainment/content/list`);
-      return res.data;
+      return res.data.results;
     } catch (e) {
       return false;
     }
