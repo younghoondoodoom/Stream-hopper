@@ -17,7 +17,8 @@ class ContentListAPIView(ListAPIView):
     name = "Content TOP3"
     serializer_class = ContentSerializer
     queryset = Contents.objects.all().order_by('-vote_count', '-rating')[:3]
-    permissions_class = [IsAuthenticated,]
+    permissions_classes = [IsAuthenticated,]
+
 
 class ContentsDetailAPIView(APIView):
     name = "Detail Contents"
