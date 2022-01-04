@@ -24,6 +24,5 @@ class PermissionsAPIView(APIView):
     def get(self, request, format=None):    
         content = {
             'user': str(request.user), 
-            'auth': str(request.auth),
         }
         return Response(content)
