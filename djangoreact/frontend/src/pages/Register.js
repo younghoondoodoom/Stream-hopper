@@ -16,7 +16,6 @@ const Register = () => {
         ...register,
         [name]: value,
       });
-      console.log(register);
     },
     [register]
   );
