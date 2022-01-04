@@ -7,7 +7,7 @@ export const validLogin = selector({
   get: async () => {
     const KEY = localStorage.getItem("key");
     try {
-      const response = await api.get("review/", {
+      const response = await api.get("entertainment/content/list", {
         headers: {
           Authorization: `Token ${KEY}`,
         },

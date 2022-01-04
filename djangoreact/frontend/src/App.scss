@@ -576,15 +576,15 @@ $orange: rgb(255, 187, 0);
   .ServiceBg {
     height: 100%;
     padding: 50px 0;
-    h3 {
-      padding-top: 30px;
-    }
 
+    h3 {
+      padding-top: 0px;
+    }
     .netflix {
       color: red;
     }
 
-    .diseny {
+    .disney {
       color: rgb(9, 56, 184);
     }
     .amazon {
@@ -592,6 +592,9 @@ $orange: rgb(255, 187, 0);
     }
     .hulu {
       color: #66aa33;
+    }
+    .text-box {
+      padding: 50px 0;
     }
   }
 }

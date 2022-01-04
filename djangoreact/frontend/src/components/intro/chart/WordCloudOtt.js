@@ -29,8 +29,8 @@ const WordCloudOtt = () => {
             </div>
           </Resizable>
         </div>
-        <div className="col diseny">
-          <h3>Diseney +</h3>
+        <div className="col disney">
+          <h3>Disney +</h3>
           <Resizable
             defaultSize={{
               width: "100%",

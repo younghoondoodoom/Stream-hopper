@@ -12,7 +12,8 @@ import Register from "../pages/Register";
 import Mypage from "../pages/private/Mypage";
 import OttTest from "../pages/private/OttTest";
 import ContentsTest from "../pages/private/ContentsTest";
-// 페이지 접근 권한 0
+
+// 페이지 접근 권한
 import PrivateRoute from "./access/PrivateRote";
 import LogPrivateRoute from "./access/LogPrivateRoute";
 

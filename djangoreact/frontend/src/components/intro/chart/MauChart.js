@@ -13,15 +13,6 @@ import {
 } from "recharts";
 
 const MauChart = () => {
-  const resizeStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "solid 1px #ffffff",
-    borderRadius: "1rem",
-    background: "#000000",
-  };
-
   return (
     <div>
       <div className="chart1" style={{ width: "100%", height: 300 }}>
@@ -60,8 +51,8 @@ const MauChart = () => {
             />
             <Tooltip />
             <Legend />
-            <Bar dataKey="2019(MAU)" stackId="a" barSize={20} fill="#808080" />
-            <Bar dataKey="2020(MAU)" stackId="b" barSize={20} fill="#ffbb00" />
+            <Bar dataKey="2019(MAU)" stackId="a" barSize={50} fill="#808080" />
+            <Bar dataKey="2020(MAU)" stackId="b" barSize={50} fill="#ffbb00" />
             <Bar dataKey="19매출액" stackId="a" fill="#FFE4E1" />
             <Bar dataKey="20매출액" stackId="b" fill="#FFB6C1" />
           </ComposedChart>
