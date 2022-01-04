@@ -15,6 +15,7 @@ import {
 const MauChart = () => {
   return (
     <div>
+      <h5>코로나 이후 ott 사용자 및 연간 매출액 추이</h5>
       <div className="chart1" style={{ width: "100%", height: 300 }}>
         <ResponsiveContainer>
           <ComposedChart

@@ -578,7 +578,15 @@ $orange: rgb(255, 187, 0);
     padding: 50px 0;
 
     h3 {
-      padding-top: 0px;
+      padding-top: 20px;
+    }
+
+    h5 {
+      padding-top: 25px;
+    }
+
+    span {
+      color: $orange;
     }
     .netflix {
       color: red;
@@ -593,8 +601,73 @@ $orange: rgb(255, 187, 0);
     .hulu {
       color: #66aa33;
     }
+
+    .col {
+      padding-top: 10px;
+    }
     .text-box {
-      padding: 50px 0;
+      padding: 50px 20px;
+      text-align: left;
+      background: linear-gradient(
+        to right,
+        rgba(209, 164, 16, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+      h4 {
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.OttTest {
+  background-color: black;
+  height: 100%;
+
+  .mf {
+    div {
+      margin-bottom: 30px;
+    }
+
+    input[type="radio"] {
+      width: 0;
+      height: 0;
+      position: absolute;
+      left: -9999px;
+
+      & + label {
+        color: black;
+        margin: 0;
+        padding: 0.75em 1.5em;
+        box-sizing: border-box;
+        position: relative;
+        display: inline-block;
+        border: solid 1px #ddd;
+        background-color: #fff;
+        line-height: 140%;
+        text-align: center;
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+        transition: border-color 0.15s ease-out, color 0.25s ease-out,
+          background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+        cursor: pointer;
+      }
+    }
+    .m input[type="radio"]:checked + label {
+      background-color: #4b9dea;
+      color: #021b79;
+      box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+      border-color: #4b9dea;
+      z-index: 1;
+    }
+    .f input[type="radio"]:checked + label {
+      background-color: #eaafc8;
+      color: #b91d73;
+      box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+      border-color: #eaafc8;
+      z-index: 1;
     }
   }
 }

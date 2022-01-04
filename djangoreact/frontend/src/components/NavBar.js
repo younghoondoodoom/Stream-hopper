@@ -133,7 +133,7 @@ const NavBar = () => {
                     <Link
                       className="nav-link active"
                       aria-current="page"
-                      to="#"
+                      to="/mypage"
                     >
                       마이페이지
                     </Link>

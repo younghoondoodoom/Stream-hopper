@@ -14,6 +14,7 @@ const WordCloudOtt = () => {
   };
   return (
     <div>
+      <h5>각 ott 장르 데이터</h5>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">
         <div className="col netflix">
           <h3>Netflix</h3>

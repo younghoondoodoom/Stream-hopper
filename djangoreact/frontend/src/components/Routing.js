@@ -24,8 +24,6 @@ import TeamIntroduction from "./intro/TeamIntroduction";
 //네비게이션 바
 import NavBar from "./NavBar";
 
-//로딩 중...
-
 const Routing = () => {
   return (
     <div>
@@ -61,7 +59,7 @@ const Routing = () => {
           </Route>
           {/* 마이페이지 */}
           <Route
-            path="/mypage/:username"
+            path="/mypage"
             element={
               <PrivateRoute>
                 <Mypage />

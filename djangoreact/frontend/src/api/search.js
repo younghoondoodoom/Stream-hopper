@@ -31,8 +31,7 @@ export const searchProgram = selector({
     let requestUrl = null;
 
     if (page !== null) {
-      requestUrl = page;
-      const response = await api.get(requestUrl);
+      const response = await api.get(page);
       return response.data;
     }
 
