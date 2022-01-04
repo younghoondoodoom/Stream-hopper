@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 
 from .serializers import *
@@ -16,6 +17,7 @@ class ContentListAPIView(ListAPIView):
     name = "Content TOP3"
     serializer_class = ContentSerializer
     queryset = Contents.objects.all().order_by('-vote_count', '-rating')[:3]
+    permissions_class = [IsAuthenticated,]
 
 class ContentsDetailAPIView(APIView):
     name = "Detail Contents"
