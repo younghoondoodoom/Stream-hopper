@@ -22,43 +22,30 @@ class OTTserviceListCreateView(CreateAPIView):
     name = "OTTservice ListCreateView"
     serializer_class = OTTserviceSerializer
     authentication_classes = [TokenAuthentication]
-    permissions_class = [IsAuthenticated,]
-    
-    # def create(self, request, *args, **kwargs):
-    #     context = {
-    #         "request": self.request,
-    #     }
-    #     serializer = self.get_serializer(data=request.data, context=context)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
+    permissions_class = [IsAuthenticated]
 
-    # name = "OTTservice ListCreateView"
-    # serializer_class = OTTserviceSerializer
-    # authentication_classes = [TokenAuthentication]
-    # permission_classes = [IsAuthenticated]
-
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
         
-    #     # db에 입력 정보 넣어줌.(데이터 분석팀의 요청)
-    #     user_taste = OTTservice.objects.create(
-    #         user = request.user,
-    #         age = serializer.data.get('age'),
-    #         gender = serializer.data.get('gender'),
-    #         member_number = serializer.data.get('member_number'),
-    #         member_child_count = serializer.data.get('member_child_count'),
-    #         member_teenager_count = serializer.data.get('member_teenager_count'),
-    #         member_adult_count = serializer.data.get('member_adult_count'),
-    #         pixel = serializer.data.get('pixel'),
-    #         price_range = serializer.data.get('price_range'),
-    #         genre = serializer.data.get('genre'),
-    #     )
-    #     for content in serializer.data.get('prefer_contents'):
-    #         prefer_content = Contents.objects.get(id=content)
-    #         user_taste.prefer_contents.add(prefer_content)
+        # db에 입력 정보 넣어줌.(데이터 분석팀의 요청)
+        user_taste = OTTservice.objects.create(
+            user = request.user,
+            age = serializer.data.get('age'),
+            gender = serializer.data.get('gender'),
+            member_number = serializer.data.get('member_number'),
+            member_child_count = serializer.data.get('member_child_count'),
+            member_teenager_count = serializer.data.get('member_teenager_count'),
+            member_adult_count = serializer.data.get('member_adult_count'),
+            pixel = serializer.data.get('pixel'),
+            price_range = serializer.data.get('price_range'),
+            genre = serializer.data.get('genre'),
+        )
+        for content in serializer.data.get('prefer_contents'):
+            prefer_content = Contents.objects.get(id=content)
+            user_taste.prefer_contents.add(prefer_content)
         
-        # OTT추천 쿼리
+        # # OTT추천 쿼리
         # recommendations = []
         # for i in range(3):
         #     get_recommendations = get_content_recommendations(serializer.data.get('prefer_contents')[i])
@@ -87,10 +74,12 @@ class OTTserviceListCreateView(CreateAPIView):
         # queryset = OTT.objects.filter(name__icontains=most_prefer_ott)
         # queryset = queryset.annotate(abs_diff=Func(F('cost')-cost, function='ABS')).order_by('abs_diff')
         
-        # OTTserrializer = OTTSerializer(queryset, many=True)
+        queryset = OTT.objects.all()[0:1]
         
-        # headers = self.get_success_headers(serializer.data)
-        # return Response(OTTserrializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        OTTserrializer = OTTSerializer(queryset, many=True)
+        
+        headers = self.get_success_headers(serializer.data)
+        return Response(OTTserrializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     
 genre_list = [

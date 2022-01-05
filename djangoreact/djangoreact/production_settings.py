@@ -225,7 +225,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 # Rest Framework config. Add all of this.
 
 REST_FRAMEWORK = {    
-    'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
+    # 'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
