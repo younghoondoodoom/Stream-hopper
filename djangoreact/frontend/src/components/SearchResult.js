@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { searchProgram, pageUrl } from "../api/search";
 import {
   useRecoilState,
@@ -16,11 +16,14 @@ const SearchResult = () => {
   const resultModal = result.results;
   const setPageUrl = useSetRecoilState(pageUrl);
 
-  function handleModal(e) {
-    const index = e.target.name;
-    setModalIdx(index);
-    setModalIsOpen(true);
-  }
+  const handleModal = useCallback(
+    (e) => {
+      const index = e.target.name;
+      setModalIdx(index);
+      setModalIsOpen(true);
+    },
+    [modalIdx]
+  );
 
   function nextPage() {
     const url = result.next;
@@ -40,17 +43,17 @@ const SearchResult = () => {
             result.results.map((result, idx) => {
               const newResult = {};
               newResult[idx] = result;
+              const korImg = newResult[idx].kor_image_path;
+              const originalImg = newResult[idx].image_path;
               return (
                 <div className="container" key={"search" + idx}>
                   <div className="col">
                     <img
                       name={idx}
                       className="rounded"
-                      src={
-                        "https://image.tmdb.org/t/p/original" +
-                          newResult[idx].kor_image_path ||
-                        newResult[idx].image_path
-                      }
+                      src={`https://image.tmdb.org/t/p/original${
+                        korImg || originalImg
+                      } `}
                       alt={newResult[idx].kor_title}
                       onClick={handleModal}
                     />
@@ -103,11 +106,10 @@ const SearchResult = () => {
           >
             <div className="container">
               <img
-                src={
-                  "https://image.tmdb.org/t/p/original" +
-                    resultModal[modalIdx].kor_image_path ||
+                src={`https://image.tmdb.org/t/p/original${
+                  resultModal[modalIdx].kor_image_path ||
                   resultModal[modalIdx].image_path
-                }
+                } `}
                 className="img-fluid"
                 alt={resultModal[modalIdx].title}
               />

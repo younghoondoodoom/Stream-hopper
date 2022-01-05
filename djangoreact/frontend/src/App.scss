@@ -630,11 +630,75 @@ $orange: rgb(255, 187, 0);
   h3 {
     padding: 30px 0;
   }
+
+  img {
+    min-height: 150px;
+    max-height: 300px;
+    object-fit: cover;
+    padding-bottom: 15px;
+  }
   .genre {
     margin: 20px;
     border-radius: 5px;
   }
 
+  .movie-box {
+    label {
+      display: block;
+      color: rgb(255, 255, 255);
+      font-size: 2em;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    input[type="checkbox"] {
+      display: none;
+      &:checked + label {
+        color: red;
+        -webkit-animation: grow 0.5s;
+        animation: grow 0.5s;
+        -webkit-animation-timing-function: cubic-bezier(0.21, 0.61, 0.35, 1);
+        animation-timing-function: cubic-bezier(0.21, 0.61, 0.35, 1);
+      }
+    }
+
+    @-webkit-keyframes grow {
+      0% {
+        font-size: 2em;
+      }
+      30% {
+        font-size: 1.5em;
+      }
+      85% {
+        font-size: 3em;
+      }
+      100% {
+        font-size: 2em;
+      }
+    }
+
+    @keyframes grow {
+      0% {
+        font-size: 2em;
+      }
+      30% {
+        font-size: 1.5em;
+      }
+      85% {
+        font-size: 3em;
+      }
+      100% {
+        font-size: 2em;
+      }
+    }
+
+    .col {
+      border: rgb(158, 158, 158) 1px solid;
+      background-color: rgb(54, 54, 54);
+    }
+  }
   .radio-group {
     div {
       margin-bottom: 30px;

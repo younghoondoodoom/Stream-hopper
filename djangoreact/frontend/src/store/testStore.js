@@ -5,14 +5,16 @@ export const ottTestAtom = atom({
   default: {
     gender: "",
     age: "",
-    member_number: 0,
+    first: "",
+    second: "",
+    third: "",
+    member_number: 1,
     member_adult_count: 0,
-    member_teenager_count: 0,
     member_child_count: 0,
     pixel: "",
     price_range: "",
     genre: "",
-    prefer_contents: "",
+    prefer_contents: [],
   },
 });
 

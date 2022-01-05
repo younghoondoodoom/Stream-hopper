@@ -1,11 +1,11 @@
 import { api } from "./instance";
 import { selector } from "recoil";
+const KEY = localStorage.getItem("key");
 
 //로그인을 확인하는 API
 export const validLogin = selector({
   key: "validLogin",
   get: async () => {
-    const KEY = localStorage.getItem("key");
     try {
       const response = await api.get("users/auth/permission", {
         headers: {
@@ -64,3 +64,20 @@ export const signUp = async (register) => {
     }
   }
 };
+
+// TOP Rated Movie 요청
+export const genreTopMovie = selector({
+  key: "genreTopMovie",
+  get: async () => {
+    try {
+      const response = await api.get("service/genretoptwo", {
+        headers: {
+          Authorization: `Token ${KEY}`,
+        },
+      });
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  },
+});

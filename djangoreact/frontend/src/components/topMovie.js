@@ -28,15 +28,16 @@ const TopMovie = () => {
         {topMovieRecoil.map((movie, idx) => {
           const newMovie = {};
           newMovie[idx] = movie;
+          const korImg = newMovie[idx].kor_image_path;
+          const originalImg = newMovie[idx].image_path;
           return (
             <div key={"search" + idx} className="col">
               <h5>Top {idx + 1}</h5>
               <img
                 name={idx}
-                src={
-                  "https://image.tmdb.org/t/p/w500" +
-                  newMovie[idx].kor_image_path
-                }
+                src={`https://image.tmdb.org/t/p/original${
+                  korImg || originalImg
+                } `}
                 alt="topMovie"
                 className="img-fluid"
                 onClick={handleModal}
@@ -55,7 +56,10 @@ const TopMovie = () => {
       >
         <div className="container">
           <img
-            src={`https://image.tmdb.org/t/p/original${topMovieRecoil[modalIdx].kor_image_path}`}
+            src={`https://image.tmdb.org/t/p/original${
+              topMovieRecoil[modalIdx].kor_image_path ||
+              topMovieRecoil[modalIdx].image_path
+            } `}
             className="img-fluid"
             alt={topMovieRecoil[modalIdx].kor_title}
           />
