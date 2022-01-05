@@ -3,7 +3,6 @@ import { loginState } from "../store/userStore";
 import { useRecoilState } from "recoil";
 import { signIn } from "../api/api";
 import logo from "../images/logo2.png";
-import Google from "../components/google/GoogleLogin";
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴
@@ -22,11 +21,11 @@ const Login = () => {
   );
 
   // 로그인 시 성공하면 메인페이지로 이동
-  function handleLogin(e) {
+  async function handleSignIn(e) {
     e.preventDefault();
-    signIn(loginInfo);
+    await signIn(loginInfo);
     if (localStorage.getItem("key")) {
-      window.location.replace("/main");
+      return window.location.replace("/main");
     }
   }
 
@@ -69,7 +68,7 @@ const Login = () => {
                 onChange={handleInput}
               />
             </div>
-            <button className="btn btn-primary" onClick={handleLogin}>
+            <button className="btn btn-primary" onClick={handleSignIn}>
               로그인
             </button>
             {/* <Google /> */}

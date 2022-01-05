@@ -13,17 +13,17 @@ const TopMovie = () => {
   const topMovieRecoil = useRecoilValue(topMovies);
 
   // modal에 띄울 영화의 index값
-  const [modalIdx, setmodalIdx] = useRecoilState(topMovieIdx);
+  const [modalIdx, setModalIdx] = useRecoilState(topMovieIdx);
 
   function handleModal(e) {
     const index = e.target.name;
-    setmodalIdx(index);
+    setModalIdx(index);
     setModalIsOpen(true);
   }
   return (
     <div>
-      <h3>TOP Rated Movies</h3>
-      <div className="row">
+      <div className="TopMovie row">
+        <h3>TOP Rated Movies</h3>
         {/* topMovie 리스트를 받아 map으로 화면에 뿌려줌 */}
         {topMovieRecoil.map((movie, idx) => {
           const newMovie = {};

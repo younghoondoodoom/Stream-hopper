@@ -2,7 +2,7 @@ import os
 import django
 import csv
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoreact.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoreact.development_settings')
 django.setup()
 
 from entertainment.models import Contents

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { validLogin } from "../../api/api";
-import { signOut } from "../../api/api";
+import { validLogin, signOut } from "../../api/api";
 
 //슬라이드 라이브러리
 import BackgroundSlider from "react-background-slider";
@@ -16,7 +15,7 @@ import { useRecoilValue } from "recoil";
 const HomePage = () => {
   const isLogin = useRecoilValue(validLogin);
 
-  function handleLogout() {
+  function handleSignOut() {
     signOut();
     localStorage.removeItem("key");
     window.location.replace("/");
@@ -44,7 +43,7 @@ const HomePage = () => {
         ) : null}
 
         {isLogin ? (
-          <button className="w-btn" type="button" onClick={handleLogout}>
+          <button className="w-btn" type="button" onClick={handleSignOut}>
             로그아웃
           </button>
         ) : null}
@@ -54,9 +53,9 @@ const HomePage = () => {
           </button>
         </Link>
         <div>
-          <Link to="/intro">
+          <Link to="/main">
             <button className="w-btn w-btnintro" type="button">
-              서비스소개
+              go Home
             </button>
           </Link>
         </div>

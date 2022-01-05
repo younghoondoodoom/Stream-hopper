@@ -16,6 +16,10 @@ import ContentsTest from "../pages/private/ContentsTest";
 import PrivateRoute from "./access/PrivateRote";
 import LogPrivateRoute from "./access/LogPrivateRoute";
 
+import ServiceBackground from "./intro/ServiceBackground";
+import StreamHopper from "./intro/StreamHopper";
+import TeamIntroduction from "./intro/TeamIntroduction";
+
 //네비게이션 바
 import NavBar from "./NavBar";
 
@@ -49,7 +53,11 @@ const Routing = () => {
             }
           />
           {/* 서비스소개 */}
-          <Route path="/intro" element={<Intro />} />
+          <Route path="/intro/*" element={<Intro />}>
+            <Route path="" element={<StreamHopper />} />
+            <Route path="streamhopper" element={<ServiceBackground />} />
+            <Route path="team-intro" element={<TeamIntroduction />} />
+          </Route>
           {/* 마이페이지 */}
           <Route
             path="/mypage/:username"
