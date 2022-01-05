@@ -46,6 +46,7 @@ class OTT(models.Model):
     cost = models.IntegerField()
     pixel = models.CharField(max_length=30)
     max_user_count = models.IntegerField()
+    img_path = models.CharField(max_length=255)
     
     def __str__(self):
         return self.name

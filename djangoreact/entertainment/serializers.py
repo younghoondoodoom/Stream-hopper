@@ -16,3 +16,7 @@ class ContentReviewSerializer(serializers.ModelSerializer):
         model = ContentReviews
         fields = '__all__'
 
+class OTTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OTT
+        fields = '__all__'
