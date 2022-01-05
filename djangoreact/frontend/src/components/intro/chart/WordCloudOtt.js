@@ -2,6 +2,7 @@ import React from "react";
 import ReactWordcloud from "react-wordcloud";
 import { Resizable } from "re-resizable";
 import { netflix, hulu, amazon, disney } from "../chart/words";
+import { select } from "d3-selection";
 
 const WordCloudOtt = () => {
   const resizeStyle = {
@@ -11,6 +12,42 @@ const WordCloudOtt = () => {
     border: "solid 1px #ffffff",
     borderRadius: "1rem",
     background: "#000000",
+  };
+
+  const options = {
+    colors: ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"],
+    enableTooltip: true,
+    deterministic: false,
+    fontFamily: "impact",
+    fontSizes: [5, 60],
+    fontStyle: "normal",
+    fontWeight: "normal",
+    padding: 1,
+    rotations: 3,
+    rotationAngles: [0, 90],
+    scale: "sqrt",
+    spiral: "archimedean",
+    transitionDuration: 1000,
+  };
+
+  function getCallback(callback) {
+    return function (word, event) {
+      const isActive = callback !== "onWordMouseOut";
+      const element = event.target;
+      const text = select(element);
+      text
+        .transition()
+        .attr("background", "white")
+        .attr("font-size", isActive ? "300%" : "100%")
+        .attr("text-decoration", isActive ? "underline" : "none");
+    };
+  }
+
+  const callbacks = {
+    getWordTooltip: (word) =>
+      `The word "${word.text}" appears ${word.value} times.`,
+    onWordMouseOut: getCallback("onWordMouseOut"),
+    onWordMouseOver: getCallback("onWordMouseOver"),
   };
   return (
     <div>
@@ -26,7 +63,11 @@ const WordCloudOtt = () => {
             style={resizeStyle}
           >
             <div style={{ width: "100%", height: "100%" }}>
-              <ReactWordcloud words={netflix} />
+              <ReactWordcloud
+                words={netflix}
+                options={options}
+                callbacks={callbacks}
+              />
             </div>
           </Resizable>
         </div>
@@ -40,7 +81,11 @@ const WordCloudOtt = () => {
             style={resizeStyle}
           >
             <div style={{ width: "100%", height: "100%" }}>
-              <ReactWordcloud words={disney} />
+              <ReactWordcloud
+                words={disney}
+                options={options}
+                callbacks={callbacks}
+              />
             </div>
           </Resizable>
         </div>
@@ -54,7 +99,11 @@ const WordCloudOtt = () => {
             style={resizeStyle}
           >
             <div style={{ width: "100%", height: "100%" }}>
-              <ReactWordcloud words={amazon} />
+              <ReactWordcloud
+                words={amazon}
+                options={options}
+                callbacks={callbacks}
+              />
             </div>
           </Resizable>
         </div>
@@ -68,7 +117,11 @@ const WordCloudOtt = () => {
             style={resizeStyle}
           >
             <div style={{ width: "100%", height: "100%" }}>
-              <ReactWordcloud words={hulu} />
+              <ReactWordcloud
+                words={hulu}
+                options={options}
+                callbacks={callbacks}
+              />
             </div>
           </Resizable>
         </div>

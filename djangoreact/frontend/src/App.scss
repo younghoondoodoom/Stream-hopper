@@ -627,7 +627,15 @@ $orange: rgb(255, 187, 0);
   background-color: black;
   height: 100%;
 
-  .mf {
+  h3 {
+    padding: 30px 0;
+  }
+  .genre {
+    margin: 20px;
+    border-radius: 5px;
+  }
+
+  .radio-group {
     div {
       margin-bottom: 30px;
     }
@@ -639,6 +647,7 @@ $orange: rgb(255, 187, 0);
       left: -9999px;
 
       & + label {
+        max-width: 140px;
         color: black;
         margin: 0;
         padding: 0.75em 1.5em;
@@ -667,6 +676,22 @@ $orange: rgb(255, 187, 0);
       color: #b91d73;
       box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
       border-color: #eaafc8;
+      z-index: 1;
+    }
+
+    .pixel input[type="radio"]:checked + label {
+      background-color: #71c771;
+      color: #00331afd;
+      box-shadow: 0 0 10px rgba(40, 177, 131, 0.5);
+      border-color: #71c771;
+      z-index: 1;
+    }
+
+    .price input[type="radio"]:checked + label {
+      background-color: #ca44a9;
+      color: #310333fd;
+      box-shadow: 0 0 10px rgba(144, 14, 184, 0.5);
+      border-color: #ca44a9;
       z-index: 1;
     }
   }
