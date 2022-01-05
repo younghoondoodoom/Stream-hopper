@@ -143,3 +143,6 @@ node_modules
 
 secrets.josn
 djangoreact/secrets.json
+
+ds
+djangoreact/service/ds
