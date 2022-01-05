@@ -77,11 +77,5 @@ djangoreact
 - 검색어에 맞는 영화를 db에서 쿼리해서 json 형태로 전달(get)
 - title, actor, director 각각 쿼리 가능, 모두 합친 후 쿼리 가능
 
-### 5. Service 준비
-- 메인 서비스인 OTT추천 서비스를 위해 미리 환경을 구축 중
-- 사용자가 선택한 항목을 db에 저장(데이터 분석팀 요청 사항)
-- 3개월 이상 된 데이터를 db에서 자동 삭제(sqlite 문제 때문에 완성 못 함)
-
-# Issue
-- sqlite를 postgresql로 바꿀 지 결정
-- swagger를 이용해 API 문서 만들기
+### 5. Service 
+- 

@@ -42,5 +42,6 @@ with open(OTT_CSV_PATH, newline='', encoding='utf-8') as OTTs:
             name = row['name'],
             cost = row['cost'],
             pixel = row['pixel'],
-            max_user_count = row['max_user_count']
+            max_user_count = row['max_user_count'],
+            img_path = row['img_path']
         )
