@@ -19,5 +19,17 @@ class OTTservice(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     first = models.CharField(max_length = 50, blank=True)
     second = models.CharField(max_length = 50, blank=True)
-    third = models.CharField(max_length = 50, blank=True)    
- 
+    third = models.CharField(max_length = 50, blank=True)
+    tmdb_id = models.CharField(max_length = 50, blank=True)
+
+
+class ContentRecommendation(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+    recommend_content = models.ForeignKey(Contents, on_delete=models.CASCADE, blank=True)
+    score = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        self.created_at
+    
+     

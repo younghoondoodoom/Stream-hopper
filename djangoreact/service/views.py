@@ -7,8 +7,8 @@ from django.db.models import Func, F
 
 from .ds.collaborative_recommender import *
 from .ds.content_recommender import get_content_recommendations
-from .serializers import OTTserviceSerializer
-from .models import OTTservice
+from .serializers import OTTserviceSerializer, ContentRecommendationSerializer
+from .models import OTTservice, ContentRecommendation
 from entertainment.models import Contents, OTT
 from entertainment.serializers import ContentSerializer, OTTSerializer
 from mypage.models import *
@@ -44,11 +44,17 @@ class OTTserviceCreateView(CreateAPIView):
             second = serializer.data.get('second'),
             third = serializer.data.get('third'),
         )
+        tmdb_id_list = []
         for content in serializer.data.get('prefer_contents'):
             prefer_content = Contents.objects.get(id=content)
+            tmdb_id_list.append(str(prefer_content.tmdb_id))
             user_taste.prefer_contents.add(prefer_content)
-            
-        test = OTTservice.objects.values('prefer_contents').filter(pk=101)
+        
+        print(",".join(tmdb_id_list))
+                
+        user_taste.tmdb_id = ",".join(tmdb_id_list)
+        user_taste.save()
+
         
         # # OTT추천 쿼리
         # recommendations = []
@@ -127,22 +133,52 @@ class GiveTopContentByGenre(ListAPIView):
 
 class ContentRecommendServiceListView(ListAPIView):
     name = "MovieRecommend"
-    serializer_class = OTTSerializer
+    serializer_class = ContentSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    queryset = OTT.objects.all()[0:1]
     
     def get_queryset(self):
         current_user = self.request.user.id
         queryset = OTT.objects.all()[0:1]
         print(queryset)
         try:
-            ContentRecommendation.objects.get(user_id=current_user)
+            ContentRecommendation.objects.filter(user_id=current_user)
             result = colloborative_recommender(current_user)
         except:
             print('오류 처리')
             result = new_collaborative(current_user)
         
-        print(result)
+        # 넣어야할 db : ContentRecommendation
+        # 보내줘야할 db : content, contentreco
+        
+        for i in range(len(result)):
+            tmdb_id = (result[i][0])
+            score = result[i][2]
+            content = Contents.objects.filter(tmdb_id=tmdb_id)[0]
+            recommend = ContentRecommendation(user=self.request.user, recommend_content=content, score=score)
+            recommend.save()    
+        
+        queryset = Contents.objects.filter(tmdb_id=result[0][0])[0:1]
+        
+        for i in range(1, len(result)):
+            qs = Contents.objects.filter(tmdb_id=result[i][0])[0:1]
+            queryset = queryset | qs
+                
+        queryset.prefetch_related('contentrecommendation_set')
+        print(str(queryset.query))
+        
         
         return queryset
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
         
