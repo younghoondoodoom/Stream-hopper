@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import intro1 from "../../images/intro1.png";
 
 const StreamHopper = () => {
@@ -15,6 +16,14 @@ const StreamHopper = () => {
           <span>stream hopping 현상</span>을 돕는다는 의미로 이용자의 성향에
           맞춰 최적의 콘텐츠가 많은 OTT로 추천하는 서비스입니다.
         </h4>
+        <div className="service-button">
+          <Link to="/ott_recommended">
+            <button>OTT 추천 Go!</button>
+          </Link>
+          <Link to="/contents_recommended">
+            <button>영화 추천 Go!</button>
+          </Link>
+        </div>
       </div>
 
       <img src={intro1} alt="intro1" className="img-fluid" />

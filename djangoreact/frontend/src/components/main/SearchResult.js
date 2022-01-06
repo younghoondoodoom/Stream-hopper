@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { searchProgram, pageUrl } from "../api/search";
+import { searchProgram, pageUrl } from "../../api/search";
 import {
   useRecoilState,
   useRecoilValueLoadable,
   useSetRecoilState,
 } from "recoil";
 import Modal from "react-modal";
-import { movieIdx } from "../store/movieStore";
+import { movieIdx } from "../../store/movieStore";
 
 const SearchResult = () => {
   const queryLodable = useRecoilValueLoadable(searchProgram);

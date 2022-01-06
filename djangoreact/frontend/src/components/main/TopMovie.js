@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { topMovies } from "../api/search";
+import { topMovies } from "../../api/search";
 
 import { useRecoilValue, useRecoilState } from "recoil";
 import Modal from "react-modal";
-import { topMovieIdx } from "../store/movieStore";
+import { topMovieIdx } from "../../store/movieStore";
 
 const TopMovie = () => {
   // 모달 on off

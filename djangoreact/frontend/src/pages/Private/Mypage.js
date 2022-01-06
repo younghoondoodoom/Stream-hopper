@@ -1,9 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { validLogin } from "../../api/api";
+import { useRecoilValue } from "recoil";
 
 const Mypage = () => {
-  let { username } = useParams();
-  return <div>이 곳은 {username}의 페이지 입니다.</div>;
+  const user = useRecoilValue(validLogin);
+  console.log(user.data);
+  return (
+    <div>
+      <h3>{user.data.user}</h3>
+    </div>
+  );
 };
 
 export default Mypage;

@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { queryAtom } from "../../api/search";
 import { useRecoilValue } from "recoil";
-import SearchResult from "../../components/SearchResult";
-import TopMovie from "../../components/TopMovie";
+import SearchResult from "../../components/main/SearchResult";
+import TopMovie from "../../components/main/TopMovie";
 const Main = () => {
   //검색할 영화
   const query = useRecoilValue(queryAtom);

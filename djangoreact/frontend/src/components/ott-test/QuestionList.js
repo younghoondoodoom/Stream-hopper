@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { ottTestAtom, genre, pageAtom } from "../store/testStore";
+import { ottTestAtom, genre, pageAtom } from "../../store/testStore";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 const QuestionList = () => {
@@ -78,7 +78,7 @@ const QuestionList = () => {
                 <div key={"select" + idx}>
                   <h4>{idx + 1}순위</h4>
                   <select name={i}>
-                    <option selected>순위를 선택하세요.</option>
+                    <option value="none">순위를 선택하세요.</option>
                     <option value="pixel">화질</option>
                     <option value="price_range">가격</option>
                     <option value="member_number">사용인원</option>
