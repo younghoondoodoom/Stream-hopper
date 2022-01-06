@@ -11,6 +11,7 @@ from .serializers import OTTserviceSerializer
 from .models import OTTservice
 from entertainment.models import Contents, OTT
 from entertainment.serializers import ContentSerializer, OTTSerializer
+from mypage.models import *
 
 import random
 
@@ -18,8 +19,8 @@ import random
 
 # OTTservice APIVIEWS
 
-class OTTserviceListCreateView(CreateAPIView):
-    name = "OTTservice ListCreateView"
+class OTTserviceCreateView(CreateAPIView):
+    name = "OTTservice"
     serializer_class = OTTserviceSerializer
     authentication_classes = [TokenAuthentication]
     permissions_class = [IsAuthenticated]
@@ -35,15 +36,19 @@ class OTTserviceListCreateView(CreateAPIView):
             gender = serializer.data.get('gender'),
             member_number = serializer.data.get('member_number'),
             member_child_count = serializer.data.get('member_child_count'),
-            member_teenager_count = serializer.data.get('member_teenager_count'),
             member_adult_count = serializer.data.get('member_adult_count'),
             pixel = serializer.data.get('pixel'),
             price_range = serializer.data.get('price_range'),
             genre = serializer.data.get('genre'),
+            first = serializer.data.get('first'),
+            second = serializer.data.get('second'),
+            third = serializer.data.get('third'),
         )
         for content in serializer.data.get('prefer_contents'):
             prefer_content = Contents.objects.get(id=content)
             user_taste.prefer_contents.add(prefer_content)
+            
+        test = OTTservice.objects.values('prefer_contents').filter(pk=101)
         
         # # OTT추천 쿼리
         # recommendations = []
@@ -92,7 +97,10 @@ genre_list = [
     'Animation',
     'Horror',
     'Romance',
-    'Thriller'
+    'Thriller',
+    'Fantasy',
+    'Drama',
+    'Sci'
 ]
 
 class GiveTopContentByGenre(ListAPIView):
@@ -108,14 +116,33 @@ class GiveTopContentByGenre(ListAPIView):
             genre__icontains=genre_list[0]
         ).order_by('-vote_count', '-rating')[random_int:random_int+2]
         
-        for i in range(1, 10):
-            pre_queryset_len = len(queryset)
-           
-            while (len(queryset)-pre_queryset_len) != 2:
-                random_int = random.randint(0, 8)
-                qs = Contents.objects.filter(
-                    genre__icontains=genre_list[i]
-                    ).order_by('-vote_count', '-rating')[random_int:random_int+1]
-                queryset = queryset.union(qs)
+        for i in range(1, 13):
+            qs = Contents.objects.filter(
+                genre__icontains=genre_list[i]
+                ).order_by('-vote_count', '-rating')[random_int:random_int+2]
+            queryset = queryset.union(qs)
         
         return queryset
+
+
+class ContentRecommendServiceListView(ListAPIView):
+    name = "MovieRecommend"
+    serializer_class = OTTSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        current_user = self.request.user.id
+        queryset = OTT.objects.all()[0:1]
+        print(queryset)
+        try:
+            ContentRecommendation.objects.get(user_id=current_user)
+            result = colloborative_recommender(current_user)
+        except:
+            print('오류 처리')
+            result = new_collaborative(current_user)
+        
+        print(result)
+        
+        return queryset
+        
