@@ -796,3 +796,28 @@ $orange: rgb(255, 187, 0);
     }
   }
 }
+
+.OttResult {
+  height: 100%;
+  h1 {
+    padding-top: 10%;
+  }
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      padding-bottom: 15px;
+      font-size: 8vh;
+    }
+  }
+  span {
+    color: $orange;
+  }
+
+  .result-box {
+    width: 100%;
+  }
+}

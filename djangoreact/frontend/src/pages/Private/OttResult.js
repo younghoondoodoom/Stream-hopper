@@ -6,14 +6,37 @@ import { ottTestAtom } from "../../store/testStore";
 const OttResult = () => {
   const ottData = useRecoilValue(ottTestAtom);
   const [testResult, setTestResult] = useState({});
-  useEffect(() => {
-    const result = postOttData(ottData);
-    setTestResult(result);
-    console.log(testResult);
+
+  useEffect(async () => {
+    const result = await postOttData(ottData);
+    setTestResult(result[0]);
   }, []);
+
   return (
-    <div>
-      <h1>당신에게 어울리는 ott는 :{testResult.name}입니다.</h1>
+    <div className="OttResult">
+      <h1>
+        나와 잘 어울리는 ott는 <span>{testResult.name}</span>입니다.
+      </h1>
+      <div className="card text-white bg-dark mb-3">
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img src={testResult.img_path} className="img-fluid" alt="..." />
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h1 className="card-title">
+                <span>{testResult.name}</span>
+              </h1>
+              <h3 className="card-text">
+                사용 가능한 인원 : {testResult.max_user_count}
+              </h3>
+              <h3 className="card-text">최대화질 : {testResult.pixel}</h3>
+              <p className="card-text">가격 : {testResult.cost}원</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button>홈으로</button>
     </div>
   );
 };

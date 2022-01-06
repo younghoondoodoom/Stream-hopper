@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ottTestAtom, genre, pageAtom } from "../store/testStore";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const QuestionList = () => {
   const [testData, setTestData] = useRecoilState(ottTestAtom);
   const [isMember, setIsMember] = useState(false);
   const [preferGenre, setPreferGenre] = useState([]);
 
-  const [curpage, setCurPage] = useRecoilState(pageAtom);
+  const curpage = useRecoilValue(pageAtom);
 
   const child = Number(testData.member_child_count);
   const adult = Number(testData.member_adult_count);
@@ -27,7 +27,7 @@ const QuestionList = () => {
   const handleGenre = useCallback(
     (e) => {
       const value = e.target.value;
-      let newData = preferGenre.filter((item) => item !== value);
+      const newData = preferGenre.filter((item) => item !== value);
       if (e.target.checked) newData.push(value);
       setPreferGenre(newData);
     },
@@ -38,18 +38,14 @@ const QuestionList = () => {
     const members = child + adult;
     if (testData.member_number <= members) {
       setIsMember(true);
-    } else {
-      setIsMember(false);
+      return;
     }
-    console.log(testData);
+    setIsMember(false);
   }, [testData]);
 
+  // 페이로드
   useEffect(() => {
-    const genreList = [];
-    for (let i of Object.values(preferGenre)) {
-      genreList.push(i);
-    }
-    setTestData({ ...testData, genre: genreList.join() });
+    setTestData({ ...testData, genre: preferGenre.join() });
   }, [preferGenre]);
 
   return (

@@ -20,23 +20,20 @@ const OttTest = () => {
     },
     [movieList]
   );
-  function onClick() {
+  // 통일, 컴포넌트 분리
+  const onClick = () => {
     setCurPage(1);
-  }
+  };
 
-  function nextPage() {
+  const nextPage = () => {
     setCurPage(curpage + 1);
-  }
+  };
 
-  function prevPage() {
+  const prevPage = () => {
     setCurPage(curpage - 1);
-  }
+  };
   useEffect(() => {
-    const newMovieList = [];
-    for (let i of Object.values(movieList)) {
-      newMovieList.push(i);
-    }
-    setTestData({ ...testData, prefer_contents: newMovieList });
+    setTestData({ ...testData, prefer_contents: movieList });
   }, [movieList]);
 
   return (
