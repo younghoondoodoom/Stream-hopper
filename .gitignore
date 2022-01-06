@@ -146,3 +146,6 @@ djangoreact/secrets.json
 
 ds
 djangoreact/service/ds
+
+.svd
+djangoreact/svd

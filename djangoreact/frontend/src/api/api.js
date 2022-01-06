@@ -93,3 +93,19 @@ export const postOttData = async (ottTestAtom) => {
     return false;
   }
 };
+
+export const getContentsRecommended = selector({
+  key: "getContentsRecommended",
+  get: async () => {
+    try {
+      const response = await api.get("service/content", {
+        headers: {
+          Authorization: `Token ${KEY}`,
+        },
+      });
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  },
+});
