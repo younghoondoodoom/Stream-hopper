@@ -43,7 +43,6 @@ const QuestionList = () => {
     setIsMember(false);
   }, [testData]);
 
-  // 페이로드
   useEffect(() => {
     setTestData({ ...testData, genre: preferGenre.join() });
   }, [preferGenre]);

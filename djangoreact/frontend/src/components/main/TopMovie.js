@@ -20,6 +20,7 @@ const TopMovie = () => {
     setModalIdx(index);
     setModalIsOpen(true);
   }
+
   return (
     <div>
       <div className="TopMovie row">
