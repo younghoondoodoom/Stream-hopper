@@ -1,12 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { genreTopMovie, postOttData } from "../../api/api";
+import { genreTopMovie } from "../../api/api";
 import QuestionList from "../../components/QuestionList";
-import { ottTestAtom } from "../../store/testStore";
-import { api } from "../../api/instance";
+import { ottTestAtom, pageAtom } from "../../store/testStore";
+import { Link } from "react-router-dom";
 
 const OttTest = () => {
-  const [page, setPage] = useState(false);
+  const [curpage, setCurPage] = useRecoilState(pageAtom);
   const topGenreMovie = useRecoilValue(genreTopMovie);
   const [testData, setTestData] = useRecoilState(ottTestAtom);
   const [movieList, setMovieList] = useState([]);
@@ -20,57 +20,38 @@ const OttTest = () => {
     },
     [movieList]
   );
+  function onClick() {
+    setCurPage(1);
+  }
 
+  function nextPage() {
+    setCurPage(curpage + 1);
+  }
+
+  function prevPage() {
+    setCurPage(curpage - 1);
+  }
   useEffect(() => {
     const newMovieList = [];
     for (let i of Object.values(movieList)) {
       newMovieList.push(i);
     }
-    console.log(newMovieList);
     setTestData({ ...testData, prefer_contents: newMovieList });
   }, [movieList]);
-
-  function handlePage() {
-    setPage(true);
-  }
-
-  const postOttData = async () => {
-    const KEY = localStorage.getItem("key");
-    console.log(testData);
-
-    try {
-      const response = await api.post("service/ott", ottTestAtom, {
-        headers: {
-          Authorization: `Token ${KEY}`,
-        },
-      });
-      return response.data.results;
-    } catch (error) {
-      return false;
-    }
-  };
 
   return (
     <div className="OttTest">
       <div className="container">
-        {!page && (
+        {curpage < 4 ? (
           <div>
             <QuestionList />
-            <button onClick={handlePage}>다음</button>
           </div>
-        )}
-
-        {page && (
-          <div>
+        ) : (
+          <div className="movie-box">
             <h3>좋아하시는 영화를 선택하세요.(총 3개)</h3>
             <h4>{movieList.length} / 3</h4>
-          </div>
-        )}
-
-        <div className="movie-box">
-          <div className="row row-cols-4 row-cols-sm-5 row-cols-md-5">
-            {page &&
-              topGenreMovie.map((movie, idx) => {
+            <div className="row row-cols-4 row-cols-sm-6 row-cols-md-6">
+              {topGenreMovie.map((movie, idx) => {
                 const newData = {};
                 newData[idx] = movie;
                 const korImg = newData[idx].kor_image_path;
@@ -97,10 +78,19 @@ const OttTest = () => {
                   </div>
                 );
               })}
+            </div>
           </div>
-        </div>
-        {movieList.length === 3 && <button onClick={postOttData}>제출</button>}
+        )}
       </div>
+      {curpage !== 1 && <button onClick={prevPage}>이전</button>}
+
+      {movieList.length === 3 ? (
+        <Link to="/ott_result">
+          <button onClick={onClick}>제출</button>{" "}
+        </Link>
+      ) : (
+        <button onClick={nextPage}>다음</button>
+      )}
     </div>
   );
 };

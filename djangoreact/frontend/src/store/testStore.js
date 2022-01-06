@@ -8,14 +8,19 @@ export const ottTestAtom = atom({
     first: "",
     second: "",
     third: "",
-    member_number: 1,
-    member_adult_count: 0,
-    member_child_count: 0,
+    member_number: "1",
+    member_adult_count: "0",
+    member_child_count: "0",
     pixel: "",
-    price_range: "",
+    price_range: "4000",
     genre: "",
     prefer_contents: [],
   },
+});
+
+export const pageAtom = atom({
+  key: "pageAtom",
+  default: 1,
 });
 
 export const genre = [

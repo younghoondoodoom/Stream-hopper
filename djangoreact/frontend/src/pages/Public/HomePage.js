@@ -27,6 +27,7 @@ const HomePage = () => {
       <img src={logo} className="img-fluid" alt="logo"></img>
 
       <BackgroundSlider
+        className="background"
         images={[main1, main2, main3]}
         duration={5}
         transition={2}
