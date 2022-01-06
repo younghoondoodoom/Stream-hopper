@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { genreTopMovie } from "../../api/api";
+import { genreTopMovie, postOttData } from "../../api/api";
 import QuestionList from "../../components/QuestionList";
 import { ottTestAtom } from "../../store/testStore";
+import { api } from "../../api/instance";
 
 const OttTest = () => {
   const [page, setPage] = useState(false);
@@ -33,6 +34,22 @@ const OttTest = () => {
   function handlePage() {
     setPage(true);
   }
+
+  const postOttData = async () => {
+    const KEY = localStorage.getItem("key");
+    console.log(testData);
+
+    try {
+      const response = await api.post("service/ott", ottTestAtom, {
+        headers: {
+          Authorization: `Token ${KEY}`,
+        },
+      });
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  };
 
   return (
     <div className="OttTest">
@@ -83,7 +100,7 @@ const OttTest = () => {
               })}
           </div>
         </div>
-        {movieList.length === 3 && <button>제출</button>}
+        {movieList.length === 3 && <button onClick={postOttData}>제출</button>}
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
-// 로딩 스피너 개발해야 함.
-
 import React from "react";
+import logo from "../images/logo.png";
 
 const Spinner = () => {
   return (
-    <div>
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
+    <div className="Spinner">
+      <div className="container">
+        <img src={logo} alt="logo" className="img-fluid" />
+        <h3>로딩중 입니다.</h3>
+        <div className="spinner-grow text-success" role="status"></div>
+        <div className="spinner-grow text-danger" role="status"></div>
+        <div className="spinner-grow text-warning" role="status"></div>
       </div>
     </div>
   );

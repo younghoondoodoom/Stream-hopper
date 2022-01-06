@@ -82,6 +82,8 @@ class OTTserviceListCreateView(CreateAPIView):
         return Response(OTTserrializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     
+
+
 genre_list = [
     'Drama',
     'Comedy',
@@ -92,7 +94,10 @@ genre_list = [
     'Animation',
     'Horror',
     'Romance',
-    'Thriller'
+    'Thriller',
+    'Fantasy',
+    'Drama',
+    'Sci'
 ]
 
 class GiveTopContentByGenre(ListAPIView):
@@ -108,14 +113,10 @@ class GiveTopContentByGenre(ListAPIView):
             genre__icontains=genre_list[0]
         ).order_by('-vote_count', '-rating')[random_int:random_int+2]
         
-        for i in range(1, 10):
-            pre_queryset_len = len(queryset)
-           
-            while (len(queryset)-pre_queryset_len) != 2:
-                random_int = random.randint(0, 8)
-                qs = Contents.objects.filter(
-                    genre__icontains=genre_list[i]
-                    ).order_by('-vote_count', '-rating')[random_int:random_int+1]
-                queryset = queryset.union(qs)
+        for i in range(1, 13):
+            qs = Contents.objects.filter(
+                genre__icontains=genre_list[i]
+                ).order_by('-vote_count', '-rating')[random_int:random_int+2]
+            queryset = queryset.union(qs)
         
         return queryset

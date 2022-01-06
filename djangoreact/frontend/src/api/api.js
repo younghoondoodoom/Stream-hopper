@@ -1,5 +1,6 @@
 import { api } from "./instance";
 import { selector } from "recoil";
+import { ottTestAtom } from "../store/testStore";
 const KEY = localStorage.getItem("key");
 
 //로그인을 확인하는 API
@@ -65,12 +66,27 @@ export const signUp = async (register) => {
   }
 };
 
-// TOP Rated Movie 요청
 export const genreTopMovie = selector({
   key: "genreTopMovie",
   get: async () => {
     try {
       const response = await api.get("service/genretoptwo", {
+        headers: {
+          Authorization: `Token ${KEY}`,
+        },
+      });
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  },
+});
+
+export const postOttData = selector({
+  key: "postOttData",
+  get: async () => {
+    try {
+      const response = await api.post("service/ott", ottTestAtom, {
         headers: {
           Authorization: `Token ${KEY}`,
         },

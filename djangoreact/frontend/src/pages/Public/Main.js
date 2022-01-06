@@ -10,7 +10,7 @@ const Main = () => {
 
   return (
     <div className="Main">
-      {query.length <= 2 && (
+      {query.length < 2 && (
         <section className="hero">
           <header id="header"></header>
           <header className="hero-header">
@@ -33,9 +33,9 @@ const Main = () => {
       )}
       <div className="wrap">
         <div className="container">
-          {query.length >= 3 && <SearchResult />}
+          {query.length >= 2 && <SearchResult />}
 
-          {query.length <= 2 && <TopMovie />}
+          {query.length < 2 && <TopMovie />}
         </div>
       </div>
     </div>

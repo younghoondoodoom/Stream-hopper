@@ -39,7 +39,6 @@ const QuestionList = () => {
     } else {
       setIsMember(false);
     }
-    console.log(testData);
   }, [testData]);
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const QuestionList = () => {
         <h3>3. Ott 이용시 가장 중요하게 생각하는 값이 무엇인가요?</h3>
         {priority.map((i, idx) => {
           return (
-            <div>
+            <div key={"select" + idx}>
               <span>{idx + 1}순위</span>
               <select name={i}>
                 <option value="pixel">화질</option>
@@ -98,6 +97,7 @@ const QuestionList = () => {
             value={adult}
             min={0}
             max={4}
+            readOnly
             disabled={isMember}
           />
           <label htmlFor="member_child_count">아동</label>
@@ -107,6 +107,7 @@ const QuestionList = () => {
             value={child}
             min={0}
             max={4}
+            readOnly
             disabled={isMember}
           />
         </div>

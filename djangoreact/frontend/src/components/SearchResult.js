@@ -17,12 +17,12 @@ const SearchResult = () => {
   const setPageUrl = useSetRecoilState(pageUrl);
 
   const handleModal = useCallback(
-    (e) => {
+    async (e) => {
       const index = e.target.name;
-      setModalIdx(index);
+      await setModalIdx(index);
       setModalIsOpen(true);
     },
-    [modalIdx]
+    [setModalIdx]
   );
 
   function nextPage() {
@@ -95,24 +95,25 @@ const SearchResult = () => {
             <p>검색결과가 없습니다.</p>
           </div>
         )}
-        {/* 한글 데이터 없을 시 표현 할 값들 */}
-        {modalIsOpen === true && (
+        {modalIsOpen === true && resultModal !== "undefined" && (
           <Modal
             isOpen={modalIsOpen}
-            // style={modalStyle}
             className="mymodal"
             overlayClassName="myoverlay"
             onRequestClose={() => setModalIsOpen(false)}
           >
             <div className="container">
-              <img
-                src={`https://image.tmdb.org/t/p/original${
-                  resultModal[modalIdx].kor_image_path ||
-                  resultModal[modalIdx].image_path
-                } `}
-                className="img-fluid"
-                alt={resultModal[modalIdx].title}
-              />
+              {resultModal[modalIdx].kor_image_path !== "undefined" ||
+              resultModal[modalIdx].image_path !== "undefined" ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/original${
+                    resultModal[modalIdx].kor_image_path ||
+                    resultModal[modalIdx].image_path
+                  } `}
+                  className="img-fluid"
+                  alt={resultModal[modalIdx].title}
+                />
+              ) : null}
             </div>
 
             <h5 className="modal-title">
