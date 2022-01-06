@@ -11,12 +11,13 @@ class OTTservice(models.Model):
     gender = models.CharField(max_length=10, blank=True)
     member_number = models.IntegerField(default=1, blank=True)
     member_child_count = models.IntegerField(default=1, blank=True)
-    member_teenager_count = models.IntegerField(default=1, blank=True)
     member_adult_count = models.IntegerField(default=1, blank=True)
     price_range = models.IntegerField(default=0, blank=True)
     genre = models.CharField(max_length=100,  blank=True)
     pixel = models.CharField(max_length = 100, blank=True)
     prefer_contents = models.ManyToManyField(Contents)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    first = models.CharField(max_length = 50, blank=True)
+    second = models.CharField(max_length = 50, blank=True)
+    third = models.CharField(max_length = 50, blank=True)    
  

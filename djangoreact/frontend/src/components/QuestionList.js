@@ -39,6 +39,7 @@ const QuestionList = () => {
     } else {
       setIsMember(false);
     }
+    console.log(testData);
   }, [testData]);
 
   useEffect(() => {
@@ -97,7 +98,7 @@ const QuestionList = () => {
             value={adult}
             min={0}
             max={4}
-            readOnly
+            onChange={handleOttData}
             disabled={isMember}
           />
           <label htmlFor="member_child_count">아동</label>
@@ -107,7 +108,7 @@ const QuestionList = () => {
             value={child}
             min={0}
             max={4}
-            readOnly
+            onChange={handleOttData}
             disabled={isMember}
           />
         </div>
@@ -153,7 +154,7 @@ const QuestionList = () => {
         </div>
       </form>
 
-      <h3>6. 좋아하는 장르를 선택해 주세요.</h3>
+      <h3>7. 좋아하는 장르를 선택해 주세요.</h3>
       <div className="container">
         {genre.map((gen, idx) => {
           return (

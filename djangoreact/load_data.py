@@ -30,7 +30,8 @@ with open(COTENTS_CSV_PATH, newline='', encoding="utf-8") as contents:
             kor_title = row['kor_title'],
             kor_overview = row['kor_overview'],
             kor_image_path = row['kor_image_path'],
-            type = row['type']
+            type = row['type'],
+            tmdb_id = row['id']
         )
 
 OTT_CSV_PATH = './data/OTT.csv'

@@ -17,7 +17,6 @@ const OttTest = () => {
       let newData = movieList.filter((item) => item !== value);
       if (e.target.checked) newData.push(value);
       setMovieList(newData);
-      console.log(e.target.value);
     },
     [movieList]
   );
@@ -27,8 +26,8 @@ const OttTest = () => {
     for (let i of Object.values(movieList)) {
       newMovieList.push(i);
     }
+    console.log(newMovieList);
     setTestData({ ...testData, prefer_contents: newMovieList });
-    console.log(testData);
   }, [movieList]);
 
   function handlePage() {

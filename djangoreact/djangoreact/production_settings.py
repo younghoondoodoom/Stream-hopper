@@ -77,7 +77,8 @@ INSTALLED_APPS = [
     # app
     'users',
     'entertainment',
-    'service'
+    'service',
+    'mypage'
 ]
 
 MIDDLEWARE = [

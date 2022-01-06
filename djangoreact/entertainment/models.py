@@ -26,6 +26,7 @@ class Contents(models.Model):
     kor_overview = models.TextField(blank = True)
     kor_image_path = models.CharField(max_length = 2000, blank = True)
     type = models.CharField(max_length = 2000, blank = True)
+    tmdb_id = models.IntegerField(null=True, blank = True)
     
     def __str__(self):
         return self.title
