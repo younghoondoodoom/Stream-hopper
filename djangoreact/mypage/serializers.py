@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from entertainment.serializers import ContentSerializer
 
 class MyOTTSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +13,8 @@ class MyContentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyContents
         fields = '__all__'
+        
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['contents'] = ContentSerializer(instance.contents).data
+        return response
