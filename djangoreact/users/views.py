@@ -23,6 +23,6 @@ class PermissionsAPIView(APIView):
     
     def get(self, request, format=None):    
         content = {
-            'user': str(request.user), 
+            'user': str(request.user.username), 
         }
         return Response(content)
