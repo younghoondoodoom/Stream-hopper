@@ -29,21 +29,14 @@ class MyContentsDestroyView(DestroyAPIView):
         
 class MyContentsListView(ListAPIView):
     name = 'My Contents List'
-    serializer_class = ContentSerializer
+    serializer_class = MyContentsSerializer
     authentication_classes = [TokenAuthentication]
+    queryset = MyContents.objects.all()
     
     def get_queryset(self):
-        mycontents = MyContents.objects.filter(user_id=self.request.user.id).order_by('-created_at')
-        mycontents = mycontents.values('contents_id')
-        if len(mycontents) != 0:
-            queryset = Contents.objects.filter(id=mycontents[0]['contents_id'])
-            for i in range(1,len(mycontents)):
-                qs = Contents.objects.filter(id=mycontents[i]['contents_id'])
-                queryset = queryset.union(qs)
-            return queryset
-        else:
-            queryset = mycontents
-            return queryset
+        queryset = MyContents.objects.filter(user_id=self.request.user.id)
+        return queryset
+    
 
 class MyOTTListView(ListAPIView):
     name = "My OTT List"
@@ -63,9 +56,14 @@ class MyOTTListView(ListAPIView):
             return queryset[:4]
         else:
             queryset = myott
+<<<<<<< HEAD
             return queryset  
 
 
     
+=======
+            return queryset         
+        
+>>>>>>> origin/BE_keywordupdate
         
     
