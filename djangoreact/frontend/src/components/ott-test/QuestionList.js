@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ottTestAtom, genre, pageAtom } from "../../store/testStore";
 import { useRecoilState, useRecoilValue } from "recoil";
-import require from "convert-keys";
 
 const QuestionList = () => {
   const [testData, setTestData] = useRecoilState(ottTestAtom);
@@ -10,8 +9,8 @@ const QuestionList = () => {
 
   const curpage = useRecoilValue(pageAtom);
 
-  const child = Number(testData.member_child_count);
-  const adult = Number(testData.member_adult_count);
+  const child = Number(testData.memberChildCount);
+  const adult = Number(testData.memberAdultCount);
   const priority = ["first", "second", "third"];
 
   const handleOttData = useCallback(
@@ -24,9 +23,6 @@ const QuestionList = () => {
     },
     [testData]
   );
-  const convertKeys = require("convert-keys");
-
-  console.log(convertKeys.toCamel(testData));
 
   const handleGenre = useCallback(
     (e) => {
@@ -40,7 +36,7 @@ const QuestionList = () => {
 
   useEffect(() => {
     const members = child + adult;
-    if (testData.member_number <= members) {
+    if (testData.memberNumber <= members) {
       setIsMember(true);
       return;
     }
@@ -97,18 +93,18 @@ const QuestionList = () => {
             <h3>
               4. 본인을 제외한 ott이용 인원을 입력해주세요.(최대 인원:3명)
             </h3>
-            <label htmlFor="member_number">총 인원</label>
+            <label htmlFor="memberNumber">총 인원</label>
             <input
               type="number"
-              name="member_number"
+              name="memberNumber"
               min={0}
               max={4}
               defaultValue={1}
             />
             <div>
-              <label htmlFor="member_adult_count">성인</label>
+              <label htmlFor="memberAdultCount">성인</label>
               <input
-                name="member_adult_count"
+                name="memberAdultCount"
                 type="number"
                 value={adult}
                 min={0}
@@ -116,9 +112,9 @@ const QuestionList = () => {
                 onChange={handleOttData}
                 disabled={isMember}
               />
-              <label htmlFor="member_child_count">아동</label>
+              <label htmlFor="memberChildCount">아동</label>
               <input
-                name="member_child_count"
+                name="memberChildCount"
                 type="number"
                 value={child}
                 min={0}
@@ -144,10 +140,10 @@ const QuestionList = () => {
             </div>
             <h3>6. 원하시는 가격대를 선택해주세요.</h3>
             <span className="price">
-              <h5>{testData.price_range}원</h5>
+              <h5>{testData.priceRange}원</h5>
               <input
                 type="range"
-                name="price_range"
+                name="priceRange"
                 min="4000"
                 max="60000"
                 step="1000"

@@ -8,13 +8,13 @@ export const ottTestAtom = atom({
     first: "",
     second: "",
     third: "",
-    member_number: "1",
-    member_adult_count: "0",
-    member_child_count: "0",
+    memberNumber: "1",
+    memberAdultCount: "0",
+    memberChildCount: "0",
     pixel: "",
-    price_range: "4000",
+    priceRange: "4000",
     genre: "",
-    prefer_contents: [],
+    preferContents: [],
   },
 });
 

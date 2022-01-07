@@ -36,7 +36,7 @@ const PreferTest = () => {
     if (movieList.length > 3) {
       alert("최대 3개 까지만 선택해주세요.");
     }
-    setTestData({ ...testData, prefer_contents: movieList });
+    setTestData({ ...testData, preferContents: movieList });
   }, [movieList]);
 
   return (

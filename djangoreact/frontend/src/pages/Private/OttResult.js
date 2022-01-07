@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { postOttData } from "../../api/api";
 import { ottTestAtom } from "../../store/testStore";
+import require from "convert-keys";
 
 // ott추천 결과 페이지
 const OttResult = () => {
-  const ottData = useRecoilValue(ottTestAtom);
+  const resultData = useRecoilValue(ottTestAtom);
   const [testResult, setTestResult] = useState({});
 
+  const convertKeys = require("convert-keys");
+
+  const snackeResultData = convertKeys.toSnake(resultData);
+
   useEffect(async () => {
-    const result = await postOttData(ottData);
+    const result = await postOttData(snackeResultData);
     setTestResult(result[0]);
   }, []);
 
