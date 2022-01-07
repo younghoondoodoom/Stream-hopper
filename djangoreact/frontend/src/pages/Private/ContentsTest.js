@@ -4,13 +4,14 @@ import { getContentsRecommended, validLogin } from "../../api/api";
 import Modal from "react-modal";
 import { movieIdx } from "../../store/movieStore";
 
+// 영화 추천 페이지
 const ContentsTest = () => {
-  const contentsResult = useRecoilValueLoadable(getContentsRecommended);
+  const user = useRecoilValue(validLogin);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
-  const user = useRecoilValue(validLogin);
-  const contents = contentsResult.contents;
   const [likeList, setLikeList] = useState([]);
+  const contentsResult = useRecoilValueLoadable(getContentsRecommended);
+  const contents = contentsResult.contents;
 
   const handleMovieList = useCallback(
     async (e) => {

@@ -7,28 +7,21 @@ import { searchFilter, queryAtom, pageUrl } from "../api/search";
 // 내비게이션 바
 const NavBar = () => {
   const isLogin = useRecoilValue(validLogin);
-
-  // 검색기능
   const setFilter = useSetRecoilState(searchFilter);
   const [query, setQuery] = useRecoilState(queryAtom);
   const setPageUrl = useSetRecoilState(pageUrl);
-
-  // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
   const navigate = useNavigate();
 
-  function handleSign() {
+  const handleSign = () => {
     if (isLogin) {
       signOut();
-      //localStorage에 지움.
       localStorage.removeItem("key");
       window.location.replace("/");
     } else {
       navigate("/login");
     }
-  }
+  };
 
-  // 검색 시 query에 담음
-  // query이 변할 때마다 영화 데이터 조회
   const searching = (e) => {
     setQuery(e.target.value);
     setPageUrl(null);

@@ -1,31 +1,25 @@
 import React, { useState } from "react";
 import { topMovies } from "../../api/search";
-
 import { useRecoilValue, useRecoilState } from "recoil";
 import Modal from "react-modal";
 import { topMovieIdx } from "../../store/movieStore";
 
+// 탑 무비 컴포넌트
 const TopMovie = () => {
-  // 모달 on off
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  //top rated Movie List
+  const [modalIdx, setModalIdx] = useRecoilState(topMovieIdx);
   const topMovieRecoil = useRecoilValue(topMovies);
 
-  // modal에 띄울 영화의 index값
-  const [modalIdx, setModalIdx] = useRecoilState(topMovieIdx);
-
-  function handleModal(e) {
+  const handleModal = (e) => {
     const index = e.target.name;
     setModalIdx(index);
     setModalIsOpen(true);
-  }
+  };
 
   return (
     <div>
       <div className="TopMovie row">
         <h3>TOP Rated Movies</h3>
-        {/* topMovie 리스트를 받아 map으로 화면에 뿌려줌 */}
         {topMovieRecoil.map((movie, idx) => {
           const newMovie = {};
           newMovie[idx] = movie;

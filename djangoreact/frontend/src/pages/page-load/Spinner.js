@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.png";
-
+// 로딩 페이지
 const Spinner = () => {
   return (
     <div className="Spinner">

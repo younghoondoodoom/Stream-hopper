@@ -4,6 +4,7 @@ import QuestionList from "../../components/ott-test/QuestionList";
 import { pageAtom } from "../../store/testStore";
 import PreferTest from "../../components/ott-test/PreferTest";
 
+// ott test 페이지
 const OttTest = () => {
   const [curpage, setCurPage] = useRecoilState(pageAtom);
 

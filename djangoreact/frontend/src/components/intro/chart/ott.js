@@ -1,3 +1,4 @@
+// 차트 데이터
 export const ottData = [
   {
     name: "넷플릭스",

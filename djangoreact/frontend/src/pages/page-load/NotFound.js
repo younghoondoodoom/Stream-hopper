@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/logo2.png";
+// 에러 페이지
 const NotFound = () => {
   return (
     <div>

@@ -5,10 +5,8 @@ import { signIn } from "../../api/api";
 import logo from "../../images/logo2.png";
 
 const Login = () => {
-  // userStore에 있는 loginstate를 가져옴
   const [loginInfo, setLoginInfo] = useRecoilState(loginState);
 
-  // loginState에 값 저장
   const handleInput = useCallback(
     (e) => {
       const { name, value } = e.target;
@@ -20,14 +18,13 @@ const Login = () => {
     [loginInfo]
   );
 
-  // 로그인 시 성공하면 메인페이지로 이동
-  async function handleSignIn(e) {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     await signIn(loginInfo);
     if (localStorage.getItem("key")) {
       return window.location.replace("/main");
     }
-  }
+  };
 
   return (
     <div className="Login">

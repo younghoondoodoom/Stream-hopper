@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { validLogin, signOut } from "../../api/api";
-
-//슬라이드 라이브러리
 import BackgroundSlider from "react-background-slider";
-
-//이미지
 import main1 from "../../images/main1.jpg";
 import main2 from "../../images/main2.jpg";
 import main3 from "../../images/main3.jpg";
@@ -15,15 +11,14 @@ import { useRecoilValue } from "recoil";
 const HomePage = () => {
   const isLogin = useRecoilValue(validLogin);
 
-  function handleSignOut() {
+  const handleSignOut = () => {
     signOut();
     localStorage.removeItem("key");
     window.location.replace("/");
-  }
+  };
 
   return (
     <div className="HomePage container">
-      {/* 로고 & 이미지 슬라이더 */}
       <img src={logo} className="img-fluid" alt="logo"></img>
 
       <BackgroundSlider
@@ -33,7 +28,6 @@ const HomePage = () => {
         transition={2}
       />
 
-      {/* 로그인/로그아웃 버튼 */}
       <div className="container">
         {!isLogin ? (
           <Link to="/login">

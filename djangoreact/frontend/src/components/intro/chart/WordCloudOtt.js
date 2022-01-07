@@ -4,6 +4,7 @@ import { Resizable } from "re-resizable";
 import { netflix, hulu, amazon, disney } from "../chart/words";
 import { select } from "d3-selection";
 
+// 워드클라우드 차트
 const WordCloudOtt = () => {
   const resizeStyle = {
     display: "flex",

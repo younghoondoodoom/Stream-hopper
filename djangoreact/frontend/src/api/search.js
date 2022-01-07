@@ -19,7 +19,7 @@ export const pageUrl = atom({
   default: null,
 });
 
-// 검색함수
+// 검색함수 (search filter)
 export const searchProgram = selector({
   key: "searchProgram",
 

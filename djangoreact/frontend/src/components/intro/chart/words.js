@@ -1,3 +1,4 @@
+// 워드클라우드 데이터
 export const netflix = [
   { text: "International", value: 4103 },
   { text: "Dramas", value: 3190 },

@@ -8,6 +8,7 @@ import {
 import Modal from "react-modal";
 import { movieIdx } from "../../store/movieStore";
 
+// 검색 결과 컴포넌트
 const SearchResult = () => {
   const queryLodable = useRecoilValueLoadable(searchProgram);
   const result = queryLodable.contents;
@@ -25,15 +26,16 @@ const SearchResult = () => {
     [setModalIdx]
   );
 
-  function nextPage() {
+  // 페이지 핸들링 함수
+  const nextPage = () => {
     const url = result.next;
     setPageUrl(url);
-  }
+  };
 
-  function prevPage() {
+  const prevPage = () => {
     const url = result.previous;
     setPageUrl(url);
-  }
+  };
 
   return (
     <div className="SearchResult">

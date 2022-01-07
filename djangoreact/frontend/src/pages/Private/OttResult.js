@@ -3,6 +3,7 @@ import { useRecoilValue } from "recoil";
 import { postOttData } from "../../api/api";
 import { ottTestAtom } from "../../store/testStore";
 
+// ott추천 결과 페이지
 const OttResult = () => {
   const ottData = useRecoilValue(ottTestAtom);
   const [testResult, setTestResult] = useState({});

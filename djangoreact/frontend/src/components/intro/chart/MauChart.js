@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ottData } from "../chart/ott";
 import {
   ResponsiveContainer,
@@ -12,6 +11,7 @@ import {
   Legend,
 } from "recharts";
 
+// mau, 매출액 차트
 const MauChart = () => {
   return (
     <div>

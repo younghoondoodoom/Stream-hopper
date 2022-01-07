@@ -5,10 +5,8 @@ import { signUp } from "../../api/api";
 import logo from "../../images/logo2.png";
 
 const Register = () => {
-  // recoil에 저장한 state 가져옴
   const [register, setRegister] = useRecoilState(registerState);
 
-  //onChange 될 때마다 registerState에 유저 정보를 담음.
   const handleInput = useCallback(
     (e) => {
       const { name, value } = e.target;
@@ -20,11 +18,10 @@ const Register = () => {
     [register]
   );
 
-  //회원가입 요청
-  function submitRegister(e) {
+  const submitRegister = (e) => {
     e.preventDefault();
     signUp(register);
-  }
+  };
 
   return (
     <div className="Register">

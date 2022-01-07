@@ -21,14 +21,11 @@ export const validLogin = selector({
 
 // 로그인 요청 API
 export const signIn = async (login) => {
-  // login 정보를 서버로 post 후 에러처리
   try {
     const key = await api.post("users/auth/login/", login);
     const data = key.data["key"];
-    //성공하면 localStorage에 토큰을 담음.
     localStorage.setItem("key", data);
   } catch (error) {
-    // 에러처리
     const errorList = error.response.data;
     alert(error);
     for (const [key, value] of Object.entries(errorList)) {
@@ -39,11 +36,9 @@ export const signIn = async (login) => {
 
 // 로그아웃 요청 API
 export const signOut = async () => {
-  // login 정보를 서버로 post 후 에러처리
   try {
     await api.post("users/auth/logout/");
   } catch (error) {
-    // 에러처리
     return false;
   }
 };
@@ -54,10 +49,8 @@ export const signUp = async (register) => {
     const res = await api.post("users/auth/register/", register);
     console.log(res);
     alert("회원가입에 성공하였습니다.");
-    // 분리해
     window.location.replace("/login");
   } catch (error) {
-    // error 발생 시 서버에서 넘겨준 error 메시지 출력
     const errorList = error.response.data;
     for (const [key, value] of Object.entries(errorList)) {
       alert(`${key} : ${value}`);
@@ -65,6 +58,7 @@ export const signUp = async (register) => {
   }
 };
 
+// ott추천 서비스 선호 영화 검사 api
 export const genreTopMovie = selector({
   key: "genreTopMovie",
   get: async () => {
@@ -81,6 +75,7 @@ export const genreTopMovie = selector({
   },
 });
 
+// ott추천 서비스 post 요청
 export const postOttData = async (ottTestAtom) => {
   try {
     const response = await api.post("service/ott", ottTestAtom, {
@@ -94,6 +89,7 @@ export const postOttData = async (ottTestAtom) => {
   }
 };
 
+// 영화 추천 서비스 api
 export const getContentsRecommended = selector({
   key: "getContentsRecommended",
   get: async () => {
