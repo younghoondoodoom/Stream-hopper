@@ -52,24 +52,26 @@ const PreferTest = () => {
             const originalImg = newData[idx].image_path;
             return (
               <div key={"contents" + idx} className="col">
-                <input
-                  id={newData[idx].id}
-                  type="checkbox"
-                  value={newData[idx].id}
-                  onClick={handleMovieList}
-                />
-                <label value={newData[idx].id} htmlFor={newData[idx].id}>
-                  ❤
-                </label>
-                <img
-                  name={idx}
-                  src={`https://image.tmdb.org/t/p/original${
-                    korImg || originalImg || null
-                  } `}
-                  alt="selectMovie"
-                  className="img-fluid card-img-top"
-                  onClick={handleModal}
-                />
+                <div className="card text-white bg-dark">
+                  <input
+                    id={newData[idx].id}
+                    type="checkbox"
+                    value={newData[idx].id}
+                    onClick={handleMovieList}
+                  />
+                  <label value={newData[idx].id} htmlFor={newData[idx].id}>
+                    ❤
+                  </label>
+                  <img
+                    name={idx}
+                    src={`https://image.tmdb.org/t/p/original${
+                      korImg || originalImg || null
+                    } `}
+                    alt="selectMovie"
+                    className="img-fluid card-img-top"
+                    onClick={handleModal}
+                  />
+                </div>
               </div>
             );
           })}

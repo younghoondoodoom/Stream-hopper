@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { ottTestAtom, genre, pageAtom } from "../../store/testStore";
 import { useRecoilState, useRecoilValue } from "recoil";
+import require from "convert-keys";
 
 const QuestionList = () => {
   const [testData, setTestData] = useRecoilState(ottTestAtom);
@@ -23,6 +24,9 @@ const QuestionList = () => {
     },
     [testData]
   );
+  const convertKeys = require("convert-keys");
+
+  console.log(convertKeys.toCamel(testData));
 
   const handleGenre = useCallback(
     (e) => {
@@ -78,7 +82,7 @@ const QuestionList = () => {
                   <h4>{idx + 1}순위</h4>
                   <select name={i}>
                     <option value="none">순위를 선택하세요.</option>
-                    <option value="pixel">화질</option>
+                    <option value="genre">장르</option>
                     <option value="price_range">가격</option>
                     <option value="member_number">사용인원</option>
                   </select>

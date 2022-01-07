@@ -51,19 +51,19 @@ const ContentsTest = () => {
               const score = newContents[idx].contentrecommendation_set[0];
               return (
                 <div key={"content" + idx} className="col">
-                  <input
-                    id={newContents[idx].id}
-                    type="checkbox"
-                    value={newContents[idx].id}
-                    onClick={handleMovieList}
-                  />
-                  <label
-                    value={newContents[idx].id}
-                    htmlFor={newContents[idx].id}
-                  >
-                    ❤
-                  </label>
-                  <div className="match-rate">
+                  <div className="card text-white bg-dark match-rate">
+                    <input
+                      id={newContents[idx].id}
+                      type="checkbox"
+                      value={newContents[idx].id}
+                      onClick={handleMovieList}
+                    />
+                    <label
+                      value={newContents[idx].id}
+                      htmlFor={newContents[idx].id}
+                    >
+                      ❤
+                    </label>
                     <a href="#">
                       <img
                         name={idx}

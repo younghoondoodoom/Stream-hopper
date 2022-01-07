@@ -841,8 +841,11 @@ $orange: rgb(255, 187, 0);
   }
 
   .col {
-    border: rgb(255, 255, 255) 1px solid;
-    background-color: rgb(0, 0, 0);
+    object-fit: cover;
+    padding: 10px;
+    img {
+      max-height: 260px;
+    }
   }
 }
 
