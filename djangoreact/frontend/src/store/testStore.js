@@ -12,7 +12,7 @@ export const ottTestAtom = atom({
     memberAdultCount: "0",
     memberChildCount: "0",
     pixel: "",
-    priceRange: "4000",
+    priceRange: "10000",
     genre: "",
     preferContents: [],
   },

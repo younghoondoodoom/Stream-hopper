@@ -781,27 +781,40 @@ $orange: rgb(255, 187, 0);
 }
 
 .OttResult {
-  height: 100%;
+  text-align: center;
   h1 {
-    padding-top: 10%;
+    padding: 30px;
   }
-
-  .card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-      padding-bottom: 15px;
-      font-size: 8vh;
-    }
+  h3 {
+    color: $orange;
   }
   span {
     color: $orange;
   }
 
-  .result-box {
-    width: 100%;
+  .card {
+    width: 60%;
+    margin-left: 20%;
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      color: rgb(158, 128, 128);
+    }
+  }
+  img {
+    max-width: 150px;
+  }
+
+  button {
+    background-color: $orange;
+    border: none;
+    padding: 15px;
+    width: 150px;
+    border-radius: 1rem;
+    margin-bottom: 30px;
   }
 }
 
@@ -917,6 +930,23 @@ $orange: rgb(255, 187, 0);
       transition: 0.5s;
     }
   }
+
+  button {
+    background-color: grey;
+    border: none;
+    width: 100px;
+    color: rgb(228, 228, 228);
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 191, 73);
+      transform: scale(1.2);
+    }
+  }
 }
 
 .MyPage {
@@ -933,6 +963,7 @@ $orange: rgb(255, 187, 0);
     padding: 15px;
     width: max-content;
     border-radius: 1rem;
+    margin: 30px 0;
   }
   p {
     padding-top: 15px;
@@ -942,6 +973,25 @@ $orange: rgb(255, 187, 0);
   }
   img {
     max-height: 300px;
-    min-height: 150px;
+    min-height: 190px;
+  }
+  button {
+    background-color: rgb(87, 40, 40);
+    border: none;
+    width: 100px;
+    color: white;
+    &:hover {
+      color: black;
+      background-color: $orange;
+      transform: scale(1.2);
+    }
+  }
+  .ott-box {
+    background-color: none;
+
+    img {
+      max-height: 150px;
+      min-height: 190px;
+    }
   }
 }

@@ -64,11 +64,7 @@ export const genreTopMovie = selector({
   key: "genreTopMovie",
   get: async () => {
     try {
-      const response = await api.get("service/genretoptwo", {
-        headers: {
-          Authorization: `Token ${KEY}`,
-        },
-      });
+      const response = await header.get("service/genretoptwo");
       return response.data.results;
     } catch (error) {
       return false;
@@ -100,15 +96,20 @@ export const getContentsRecommended = selector({
 });
 
 // 콘텐츠 likeList post
-export const postLikeList = async (likeList, del) => {
+export const postLikeList = async (like) => {
   try {
-    if (likeList !== null) {
-      const response = await header.post("mypage/contents/create", likeList);
-      return response.data;
-    } else {
-      const response = await header.delete("mypage/contents/destroy    ", del);
-      return response;
-    }
+    const response = await header.post("mypage/contents/create", like);
+    return response.data;
+  } catch (e) {
+    return false;
+  }
+};
+
+// 콘텐츠 like delete
+export const deleteLikeList = async (del) => {
+  try {
+    const response = await header.delete(`mypage/contents/destroy/${del}`);
+    return response.data;
   } catch (e) {
     return false;
   }

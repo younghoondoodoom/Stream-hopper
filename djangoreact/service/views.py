@@ -116,9 +116,9 @@ class GiveTopContentByGenre(ListAPIView):
             genre__icontains=genre_list[0]
         ).order_by('-vote_count', '-rating')[random_int:random_int+2]
         
-        for genre in genre_list:
+        for i in range(1, 13):
             qs = Contents.objects.filter(
-                genre__icontains=genre_list[genre]
+                genre__icontains=genre_list[i]
                 ).order_by('-vote_count', '-rating')[random_int:random_int+2]
             queryset = queryset.union(qs)
         

@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from "recoil";
 import {
   getContentsRecommended,
   validLogin,
   postLikeList,
+  deleteLikeList,
 } from "../../api/api";
 import Modal from "react-modal";
 import { movieIdx } from "../../store/movieStore";
@@ -14,22 +15,32 @@ const ContentsTest = () => {
   const user = useRecoilValue(validLogin);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
-  const [likeList, setLikeList] = useState([]);
+  const [post, setPost] = useState(false);
+  const [like, setLike] = useState("");
+  const [del, setDel] = useState("");
+
   const contentsResult = useRecoilValueLoadable(getContentsRecommended);
   const contents = contentsResult.contents;
   const navigate = useNavigate();
 
-  const handleMovieList = useCallback(
-    async (e) => {
-      const value = e.target.value;
-      let newData = await likeList.filter((item) => item !== value);
-      if (e.target.checked) newData.push(value);
-      await setLikeList(newData);
-      console.log(likeList);
-    },
+  const handleMovieList = async (e) => {
+    const { name, value } = e.target;
+    setPost(!post);
+    setLike({
+      ...like,
+      [name]: value,
+    });
+  };
 
-    [likeList]
-  );
+  useEffect(async () => {
+    if (post) {
+      const result = await postLikeList(like);
+      setDel(result.id);
+    }
+    if (!post) {
+      deleteLikeList(del);
+    }
+  }, [post]);
 
   const handleModal = useCallback(
     async (e) => {
@@ -41,9 +52,6 @@ const ContentsTest = () => {
   );
 
   const submitLikeList = () => {
-    const post = { contents: likeList };
-    postLikeList(post);
-    setLikeList([]);
     navigate("/mypage");
   };
 
@@ -72,6 +80,7 @@ const ContentsTest = () => {
                       onClick={handleMovieList}
                     />
                     <label
+                      name="contents"
                       value={newContents[idx].id}
                       htmlFor={newContents[idx].id}
                     >
@@ -98,7 +107,7 @@ const ContentsTest = () => {
             })}
         </div>
       </div>
-      <button onClick={submitLikeList}>콘텐츠 찜하기</button>
+      <button onClick={submitLikeList}>제출하기</button>
       {modalIsOpen === true && contents !== "undefined" && (
         <Modal
           isOpen={modalIsOpen}

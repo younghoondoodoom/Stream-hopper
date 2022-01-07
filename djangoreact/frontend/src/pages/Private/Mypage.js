@@ -1,11 +1,22 @@
 import React from "react";
-import { mypageContents, mypageOtt, validLogin } from "../../api/api";
+import {
+  deleteLikeList,
+  mypageContents,
+  mypageOtt,
+  validLogin,
+} from "../../api/api";
 import { useRecoilValue } from "recoil";
 
 const Mypage = () => {
   const user = useRecoilValue(validLogin);
   const ott = useRecoilValue(mypageOtt);
   const contents = useRecoilValue(mypageContents);
+
+  const deletContents = (e) => {
+    const value = e.target.value;
+    deleteLikeList(value);
+  };
+
   return (
     <div className="MyPage">
       <h3>
@@ -34,6 +45,9 @@ const Mypage = () => {
                   />
                 </div>
                 <p>{newcontent[idx].kor_title || newcontent[idx].title}</p>
+                <button onClick={deletContents} value={newcontent[idx].id}>
+                  삭제
+                </button>
               </div>
             );
           })}
@@ -42,6 +56,25 @@ const Mypage = () => {
         <h4>
           <span>{user.data.user}</span>께 추천하는 ott!
         </h4>
+        <div className="row row-cols-auto ott-box">
+          {ott.map((ott, idx) => {
+            const newOtt = {};
+            newOtt[idx] = ott;
+            return (
+              <div key={"ott" + idx} className="col">
+                <div className="card bg-dark">
+                  <img
+                    name={idx}
+                    src={newOtt[idx].img_path}
+                    alt="selectMovie"
+                    className="img-fluid card-img-top"
+                  />
+                </div>
+                <p>{newOtt[idx].name}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

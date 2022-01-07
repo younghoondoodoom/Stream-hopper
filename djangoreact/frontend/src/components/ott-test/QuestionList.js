@@ -143,9 +143,9 @@ const QuestionList = () => {
               <input
                 type="range"
                 name="priceRange"
-                min="4000"
-                max="60000"
-                step="1000"
+                min="5500"
+                max="17000"
+                step="100"
               />
             </span>
           </div>
