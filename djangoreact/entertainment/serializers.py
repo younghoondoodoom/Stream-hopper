@@ -3,13 +3,6 @@ from .models import *
 from service.serializers import ContentRecommendationSerializer
 
 # Contents Serializers
-
-class ContentAndRecommendSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Contents
-        fields = '__all__'
-     
-    contentrecommendation_set = ContentRecommendationSerializer(many=True)
         
 class ContentReviewSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,3 +18,10 @@ class ContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contents
         fields = '__all__'
+        
+class ContentAndRecommendSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contents
+        fields = '__all__'
+     
+    contentrecommendation_set = ContentRecommendationSerializer(many=True)

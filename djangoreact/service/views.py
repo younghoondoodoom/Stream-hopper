@@ -3,10 +3,10 @@ from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q, Subquery
 
 from .ds.collaborative_recommender import *
-from .ds.content_recommender import get_content_recommendations
+from .ds.ott_recommnder import get_ott_recommendations
 from .serializers import OTTserviceSerializer
 from .models import OTTservice, ContentRecommendation
 from entertainment.models import Contents, OTT
@@ -29,63 +29,55 @@ class OTTserviceCreateView(CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
+        age = serializer.data.get('age')
+        gender = serializer.data.get('gender')
+        member_number = serializer.data.get('member_number')
+        member_child_count = serializer.data.get('member_child_count')
+        member_adult_count = serializer.data.get('member_adult_count')
+        pixel = serializer.data.get('pixel')
+        price_range = serializer.data.get('price_range')
+        genre = serializer.data.get('genre')
+        first = serializer.data.get('first')
+        second = serializer.data.get('second')
+        third = serializer.data.get('third')
+        prefer_contents = serializer.data.get('prefer_contents')
+        
         # db에 입력 정보 넣어줌.(데이터 분석팀의 요청)
         user_taste = OTTservice.objects.create(
             user = request.user,
-            age = serializer.data.get('age'),
-            gender = serializer.data.get('gender'),
-            member_number = serializer.data.get('member_number'),
-            member_child_count = serializer.data.get('member_child_count'),
-            member_adult_count = serializer.data.get('member_adult_count'),
-            pixel = serializer.data.get('pixel'),
-            price_range = serializer.data.get('price_range'),
-            genre = serializer.data.get('genre'),
-            first = serializer.data.get('first'),
-            second = serializer.data.get('second'),
-            third = serializer.data.get('third'),
+            age = age,
+            gender = gender,
+            member_number = member_number,
+            member_child_count = member_child_count,
+            member_adult_count = member_adult_count,
+            pixel = pixel,
+            price_range = price_range,
+            genre = genre,
+            first = first,
+            second = second,
+            third = third
         )
         tmdb_id_list = []
-        for content in serializer.data.get('prefer_contents'):
+        for content in prefer_contents:
             prefer_content = Contents.objects.get(id=content)
             tmdb_id_list.append(str(prefer_content.tmdb_id))
             user_taste.prefer_contents.add(prefer_content)
-        
-        print(",".join(tmdb_id_list))
-                
         user_taste.tmdb_id = ",".join(tmdb_id_list)
         user_taste.save()
-
         
-        # # OTT추천 쿼리
-        # recommendations = []
-        # for i in range(3):
-        #     get_recommendations = get_content_recommendations(serializer.data.get('prefer_contents')[i])
-        #     recommendations += list(get_recommendations.keys())
+        recommend_ott = get_ott_recommendations(age, gender, member_number, member_child_count, member_adult_count, pixel, price_range, genre, first, second, third, tmdb_id_list)
                 
-        # ott_prefer_dict = {'netflix':0, 'disney':0, 'amazon':0, 'hulu':0}
+        # mypage에 들어갈 myott
+        for i in range(4):
+            MyOTT.objects.create(user=request.user, ott=OTT.objects.get(name__icontains = recommend_ott[i]))
         
-        # for recommend in recommendations:
-        #     query = Contents.objects.values_list('ott', flat=True).get(id=recommend)
-        #     if query == "neflix":
-        #         ott_prefer_dict['netflix'] += 1
-        #     elif query == "disney":
-        #         ott_prefer_dict['disney'] += 1
-        #     elif query == "amazon":
-        #         ott_prefer_dict['amazon'] += 1
-        #     elif query == "hulu":
-        #         ott_prefer_dict['hulu'] += 1
-        #     else:
-        #         pass
-        
-        # ott_prefer = sorted(ott_prefer_dict.items(), key=lambda x:x[1], reverse=True)
-        
-        # most_prefer_ott = ott_prefer[0][0]
-        # cost = serializer.data.get('price_range')
-        
-        # queryset = OTT.objects.filter(name__icontains=most_prefer_ott)
-        # queryset = queryset.annotate(abs_diff=Func(F('cost')-cost, function='ABS')).order_by('abs_diff')
-        
-        queryset = OTT.objects.all()[0:1]
+        # queryset 만들기
+        queryset = OTT.objects.filter(
+            Q(name__icontains=recommend_ott[0]) | 
+            Q(name__icontains=recommend_ott[1]) | 
+            Q(name__icontains=recommend_ott[2]) |
+            Q(name__icontains=recommend_ott[3])
+        )
         
         OTTserrializer = OTTSerializer(queryset, many=True)
         
@@ -124,9 +116,9 @@ class GiveTopContentByGenre(ListAPIView):
             genre__icontains=genre_list[0]
         ).order_by('-vote_count', '-rating')[random_int:random_int+2]
         
-        for i in range(1, 13):
+        for genre in genre_list:
             qs = Contents.objects.filter(
-                genre__icontains=genre_list[i]
+                genre__icontains=genre_list[genre]
                 ).order_by('-vote_count', '-rating')[random_int:random_int+2]
             queryset = queryset.union(qs)
         
@@ -148,7 +140,6 @@ class ContentRecommendServiceListView(ListAPIView):
             ContentRecommendation.objects.filter(user_id=current_user)
             result = colloborative_recommender(current_user)
         except:
-            print('오류 처리')
             result = new_collaborative(current_user)
         
         # 넣어야할 db : ContentRecommendation
@@ -159,14 +150,16 @@ class ContentRecommendServiceListView(ListAPIView):
             score = result[i][2]
             content = Contents.objects.filter(tmdb_id=tmdb_id)[0]
             recommend = ContentRecommendation(user=self.request.user, recommend_content=content, score=score)
-            recommend.save()    
+            recommend.save()
         
         queryset = Contents.objects.filter(tmdb_id=result[0][0])[0:1]
         
         for i in range(1, len(result)):
             qs = Contents.objects.filter(tmdb_id=result[i][0])[0:1]
             queryset = queryset | qs
-                
+
+        
+        
         queryset = queryset.prefetch_related(
             Prefetch('contentrecommendation_set', 
                      queryset = ContentRecommendation.objects.filter(user_id=current_user).order_by('-created_at'))
