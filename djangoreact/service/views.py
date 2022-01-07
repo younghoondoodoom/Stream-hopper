@@ -3,7 +3,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
-from django.db.models import Prefetch, Q, Subquery
+from django.db.models import Prefetch, Q
 
 from .ds.collaborative_recommender import *
 from .ds.ott_recommnder import get_ott_recommendations
@@ -66,7 +66,7 @@ class OTTserviceCreateView(CreateAPIView):
         user_taste.save()
         
         recommend_ott = get_ott_recommendations(age, gender, member_number, member_child_count, member_adult_count, pixel, price_range, genre, first, second, third, tmdb_id_list)
-                
+        
         # mypage에 들어갈 myott
         for i in range(4):
             MyOTT.objects.create(user=request.user, ott=OTT.objects.get(name__icontains = recommend_ott[i]))
@@ -83,6 +83,8 @@ class OTTserviceCreateView(CreateAPIView):
         
         headers = self.get_success_headers(serializer.data)
         return Response(OTTserrializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
     
     
 

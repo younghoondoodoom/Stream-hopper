@@ -33,7 +33,7 @@
 # 소개
 
 ## 사용기술
-- sqlite
+- postgresql
 - django 4.0
 - APScheduler
 
@@ -50,7 +50,6 @@ djangoreact
 |   
 ├── users : Customuser를 위한 api 
 │   
-├── db.sqlite3 
 │   
 ├── load_data.py   
 |   
@@ -73,9 +72,22 @@ djangoreact
 - main page에 띄울 movie top3를 json 형태로 전달(get)
 - detail page에 띄울 movie detail을 json으로 전달(get)
 
-### 4. 영화 검색기능
+### 4. Cotents 검색기능
 - 검색어에 맞는 영화를 db에서 쿼리해서 json 형태로 전달(get)
 - title, actor, director 각각 쿼리 가능, 모두 합친 후 쿼리 가능
 
-### 5. Service 
-- 
+### 5. Detail Contents
+- 각각의 데이터를 detail 페이지에 넘겨줌.
+- keyword를 띄운다.
+
+### 6. OTT 추천 Service 
+- 유저의 입력 값에 따라 사용자에게 맞는 OTT 서비스를 추천해준다.
+- OTT DB와 데이터 분석 함수에 맞는 쿼리를 사용해 json으로 정보를 전달.
+
+### 7. Contents 추천 서비스
+- 유저가 선택 했던 contents에 따라 맞는 취향에 맞는 contents를 선택해준다.
+- Contents DB와 데이터 분석 함수에 맞는 쿼리르 사용해서 json으로 정보를 전달.
+
+### 8. MyPage
+- 유저가 좋아요를 눌렀던 Contents를 저장하고 mypage에서 띄운다.
+- 유저에게 추천 했던 OTT서비스를 저장한 후 mypage에서 띄운다.

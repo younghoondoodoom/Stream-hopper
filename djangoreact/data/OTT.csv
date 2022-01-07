@@ -1,5 +1,5 @@
 name,cost,pixel,max_user_count,img_path
-Netflix Nasic,9500,SD(480p),1,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
+Netflix Basic,9500,SD(480p),1,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
 Netflix Standard,13500,FHD(1080p),2,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
 Netflix Premium,17000,UHD(2160p),4,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
 Disney+ Monthly,9900,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926869665215565845/icon.png
