@@ -54,12 +54,13 @@ class MyOTTListView(ListAPIView):
     def get_queryset(self):
             myott = MyOTT.objects.filter(user_id=self.request.user.id).order_by('-created_at')
             myott = myott.values('ott_id')
-            if len(myott) != 0:
+            len_ott = len(myott)
+            if len_ott != 0:
                 queryset = OTT.objects.filter(id=myott[0]['ott_id'])
-                for i in range(1,len(myott)):
+                for i in range(1,len_ott):
                     qs = OTT.objects.filter(id=myott[i]['ott_id'])
-                    queryset = queryset.union(qs)
-                    return queryset
+                    queryset = queryset.union(qs, all=True)
+                return queryset
             else:
                 queryset = myott
                 return queryset         
