@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { registerState } from "../store/userStore";
+import { registerState } from "../../store/userStore";
 import { useRecoilState } from "recoil";
-import { signUp } from "../api/api";
-import logo from "../images/logo2.png";
+import { signUp } from "../../api/api";
+import logo from "../../images/logo2.png";
 
 const Register = () => {
   // recoil에 저장한 state 가져옴

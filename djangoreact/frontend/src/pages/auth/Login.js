@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import { loginState } from "../store/userStore";
+import { loginState } from "../../store/userStore";
 import { useRecoilState } from "recoil";
-import { signIn } from "../api/api";
-import logo from "../images/logo2.png";
+import { signIn } from "../../api/api";
+import logo from "../../images/logo2.png";
 
 const Login = () => {
   // userStore에 있는 loginstate를 가져옴

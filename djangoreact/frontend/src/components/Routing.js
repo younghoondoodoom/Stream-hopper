@@ -4,14 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //page import
 import Homepage from "../pages/public/HomePage";
 import Intro from "../pages/public/Intro";
-import Login from "../pages/Login";
+import Login from "../pages/auth/Login";
 import Main from "../pages/public/Main";
-import ContentsResult from "../pages/private/ContentsResult";
 import OttResult from "../pages/private/OttResult";
-import Register from "../pages/Register";
+import Register from "../pages/auth/Register";
 import Mypage from "../pages/private/Mypage";
 import OttTest from "../pages/private/OttTest";
 import ContentsTest from "../pages/private/ContentsTest";
+import NotFound from "../pages/page-load/NotFound";
 
 // 페이지 접근 권한
 import PrivateRoute from "./access/PrivateRote";
@@ -84,15 +84,6 @@ const Routing = () => {
               </PrivateRoute>
             }
           />
-          {/* 영화 추천 결과 */}
-          <Route
-            path="/movie_result"
-            element={
-              <PrivateRoute>
-                <ContentsResult />
-              </PrivateRoute>
-            }
-          />
           {/* ott 추천 결과 */}
           <Route
             path="/ott_result"
@@ -102,6 +93,7 @@ const Routing = () => {
               </PrivateRoute>
             }
           />
+          <Route element={<NotFound />} path="*" />
         </Routes>
       </BrowserRouter>
     </div>

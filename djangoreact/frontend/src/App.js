@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import "./App.scss";
 // import Routing from './components/Routing';
 import { RecoilRoot } from "recoil";
-import Spinner from "./components/Spinner";
+import Spinner from "./pages/page-load/Spinner";
 import ReactModal from "react-modal";
 
 function App() {

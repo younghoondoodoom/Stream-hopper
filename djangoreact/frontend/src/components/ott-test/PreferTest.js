@@ -14,13 +14,9 @@ const PreferTest = () => {
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
 
   const handleMovieList = useCallback(
-    (e) => {
+    async (e) => {
       const value = e.target.value;
-      if (movieList.length >= 3) {
-        alert("최대 3개 까지만 선택해주세요.");
-        e.target.checked = false;
-      }
-      let newData = movieList.filter((item) => item !== value);
+      let newData = await movieList.filter((item) => item !== value);
       if (e.target.checked) newData.push(value);
       setMovieList(newData);
     },
@@ -37,6 +33,9 @@ const PreferTest = () => {
   );
 
   useEffect(() => {
+    if (movieList.length > 3) {
+      alert("최대 3개 까지만 선택해주세요.");
+    }
     setTestData({ ...testData, prefer_contents: movieList });
   }, [movieList]);
 
