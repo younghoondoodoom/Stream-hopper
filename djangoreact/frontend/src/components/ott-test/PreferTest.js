@@ -42,7 +42,7 @@ const PreferTest = () => {
   return (
     <div>
       <div className="movie-box">
-        <h3>좋아하시는 영화를 선택하세요.(총 3개)</h3>
+        <h3>좋아하시는 콘텐츠를 선택하세요.(총 3개)</h3>
         <h4>{movieList.length} / 3</h4>
         <div className="row row-cols-4 row-cols-sm-6 row-cols-md-6">
           {topGenreMovie.map((movie, idx) => {

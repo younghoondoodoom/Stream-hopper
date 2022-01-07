@@ -2,16 +2,18 @@ import { api } from "./instance";
 import { selector } from "recoil";
 const KEY = localStorage.getItem("key");
 
+const header = api.create({
+  headers: {
+    Authorization: `Token ${KEY}`,
+  },
+});
+
 //로그인을 확인하는 API
 export const validLogin = selector({
   key: "validLogin",
   get: async () => {
     try {
-      const response = await api.get("users/auth/permission", {
-        headers: {
-          Authorization: `Token ${KEY}`,
-        },
-      });
+      const response = await header.get("users/auth/permission");
       return response;
     } catch (e) {
       return false;
@@ -47,7 +49,6 @@ export const signOut = async () => {
 export const signUp = async (register) => {
   try {
     const res = await api.post("users/auth/register/", register);
-    console.log(res);
     alert("회원가입에 성공하였습니다.");
     window.location.replace("/login");
   } catch (error) {
@@ -78,23 +79,60 @@ export const genreTopMovie = selector({
 // ott추천 서비스 post 요청
 export const postOttData = async (ottTestAtom) => {
   try {
-    const response = await api.post("service/ott", ottTestAtom, {
-      headers: {
-        Authorization: `Token ${KEY}`,
-      },
-    });
+    const response = await header.post("service/ott", ottTestAtom);
     return response.data;
   } catch (error) {
     return false;
   }
 };
 
-// 영화 추천 서비스 api
+// 콘텐츠 추천 서비스 api
 export const getContentsRecommended = selector({
   key: "getContentsRecommended",
   get: async () => {
     try {
-      const response = await api.get("service/content", {
+      const response = await header.get("service/content");
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  },
+});
+
+// 콘텐츠 likeList post
+export const postLikeList = async (likeList, del) => {
+  try {
+    if (likeList !== null) {
+      const response = await header.post("mypage/contents/create", likeList);
+      return response.data;
+    } else {
+      const response = await header.delete("mypage/contents/destroy    ", del);
+      return response;
+    }
+  } catch (e) {
+    return false;
+  }
+};
+
+// 마이페이지 contents 요청
+export const mypageContents = selector({
+  key: "mypageContents",
+  get: async () => {
+    try {
+      const response = await header.get("mypage/contents/list");
+      return response.data.results;
+    } catch (error) {
+      return false;
+    }
+  },
+});
+
+// 마이페이지 ott 요청
+export const mypageOtt = selector({
+  key: "mypageOtt",
+  get: async () => {
+    try {
+      const response = await api.get("mypage/ott/list", {
         headers: {
           Authorization: `Token ${KEY}`,
         },

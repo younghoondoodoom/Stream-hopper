@@ -1,11 +1,14 @@
 # 사용기술
 
 - react
-- react-router-dom v6
+- react-router-dom
 - react-modal
+- react-wordcloud
 - recoil
+- axios
+- recharts
 - bootstrap
-- sass
+- scss
 
 # 폴더 구조
 
@@ -39,7 +42,9 @@ frontend
 
 # 구현 기능
 
-### 1. 회원가입
+### 메인 페이지
+
+### 회원가입 페이지
 
 - 회원가입 양식이 알맞지 않으면 alert로 경고창 출력
 - 회원가입 후 로그인 페이지로 이동
@@ -92,3 +97,9 @@ frontend
 - 개인에게 적합한 영화 (ott추천 서비스의 문항값을 토대로) 추천
 - 이미지 클릭 시 세부정보 모달을 이용해 띄움.
 - 좋아요 버튼 구현
+- img hover 시에 user와 일치율 보여줌.
+
+### 10. 마이페이지
+
+- 추천받은 ott, contents 리스트 보여줌.
+-

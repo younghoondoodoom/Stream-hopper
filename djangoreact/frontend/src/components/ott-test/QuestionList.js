@@ -6,7 +6,6 @@ const QuestionList = () => {
   const [testData, setTestData] = useRecoilState(ottTestAtom);
   const [isMember, setIsMember] = useState(false);
   const [preferGenre, setPreferGenre] = useState([]);
-
   const curpage = useRecoilValue(pageAtom);
 
   const child = Number(testData.memberChildCount);
@@ -97,7 +96,7 @@ const QuestionList = () => {
             <input
               type="number"
               name="memberNumber"
-              min={0}
+              min={1}
               max={4}
               defaultValue={1}
             />

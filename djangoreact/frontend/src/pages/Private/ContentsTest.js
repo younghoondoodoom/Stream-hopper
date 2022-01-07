@@ -1,8 +1,13 @@
 import React, { useState, useCallback } from "react";
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from "recoil";
-import { getContentsRecommended, validLogin } from "../../api/api";
+import {
+  getContentsRecommended,
+  validLogin,
+  postLikeList,
+} from "../../api/api";
 import Modal from "react-modal";
 import { movieIdx } from "../../store/movieStore";
+import { useNavigate } from "react-router-dom";
 
 // 영화 추천 페이지
 const ContentsTest = () => {
@@ -12,6 +17,7 @@ const ContentsTest = () => {
   const [likeList, setLikeList] = useState([]);
   const contentsResult = useRecoilValueLoadable(getContentsRecommended);
   const contents = contentsResult.contents;
+  const navigate = useNavigate();
 
   const handleMovieList = useCallback(
     async (e) => {
@@ -33,6 +39,13 @@ const ContentsTest = () => {
     },
     [setModalIdx]
   );
+
+  const submitLikeList = () => {
+    const post = { contents: likeList };
+    postLikeList(post);
+    setLikeList([]);
+    navigate("/mypage");
+  };
 
   return (
     <div className="ContentTest">
@@ -85,6 +98,7 @@ const ContentsTest = () => {
             })}
         </div>
       </div>
+      <button onClick={submitLikeList}>콘텐츠 찜하기</button>
       {modalIsOpen === true && contents !== "undefined" && (
         <Modal
           isOpen={modalIsOpen}

@@ -37,16 +37,19 @@ const HomePage = () => {
           </Link>
         ) : null}
 
-        {isLogin ? (
-          <button className="w-btn" type="button" onClick={handleSignOut}>
-            로그아웃
-          </button>
-        ) : null}
-        <Link to="/register">
-          <button className="w-btn w-btnreg" type="button" hidden={isLogin}>
-            회원가입
-          </button>
-        </Link>
+        <div>
+          {isLogin ? (
+            <button className="w-btn" type="button" onClick={handleSignOut}>
+              로그아웃
+            </button>
+          ) : null}
+          <Link to="/register">
+            <button className="w-btn w-btnreg" type="button" hidden={isLogin}>
+              회원가입
+            </button>
+          </Link>
+        </div>
+
         <div>
           <Link to="/main">
             <button className="w-btn w-btnintro" type="button">

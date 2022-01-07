@@ -1,4 +1,5 @@
 $orange: rgb(255, 187, 0);
+
 // 폰트
 @font-face {
   font-family: "GmarketSansBold";
@@ -29,6 +30,19 @@ $orange: rgb(255, 187, 0);
 
 //네비바
 .NavBar {
+  select {
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+  }
+
+  input {
+    background-color: black;
+    color: white;
+    margin-left: 10px;
+    min-width: 250px;
+    min-height: 40px;
+  }
   .navbar-brand {
     color: $orange;
   }
@@ -76,7 +90,7 @@ $orange: rgb(255, 187, 0);
     }
   }
   button {
-    margin: 15px;
+    margin: 30px;
   }
 
   .w-btn {
@@ -84,19 +98,24 @@ $orange: rgb(255, 187, 0);
     border: none;
     min-width: 150px;
     min-height: 50px;
-    background: #ef473a;
+    background: #999bc9;
     border-radius: 1rem;
-    color: white;
+    color: black;
     cursor: pointer;
     font-weight: 700;
     transition: 0.3s;
 
+    &:hover {
+      color: white;
+      background-color: rgb(16, 16, 80);
+    }
+
     &reg {
-      background: #2c5364;
+      background: #999bc9;
     }
 
     &intro {
-      background: #545ca0;
+      background: #999bc9;
     }
 
     &:hover {
@@ -107,7 +126,7 @@ $orange: rgb(255, 187, 0);
         width: 5px;
         height: 5px;
         border-radius: 100%;
-        border: 6px solid #e07e21;
+        border: 6px solid #999bc9;
         position: absolute;
         z-index: -1;
         top: 50%;
@@ -282,14 +301,18 @@ $orange: rgb(255, 187, 0);
 
   .button {
     padding: 0.5em 0.67em;
-    color: white;
     text-decoration: none;
     border: 0.1em solid white;
-  }
-
-  .button-primary {
     color: black;
     background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 15px;
+
+    &:hover {
+      background-color: $orange;
+      color: rgb(7, 16, 70);
+    }
   }
 }
 
@@ -682,6 +705,8 @@ $orange: rgb(255, 187, 0);
   .qustion-list {
     height: 100%;
     display: flex;
+    padding: 30px;
+    border-radius: 1rem;
     align-items: center;
     justify-content: center;
 
@@ -891,5 +916,32 @@ $orange: rgb(255, 187, 0);
       position: relative;
       transition: 0.5s;
     }
+  }
+}
+
+.MyPage {
+  h3 {
+    width: 100%;
+    padding: 50px;
+    background-color: rgb(39, 37, 37);
+    margin: 30px 0;
+  }
+
+  h4 {
+    text-align: left;
+    background-color: rgb(46, 43, 43);
+    padding: 15px;
+    width: max-content;
+    border-radius: 1rem;
+  }
+  p {
+    padding-top: 15px;
+  }
+  span {
+    color: $orange;
+  }
+  img {
+    max-height: 300px;
+    min-height: 150px;
   }
 }

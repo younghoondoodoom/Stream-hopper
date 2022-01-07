@@ -48,7 +48,7 @@ const NavBar = () => {
               <option value="director">감독</option>
             </select>
             <input
-              className="form-control me-2 "
+              className="form-control me-2"
               type="search"
               placeholder="제목/감독/배우 등을 검색하세요."
               aria-label="Search"
