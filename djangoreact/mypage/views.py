@@ -31,7 +31,6 @@ class MyContentsListView(ListAPIView):
     name = 'My Contents List'
     serializer_class = ContentSerializer
     authentication_classes = [TokenAuthentication]
-    pagination_class = MyContentsPage
     
     def get_queryset(self):
         mycontents = MyContents.objects.filter(user_id=self.request.user.id).order_by('-created_at')
@@ -44,6 +43,7 @@ class MyContentsListView(ListAPIView):
             return queryset
         else:
             queryset = mycontents
+            return queryset
 
 class MyOTTListView(ListAPIView):
     name = "My OTT List"
@@ -52,18 +52,20 @@ class MyOTTListView(ListAPIView):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-            myott = MyOTT.objects.filter(user_id=self.request.user.id).order_by('-created_at')
-            myott = myott.values('ott_id')
-            len_ott = len(myott)
-            if len_ott != 0:
-                queryset = OTT.objects.filter(id=myott[0]['ott_id'])
-                for i in range(1,len_ott):
-                    qs = OTT.objects.filter(id=myott[i]['ott_id'])
-                    queryset = queryset.union(qs, all=True)
-                return queryset
-            else:
-                queryset = myott
-                return queryset         
-        
+        myott = MyOTT.objects.filter(user_id=self.request.user.id).order_by('-created_at')
+        myott = myott.values('ott_id')
+        len_ott = len(myott)
+        if len_ott != 0:
+            queryset = OTT.objects.filter(id=myott[0]['ott_id'])
+            for i in range(1,len_ott):
+                qs = OTT.objects.filter(id=myott[i]['ott_id'])
+                queryset = queryset.union(qs, all=True)
+            return queryset[:4]
+        else:
+            queryset = myott
+            return queryset  
+
+
+    
         
     

@@ -90,7 +90,7 @@ const QuestionList = () => {
         {curpage === 2 && (
           <div>
             <h3>
-              4. 본인을 제외한 ott이용 인원을 입력해주세요.(최대 인원:3명)
+              4. 본인을 포함한 ott이용 인원을 입력해주세요.(최대 인원:4명)
             </h3>
             <label htmlFor="memberNumber">총 인원</label>
             <input

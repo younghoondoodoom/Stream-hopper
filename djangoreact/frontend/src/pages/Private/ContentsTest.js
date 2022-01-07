@@ -15,7 +15,7 @@ const ContentsTest = () => {
   const user = useRecoilValue(validLogin);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
-  const [post, setPost] = useState(false);
+  const [post, setPost] = useState(true);
   const [like, setLike] = useState("");
   const [del, setDel] = useState("");
 
@@ -24,23 +24,27 @@ const ContentsTest = () => {
   const navigate = useNavigate();
 
   const handleMovieList = async (e) => {
-    const { name, value } = e.target;
-    setPost(!post);
-    setLike({
-      ...like,
-      [name]: value,
-    });
+    const value = e.target.value;
+    // const { name, value } = e.target;
+    if (e.target.value === like) {
+      await setPost(!post);
+      setLike("");
+    } else {
+      setLike(value);
+    }
   };
 
   useEffect(async () => {
     if (post) {
-      const result = await postLikeList(like);
+      const postLike = { contents: like };
+      const result = await postLikeList(postLike);
       setDel(result.id);
     }
     if (!post) {
       deleteLikeList(del);
     }
-  }, [post]);
+    console.log(like, post);
+  }, [like]);
 
   const handleModal = useCallback(
     async (e) => {
@@ -74,6 +78,7 @@ const ContentsTest = () => {
                 <div key={"content" + idx} className="col">
                   <div className="card text-white bg-dark match-rate">
                     <input
+                      name="contents"
                       id={newContents[idx].id}
                       type="checkbox"
                       value={newContents[idx].id}
