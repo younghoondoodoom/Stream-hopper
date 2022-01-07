@@ -25,7 +25,7 @@ class OTTservice(models.Model):
 
 class ContentRecommendation(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
-    recommend_content = models.ForeignKey(Contents, on_delete=models.CASCADE, blank=True)
+    recommend_content = models.ForeignKey(Contents, on_delete=models.CASCADE, blank=True, null=True)
     score = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     

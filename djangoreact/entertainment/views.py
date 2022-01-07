@@ -30,10 +30,6 @@ class ContentsDetailAPIView(APIView):
         serializer = ContentSerializer(movie)
         return Response(serializer.data)
     
-    def post(self, request, pk):
-        movie = self._get_object(pk)
-        serializer = ContentSerializer(movie)
-        return Response(serializer.data)
 
         
     

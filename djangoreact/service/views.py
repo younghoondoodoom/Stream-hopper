@@ -7,10 +7,10 @@ from django.db.models import Prefetch
 
 from .ds.collaborative_recommender import *
 from .ds.content_recommender import get_content_recommendations
-from .serializers import OTTserviceSerializer, ContentRecommendationSerializer
+from .serializers import OTTserviceSerializer
 from .models import OTTservice, ContentRecommendation
 from entertainment.models import Contents, OTT
-from entertainment.serializers import ContentSerializer, OTTSerializer
+from entertainment.serializers import ContentSerializer, OTTSerializer, ContentAndRecommendSerializer
 from mypage.models import *
 
 import random
@@ -133,7 +133,7 @@ class GiveTopContentByGenre(ListAPIView):
 
 class ContentRecommendServiceListView(ListAPIView):
     name = "MovieRecommend"
-    serializer_class = ContentSerializer
+    serializer_class = ContentAndRecommendSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = OTT.objects.all()[0:1]
