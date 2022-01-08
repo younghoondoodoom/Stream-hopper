@@ -143,12 +143,3 @@ node_modules
 
 secrets.josn
 djangoreact/secrets.json
-
-ds
-djangoreact/service/ds
-
-.svd
-djangoreact/svd
-
-djangoreact/service/.DS_Store
-.DS_Store
