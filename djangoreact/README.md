@@ -25,7 +25,7 @@
 2. runserver
   python manage.py runserver
 
-3. npm start(port:8000)
+3. npm start
   cd frontend
   npm install
   npm start
@@ -36,30 +36,36 @@
 - postgresql
 - django 4.0
 - APScheduler
+- djangorestframework 3.13.1
+- pandas 1.3.5
+- sklearn 
 
 ## 폴더 구조
 ```bash
 djangoreact
 ├── data  
 │   
-├── djangoreact : setting, urls, wsgi, asgi.py
+├── djangoreact : settings, urls, wsgi, asgi.py
 │ 
 ├── entertainment : contents 관련 검색 및 list 관련 api
 │
 ├── service : main service를 위한 api(미완)
 |   
 ├── users : Customuser를 위한 api 
-│   
+│ 
+├── mypage : mypage를 위한 api  
 │   
 ├── load_data.py   
-|   
+|
+├── secrets.json 
+├── venv  
 ├── manage.py   
 └── App.js / App.scss
 ``` 
 
 ## 구현 기능
 ### 1. Customuser 생성
-- 기존에는 회원가입을 진행할 때 더 많은 정보를 받으려고 CustomUser을 생성했으나 방향이 바뀜..
+- 기존에는 회원가입을 진행할 때 더 많은 정보를 받으려고 CustomUser을 생성했으나 방향이 바뀜
 - default User과 거의 유사하지만 id는 email로 사용
 
 ### 2. 회원가입/로그인/로그아웃
@@ -67,6 +73,10 @@ djangoreact
 - simple token-based HTTP Authentication을 이용하여 토큰 생성 및 db에 저장
 - email을 id로 사용
 - client에서는 localstorage에 받은 토큰을 담아서 관리
+
+### 3. 토큰 유효성 확인
+- PermissionsAPIView를 만들어 TokenAuthentication과 IsAuthenticated을 확인.
+- 모든 api 요청 시에 이 apiview로 get 요청을 해서 token 유효성 확인
 
 ### 3. 메인페이지
 - main page에 띄울 movie top3를 json 형태로 전달(get)
