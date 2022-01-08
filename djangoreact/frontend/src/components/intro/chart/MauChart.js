@@ -43,7 +43,7 @@ const MauChart = () => {
             />
             <YAxis
               label={{
-                value: "단위:만(명), 십억(원)",
+                value: "단위:만(명), 억(원)",
                 angle: -90,
                 offset: -5,
                 position: "insideBottomLeft",

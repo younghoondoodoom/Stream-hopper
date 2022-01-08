@@ -559,7 +559,21 @@ $orange: rgb(255, 187, 0);
     //   display: flex;
     //   justify-content: center;
     // }
+    .service-button {
+      button {
+        border: 1px solid $orange;
+        border-radius: 5px;
+        background-color: rgba(56, 21, 21, 0);
+        color: $orange;
+        padding: 10px 10px;
+        margin: 5px;
 
+        &:hover {
+          background-color: $orange;
+          color: black;
+        }
+      }
+    }
     .bi-arrow-down {
       color: $orange;
     }
@@ -580,21 +594,6 @@ $orange: rgb(255, 187, 0);
         text-align: center;
         color: $orange;
         line-height: normal;
-      }
-      .service-button {
-        button {
-          border: 1px solid $orange;
-          border-radius: 5px;
-          background-color: rgba(56, 21, 21, 0);
-          color: $orange;
-          padding: 10px 10px;
-          margin: 5px;
-
-          &:hover {
-            background-color: $orange;
-            color: black;
-          }
-        }
       }
     }
 
@@ -667,9 +666,18 @@ $orange: rgb(255, 187, 0);
     h5 {
       padding-top: 25px;
     }
-
+    p {
+      line-height: 1.8;
+      font-style: italic;
+      color: grey;
+    }
     span {
       color: $orange;
+    }
+    .squid-game {
+      margin-left: 25%;
+      width: 50%;
+      padding-bottom: 30px;
     }
     .netflix {
       color: red;
@@ -700,7 +708,7 @@ $orange: rgb(255, 187, 0);
         rgba(20, 20, 20, 1) 100%
       );
       h4 {
-        line-height: 1.6;
+        line-height: 1.8;
       }
     }
   }

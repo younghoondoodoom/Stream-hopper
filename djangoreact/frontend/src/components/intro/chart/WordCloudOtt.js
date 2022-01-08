@@ -38,15 +38,14 @@ const WordCloudOtt = () => {
       const text = select(element);
       text
         .transition()
-        .attr("background", "white")
+        .attr("background", "black")
         .attr("font-size", isActive ? "300%" : "100%")
         .attr("text-decoration", isActive ? "underline" : "none");
     };
   }
 
   const callbacks = {
-    getWordTooltip: (word) =>
-      `The word "${word.text}" appears ${word.value} times.`,
+    getWordTooltip: (word) => `${word.text} : ${word.value}`,
     onWordMouseOut: getCallback("onWordMouseOut"),
     onWordMouseOver: getCallback("onWordMouseOver"),
   };
