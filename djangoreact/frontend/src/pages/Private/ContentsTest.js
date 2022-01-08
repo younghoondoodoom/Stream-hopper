@@ -5,10 +5,10 @@ import {
   validLogin,
   postLikeList,
   deleteLikeList,
+  deleteIdAtom,
 } from "../../api/api";
 import Modal from "react-modal";
 import { movieIdx } from "../../store/movieStore";
-import { useNavigate } from "react-router-dom";
 
 // 영화 추천 페이지
 const ContentsTest = () => {
@@ -17,33 +17,33 @@ const ContentsTest = () => {
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
   const [post, setPost] = useState(true);
   const [like, setLike] = useState("");
-  const [del, setDel] = useState("");
+  const [del, setDel] = useRecoilState(deleteIdAtom);
+  const deletelike = useRecoilValue(deleteLikeList);
+  const [deleteId, setDeleteId] = useState("");
 
   const contentsResult = useRecoilValueLoadable(getContentsRecommended);
   const contents = contentsResult.contents;
-  const navigate = useNavigate();
 
-  const handleMovieList = async (e) => {
-    const value = e.target.value;
-    // const { name, value } = e.target;
-    if (e.target.value === like) {
-      await setPost(!post);
-      setLike("");
-    } else {
-      setLike(value);
+  const handleMovieList = (e) => {
+    const { name, value } = e.target;
+    setPost(true);
+    setLike({
+      ...like,
+      [name]: value,
+    });
+    if (!e.target.checked) {
+      setPost(false);
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (post) {
-      const postLike = { contents: like };
-      const result = await postLikeList(postLike);
-      setDel(result.id);
+      const result = postLikeList(like);
+      setDeleteId(result.id);
     }
     if (!post) {
-      deleteLikeList(del);
+      setDel(deleteId);
     }
-    console.log(like, post);
   }, [like]);
 
   const handleModal = useCallback(
@@ -56,7 +56,7 @@ const ContentsTest = () => {
   );
 
   const submitLikeList = () => {
-    navigate("/mypage");
+    window.location.replace("/mypage");
   };
 
   return (
@@ -102,6 +102,7 @@ const ContentsTest = () => {
                         className="img-fluid card-img-top"
                         onClick={handleModal}
                       />
+
                       <span className="transition overlay">
                         <h5>{score.score}% 일치</h5>
                       </span>
@@ -149,9 +150,10 @@ const ContentsTest = () => {
             <p>
               평점 : {contents[modalIdx].rating} /{contents[modalIdx].ott}
             </p>
+            <small>키워드 : {contents[modalIdx].keywords}</small>
           </div>
 
-          <p className="smfont">
+          <p className="smfont overview">
             {contents[modalIdx].kor_overview || contents[modalIdx].overview}
           </p>
         </Modal>

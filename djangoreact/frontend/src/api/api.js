@@ -1,5 +1,5 @@
 import { api } from "./instance";
-import { selector } from "recoil";
+import { atom, selector } from "recoil";
 const KEY = localStorage.getItem("key");
 
 const header = api.create({
@@ -48,7 +48,7 @@ export const signOut = async () => {
 //회원가입 요청 API
 export const signUp = async (register) => {
   try {
-    const res = await api.post("users/auth/register/", register);
+    await api.post("users/auth/register/", register);
     alert("회원가입에 성공하였습니다.");
     window.location.replace("/login");
   } catch (error) {
@@ -105,20 +105,32 @@ export const postLikeList = async (like) => {
   }
 };
 
+//delete id
+export const deleteIdAtom = atom({
+  key: "deleteIdAtom",
+  default: "",
+});
+
 // 콘텐츠 like delete
-export const deleteLikeList = async (del) => {
-  try {
-    const response = await header.delete(`mypage/contents/destroy/${del}`);
-    return response.data;
-  } catch (e) {
-    return false;
-  }
-};
+export const deleteLikeList = selector({
+  key: "deleteLikeList",
+  get: async ({ get }) => {
+    const del = get(deleteIdAtom);
+    try {
+      const response = await header.delete(`mypage/contents/destroy/${del}`);
+      return response.data;
+    } catch (e) {
+      return false;
+    }
+  },
+});
 
 // 마이페이지 contents 요청
 export const mypageContents = selector({
   key: "mypageContents",
-  get: async () => {
+  get: async ({ get }) => {
+    get(deleteIdAtom);
+    get(deleteLikeList);
     try {
       const response = await header.get("mypage/contents/list");
       return response.data.results;

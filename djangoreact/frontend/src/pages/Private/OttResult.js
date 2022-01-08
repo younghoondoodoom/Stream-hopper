@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { validLogin, postOttData } from "../../api/api";
 import { useRecoilValue } from "recoil";
-import { useNavigate } from "react-router-dom";
 import { ottTestAtom } from "../../store/testStore";
 import require from "convert-keys";
 
@@ -12,15 +11,13 @@ const OttResult = () => {
   const [testResult, setTestResult] = useState({});
   const convertKeys = require("convert-keys");
   const snackeResultData = convertKeys.toSnake(resultData);
-  const navigate = useNavigate();
   const goHome = () => {
-    navigate("/");
+    window.location.replace("/");
   };
 
   useEffect(async () => {
     const result = await postOttData(snackeResultData);
     await setTestResult(result);
-    console.log(testResult);
   }, []);
 
   return (

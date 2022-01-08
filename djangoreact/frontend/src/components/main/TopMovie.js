@@ -76,9 +76,12 @@ const TopMovie = () => {
             평점 : {topMovieRecoil[modalIdx].rating} /
             {topMovieRecoil[modalIdx].ott}
           </p>
+          <small>키워드 : {topMovieRecoil[modalIdx].keywords}</small>
         </div>
 
-        <p className="smfont">{topMovieRecoil[modalIdx].kor_overview}</p>
+        <p className="smfont overview">
+          {topMovieRecoil[modalIdx].kor_overview}
+        </p>
       </Modal>
     </div>
   );

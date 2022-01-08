@@ -321,10 +321,10 @@ $orange: rgb(255, 187, 0);
   .mymodal {
     position: fixed;
     top: 15%;
-    left: 25%;
+    left: 20%;
     right: 0;
     bottom: 15%;
-    max-width: 50%;
+    max-width: 60%;
     border: 0px solid #ccc;
     background: #141414;
     overflow: auto;
@@ -354,14 +354,18 @@ $orange: rgb(255, 187, 0);
     }
 
     .detailBox {
-      padding-top: 15px;
+      padding: 15px;
     }
     p {
       font-size: 1.125rem;
+      line-height: 2em;
     }
     .smfont {
       font-size: 0.9rem;
       margin: 0 5% 0 5%;
+    }
+    .overview {
+      color: $orange;
     }
   }
 

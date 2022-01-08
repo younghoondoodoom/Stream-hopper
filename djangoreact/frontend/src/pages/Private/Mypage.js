@@ -1,20 +1,20 @@
 import React from "react";
 import {
-  deleteLikeList,
   mypageContents,
   mypageOtt,
   validLogin,
+  deleteIdAtom,
 } from "../../api/api";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 const Mypage = () => {
   const user = useRecoilValue(validLogin);
   const ott = useRecoilValue(mypageOtt);
   const contents = useRecoilValue(mypageContents);
+  const setDel = useSetRecoilState(deleteIdAtom);
 
   const deletContents = (e) => {
-    const value = e.target.value;
-    deleteLikeList(value);
+    setDel(e.target.value);
   };
 
   return (
@@ -27,30 +27,34 @@ const Mypage = () => {
           <span>{user.data.user}</span>이 좋아하는 콘텐츠!
         </h4>
         <div className="row row-cols-2 row-cols-sm-3 row-cols-md-5 movie-box">
-          {contents.map((content, idx) => {
-            const newcontent = {};
-            newcontent[idx] = content;
-            const korImg = newcontent[idx].kor_image_path;
-            const originalImg = newcontent[idx].image_path;
-            return (
-              <div key={"contents" + idx} className="col">
-                <div className="card bg-dark">
-                  <img
-                    name={idx}
-                    src={`https://image.tmdb.org/t/p/original${
-                      korImg || originalImg || null
-                    } `}
-                    alt="selectMovie"
-                    className="img-fluid card-img-top"
-                  />
+          {contents.length > 0 &&
+            contents.map((content, idx) => {
+              const newcontent = {};
+              newcontent[idx] = content;
+              const korImg = newcontent[idx].contents.kor_image_path;
+              const originalImg = newcontent[idx].contents.image_path;
+              return (
+                <div key={"contents" + idx} className="col">
+                  <div className="card bg-dark">
+                    <img
+                      name={idx}
+                      src={`https://image.tmdb.org/t/p/original${
+                        korImg || originalImg || null
+                      } `}
+                      alt="selectMovie"
+                      className="img-fluid card-img-top"
+                    />
+                  </div>
+                  <p>
+                    {newcontent[idx].contents.kor_title ||
+                      newcontent[idx].contents.title}
+                  </p>
+                  <button onClick={deletContents} value={newcontent[idx].id}>
+                    삭제
+                  </button>
                 </div>
-                <p>{newcontent[idx].kor_title || newcontent[idx].title}</p>
-                <button onClick={deletContents} value={newcontent[idx].id}>
-                  삭제
-                </button>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
 
         <h4>

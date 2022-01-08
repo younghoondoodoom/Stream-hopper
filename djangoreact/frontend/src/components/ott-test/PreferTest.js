@@ -114,9 +114,10 @@ const PreferTest = () => {
               평점 : {topGenreMovie[modalIdx].rating} /
               {topGenreMovie[modalIdx].ott}
             </p>
+            <small>키워드 : {topGenreMovie[modalIdx].keywords}</small>
           </div>
 
-          <p className="smfont">
+          <p className="smfont overview">
             {topGenreMovie[modalIdx].kor_overview ||
               topGenreMovie[modalIdx].overview}
           </p>

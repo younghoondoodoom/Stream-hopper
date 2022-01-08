@@ -134,9 +134,10 @@ const SearchResult = () => {
                 평점 : {resultModal[modalIdx].rating} /
                 {resultModal[modalIdx].ott}
               </p>
+              <small>키워드 : {resultModal[modalIdx].keywords}</small>
             </div>
 
-            <p className="smfont">
+            <p className="smfont overview">
               {resultModal[modalIdx].kor_overview ||
                 resultModal[modalIdx].overview}
             </p>

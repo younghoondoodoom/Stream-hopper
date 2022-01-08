@@ -56,14 +56,8 @@ class MyOTTListView(ListAPIView):
             return queryset[:4]
         else:
             queryset = myott
-<<<<<<< HEAD
             return queryset  
 
 
-    
-=======
-            return queryset         
-        
->>>>>>> origin/BE_keywordupdate
-        
+ 
     
