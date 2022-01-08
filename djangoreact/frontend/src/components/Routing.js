@@ -4,22 +4,25 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 //page import
 import Homepage from "../pages/public/HomePage";
 import Intro from "../pages/public/Intro";
-import Login from "../pages/Login";
+import Login from "../pages/auth/Login";
 import Main from "../pages/public/Main";
-import ContentsResult from "../pages/private/ContentsResult";
 import OttResult from "../pages/private/OttResult";
-import Register from "../pages/Register";
+import Register from "../pages/auth/Register";
 import Mypage from "../pages/private/Mypage";
 import OttTest from "../pages/private/OttTest";
 import ContentsTest from "../pages/private/ContentsTest";
-// 페이지 접근 권한 0
+import NotFound from "../pages/page-load/NotFound";
+
+// 페이지 접근 권한
 import PrivateRoute from "./access/PrivateRote";
 import LogPrivateRoute from "./access/LogPrivateRoute";
 
+import ServiceBackground from "./intro/ServiceBackground";
+import StreamHopper from "./intro/StreamHopper";
+import TeamIntroduction from "./intro/TeamIntroduction";
+
 //네비게이션 바
 import NavBar from "./NavBar";
-
-//로딩 중...
 
 const Routing = () => {
   return (
@@ -49,10 +52,14 @@ const Routing = () => {
             }
           />
           {/* 서비스소개 */}
-          <Route path="/intro" element={<Intro />} />
+          <Route path="/intro/*" element={<Intro />}>
+            <Route path="" element={<StreamHopper />} />
+            <Route path="streamhopper" element={<ServiceBackground />} />
+            <Route path="team-intro" element={<TeamIntroduction />} />
+          </Route>
           {/* 마이페이지 */}
           <Route
-            path="/mypage/:username"
+            path="/mypage"
             element={
               <PrivateRoute>
                 <Mypage />
@@ -77,15 +84,6 @@ const Routing = () => {
               </PrivateRoute>
             }
           />
-          {/* 영화 추천 결과 */}
-          <Route
-            path="/movie_result"
-            element={
-              <PrivateRoute>
-                <ContentsResult />
-              </PrivateRoute>
-            }
-          />
           {/* ott 추천 결과 */}
           <Route
             path="/ott_result"
@@ -95,6 +93,7 @@ const Routing = () => {
               </PrivateRoute>
             }
           />
+          <Route element={<NotFound />} path="*" />
         </Routes>
       </BrowserRouter>
     </div>

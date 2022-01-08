@@ -1,26 +1,37 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { validLogin, signOut } from "../api/api";
-import { useRecoilValue } from "recoil";
-import Google from "./google/GoogleLogin";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { searchFilter, queryAtom, pageUrl } from "../api/search";
 
 // 내비게이션 바
 const NavBar = () => {
   const isLogin = useRecoilValue(validLogin);
-
-  // 로그인 유무를 확인하여 onClick 시 로그아웃 or 로그인
+  const setFilter = useSetRecoilState(searchFilter);
+  const [query, setQuery] = useRecoilState(queryAtom);
+  const setPageUrl = useSetRecoilState(pageUrl);
   const navigate = useNavigate();
 
-  function handleLogin() {
+  const handleSign = () => {
     if (isLogin) {
       signOut();
-      //localStorage에 지움.
       localStorage.removeItem("key");
       window.location.replace("/");
     } else {
       navigate("/login");
     }
-  }
+  };
+
+  const searching = (e) => {
+    setQuery(e.target.value);
+    setPageUrl(null);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      navigate("/main");
+    }
+  };
 
   return (
     <div className="NavBar">
@@ -29,6 +40,24 @@ const NavBar = () => {
           <Link className="navbar-brand opacity-100" to="/">
             Stream Hopper
           </Link>
+          <div className="d-flex search-box">
+            <select onChange={(e) => setFilter(e.target.value)}>
+              <option value="all">전체</option>
+              <option value="title">제목</option>
+              <option value="actor">배우</option>
+              <option value="director">감독</option>
+            </select>
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="제목/감독/배우 등을 검색하세요."
+              aria-label="Search"
+              onChange={searching}
+              value={query}
+              onKeyPress={handleKeyPress}
+            />
+          </div>
+
           <button
             className="navbar-toggler custom-toggler"
             type="button"
@@ -69,7 +98,7 @@ const NavBar = () => {
                   </Link>
                 </li>
 
-                <li className="nav-item" onClick={handleLogin}>
+                <li className="nav-item" onClick={handleSign}>
                   <Link className="nav-link active" aria-current="page" to="#">
                     {isLogin ? "로그아웃" : "로그인"}
                   </Link>
@@ -97,7 +126,7 @@ const NavBar = () => {
                     <Link
                       className="nav-link active"
                       aria-current="page"
-                      to="#"
+                      to="/mypage"
                     >
                       마이페이지
                     </Link>

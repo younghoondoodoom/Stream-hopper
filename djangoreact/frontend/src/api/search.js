@@ -19,7 +19,7 @@ export const pageUrl = atom({
   default: null,
 });
 
-// 검색함수
+// 검색함수 (search filter)
 export const searchProgram = selector({
   key: "searchProgram",
 
@@ -28,34 +28,32 @@ export const searchProgram = selector({
     const query = get(queryAtom);
     const page = get(pageUrl);
 
+    let requestUrl = null;
+
     if (page !== null) {
       const response = await api.get(page);
-      const res = response.data;
-      return res;
-    } else if (filter === "all") {
-      const response = await api.get(
-        `/entertainment/content/search/?title=${query}&actor=${query}&director=${query}`
-      );
-      const res = await response.data;
-      return res;
-    } else if (filter === "title") {
-      const response = await api.get(
-        `/entertainment/content/search/?title=${query}`
-      );
-      const res = await response.data;
-      return res;
-    } else if (filter === "actor") {
-      const response = await api.get(
-        `/entertainment/content/search/?actor=${query}`
-      );
-      const res = await response.data;
-      return res;
-    } else {
-      const response = await api.get(
-        `/entertainment/content/search/?director=${query}`
-      );
-      const res = await response.data;
-      return res;
+      return response.data;
+    }
+
+    if (filter === "all") {
+      requestUrl = `/entertainment/content/search/?title=${query}&actor=${query}&director=${query}`;
+    }
+
+    if (filter === "title") {
+      requestUrl = `/entertainment/content/search/?title=${query}`;
+    }
+
+    if (filter === "actor") {
+      requestUrl = `/entertainment/content/search/?actor=${query}`;
+    }
+
+    if (filter === "director") {
+      requestUrl = `/entertainment/content/search/?director=${query}`;
+    }
+
+    if (requestUrl !== null) {
+      const { data } = await api.get(requestUrl);
+      return data;
     }
   },
 });
@@ -66,9 +64,8 @@ export const topMovies = selector({
   get: async () => {
     try {
       const res = await api.get(`entertainment/content/list`);
-      return res.data;
+      return res.data.results;
     } catch (e) {
-      console.log(e);
       return false;
     }
   },

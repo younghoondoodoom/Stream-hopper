@@ -5,4 +5,4 @@ from .models import *
 # Contents
 admin.site.register(Contents)
 admin.site.register(ContentReviews)
-
+admin.site.register(OTT)
