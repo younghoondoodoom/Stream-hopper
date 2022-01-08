@@ -137,15 +137,10 @@ class ContentRecommendServiceListView(ListAPIView):
     def get_queryset(self):
         current_user = self.request.user.id
         queryset = OTT.objects.all()[0:1]
-        print(queryset)
-        try:
-            ContentRecommendation.objects.filter(user_id=current_user)
-            result = colloborative_recommender(current_user)
-        except:
-            result = new_collaborative(current_user)
+
+        result = new_collaborative(current_user)
         
-        # 넣어야할 db : ContentRecommendation
-        # 보내줘야할 db : content, contentreco
+        print(result)
         
         for i in range(len(result)):
             tmdb_id = (result[i][0])
@@ -154,30 +149,19 @@ class ContentRecommendServiceListView(ListAPIView):
             recommend = ContentRecommendation(user=self.request.user, recommend_content=content, score=score)
             recommend.save()
         
+        # tmdb_id 때문에 어쩔 수 없이 역참조 사용..
+        
         queryset = Contents.objects.filter(tmdb_id=result[0][0])[0:1]
         
         for i in range(1, len(result)):
             qs = Contents.objects.filter(tmdb_id=result[i][0])[0:1]
             queryset = queryset | qs
-
         
-        
+        print(queryset)
+               
         queryset = queryset.prefetch_related(
             Prefetch('contentrecommendation_set', 
                      queryset = ContentRecommendation.objects.filter(user_id=current_user).order_by('-created_at'))
             )
-        
-        
-        return queryset[:10]
     
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-        
+        return queryset

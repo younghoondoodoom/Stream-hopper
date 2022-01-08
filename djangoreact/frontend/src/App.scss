@@ -367,6 +367,31 @@ $orange: rgb(255, 187, 0);
     .overview {
       color: $orange;
     }
+    small {
+      display: inline-block;
+      margin: 5px;
+      border-radius: 1rem;
+    }
+    .key0 {
+      background-color: rgb(123, 123, 214);
+      padding: 5px;
+    }
+    .key1 {
+      background-color: rgb(123, 199, 176);
+      padding: 5px;
+    }
+    .key2 {
+      background-color: rgb(187, 93, 93);
+      padding: 5px;
+    }
+    .key3 {
+      background-color: rgb(71, 153, 207);
+      padding: 5px;
+    }
+    .key4 {
+      background-color: rgb(251, 152, 251);
+      padding: 5px;
+    }
   }
 
   .myoverlay {

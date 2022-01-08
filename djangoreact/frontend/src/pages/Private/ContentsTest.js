@@ -1,5 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from "recoil";
+import {
+  useRecoilState,
+  useSetRecoilState,
+  useRecoilValue,
+  useRecoilValueLoadable,
+} from "recoil";
 import {
   getContentsRecommended,
   validLogin,
@@ -12,19 +17,22 @@ import { movieIdx } from "../../store/movieStore";
 
 // 영화 추천 페이지
 const ContentsTest = () => {
+  // 영화정보 & 유저
+  const contentsResult = useRecoilValueLoadable(getContentsRecommended);
+  const contents = contentsResult.contents;
   const user = useRecoilValue(validLogin);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
+
+  // handle post
   const [post, setPost] = useState(true);
   const [like, setLike] = useState("");
-  const [del, setDel] = useRecoilState(deleteIdAtom);
+  const setDel = useSetRecoilState(deleteIdAtom);
   const deletelike = useRecoilValue(deleteLikeList);
   const [deleteId, setDeleteId] = useState("");
 
-  const contentsResult = useRecoilValueLoadable(getContentsRecommended);
-  const contents = contentsResult.contents;
-
-  const handleMovieList = (e) => {
+  const handleMovieList = async (e) => {
     const { name, value } = e.target;
     setPost(true);
     setLike({
@@ -36,9 +44,9 @@ const ContentsTest = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (post) {
-      const result = postLikeList(like);
+      const result = await postLikeList(like);
       setDeleteId(result.id);
     }
     if (!post) {
@@ -150,7 +158,15 @@ const ContentsTest = () => {
             <p>
               평점 : {contents[modalIdx].rating} /{contents[modalIdx].ott}
             </p>
-            <small>키워드 : {contents[modalIdx].keywords}</small>
+            <p>@ keywords </p>
+            {contents[modalIdx].keywords &&
+              contents[modalIdx].keywords.split(",").map((word, idx) => {
+                return (
+                  <small key={"word" + idx} className={"key" + idx}>
+                    @{word}
+                  </small>
+                );
+              })}
           </div>
 
           <p className="smfont overview">

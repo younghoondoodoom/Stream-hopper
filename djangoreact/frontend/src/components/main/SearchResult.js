@@ -15,6 +15,8 @@ const SearchResult = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
   const resultModal = result.results;
+  // const words = result.results[modalIdx].keywords.split(",");
+
   const setPageUrl = useSetRecoilState(pageUrl);
 
   const handleModal = useCallback(
@@ -23,6 +25,7 @@ const SearchResult = () => {
       await setModalIdx(index);
       setModalIsOpen(true);
     },
+
     [setModalIdx]
   );
 
@@ -134,7 +137,15 @@ const SearchResult = () => {
                 평점 : {resultModal[modalIdx].rating} /
                 {resultModal[modalIdx].ott}
               </p>
-              <small>키워드 : {resultModal[modalIdx].keywords}</small>
+              <p>@ keywords </p>
+              {resultModal[modalIdx].keywords &&
+                resultModal[modalIdx].keywords.split(",").map((word, idx) => {
+                  return (
+                    <small key={"word" + idx} className={"key" + idx}>
+                      @{word}
+                    </small>
+                  );
+                })}
             </div>
 
             <p className="smfont overview">

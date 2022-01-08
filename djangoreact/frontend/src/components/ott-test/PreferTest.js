@@ -12,6 +12,7 @@ const PreferTest = () => {
   const [movieList, setMovieList] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
+  const words = topGenreMovie[modalIdx].keywords.split(",");
 
   const handleMovieList = useCallback(
     async (e) => {
@@ -114,7 +115,14 @@ const PreferTest = () => {
               평점 : {topGenreMovie[modalIdx].rating} /
               {topGenreMovie[modalIdx].ott}
             </p>
-            <small>키워드 : {topGenreMovie[modalIdx].keywords}</small>
+            <p>@ keywords </p>
+            {words.map((word, idx) => {
+              return (
+                <small key={"word" + idx} className={"key" + idx}>
+                  @{word}
+                </small>
+              );
+            })}
           </div>
 
           <p className="smfont overview">
