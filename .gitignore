@@ -139,10 +139,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-<<<<<<< HEAD
 /node_modules
-=======
-node_modules
 
 secrets.josn
 djangoreact/secrets.json
@@ -150,4 +147,3 @@ djangoreact/secrets.json
 .svd
 djangoreact/svd
 
->>>>>>> FE--OTT-추천-서비스
