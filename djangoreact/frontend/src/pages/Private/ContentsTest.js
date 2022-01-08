@@ -18,6 +18,7 @@ import { movieIdx } from "../../store/movieStore";
 // 영화 추천 페이지
 const ContentsTest = () => {
   // 영화정보 & 유저
+
   const contentsResult = useRecoilValueLoadable(getContentsRecommended);
   const contents = contentsResult.contents;
   const user = useRecoilValue(validLogin);

@@ -20,6 +20,7 @@ const Main = () => {
               <span>Stream Hopper</span>
             </h3>
           </header>
+
           <footer className="hero-footer">
             <Link className="button button-primary" to="/ott_recommended">
               OTT 추천 받기
