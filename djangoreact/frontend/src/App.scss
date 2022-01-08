@@ -1,0 +1,328 @@
+// 폰트
+@font-face {
+  font-family: "GmarketSansBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+}
+
+//네비바
+.NavBar {
+  .navbar-brand {
+    color: white;
+  }
+  .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .nav-link {
+    color: black;
+  }
+  .offcanvas-title {
+    color: black;
+  }
+
+  .logbutton {
+    padding-top: 30px;
+    font-size: 13px;
+    border: none;
+    background-color: white;
+  }
+}
+
+// 홈페이지 /
+.HomePage {
+  img {
+    margin-top: 90px;
+    width: 50%;
+  }
+
+  // 홈페이지 - 버튼 컴포넌트 애니메이션
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+    }
+  }
+  button {
+    margin: 50px;
+  }
+
+  .w-btn {
+    position: relative;
+    border: none;
+    min-width: 150px;
+    min-height: 50px;
+    background: #ef473a;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+
+    &reg {
+      background: #2c5364;
+    }
+
+    &intro {
+      background: #545ca0;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+
+      &:after {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        border: 6px solid #e07e21;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ring 1.5s infinite;
+      }
+    }
+  }
+}
+
+//메인 페이지 /main
+.Main {
+  text-align: center;
+  background-color: black;
+  height: 100vh;
+  align-items: center;
+
+  img {
+    margin-top: 10px;
+    border: rgb(235, 235, 235) 3px solid;
+    height: 60%;
+  }
+
+  input {
+    margin-top: 60px;
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    background-color: white;
+    border: black 1px solid;
+  }
+
+  h3 {
+    margin-top: 60px;
+    text-align: left;
+  }
+
+  h5 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  select {
+    width: 60px;
+    height: 40px;
+  }
+  .wrap {
+    max-width: 1000px;
+    min-height: 100%;
+    vertical-align: middle;
+    margin: 0 auto;
+    background: black;
+  }
+
+  .imgmodal {
+    max-height: 500px;
+    overflow: hidden;
+  }
+}
+
+//모달
+.ReactModal__Body--open {
+  .mymodal {
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    right: 0;
+    bottom: 15%;
+    max-width: 50%;
+    border: 0px solid #ccc;
+    background: #141414;
+    overflow: auto;
+    border-radius: 1rem;
+    outline: none;
+    padding: 0px;
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 50%;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(50, 50);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: auto;
+    }
+
+    .modal-title {
+      padding-top: 10px;
+      color: rgb(206, 118, 18);
+    }
+
+    .detailBox {
+      padding-top: 15px;
+    }
+    p {
+      font-size: 1.125rem;
+    }
+    .smfont {
+      font-size: 0.9rem;
+      margin: 0 5% 0 5%;
+    }
+  }
+
+  .myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+//회원가입 페이지 /register
+.Register {
+  background-color: black;
+  height: 100%;
+  align-items: center;
+
+  h1 {
+    padding-bottom: 25px;
+  }
+
+  img {
+    width: 60%;
+  }
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  .container {
+    background-color: white;
+    color: black;
+    border: solid 2px white;
+    padding: 50px;
+  }
+
+  input {
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .btn {
+    margin: 10px;
+  }
+}
+
+//로그인 페이지 /login
+.Login {
+  background-color: black;
+  height: 100%;
+  align-items: center;
+
+  .container {
+    background-color: white;
+    color: black;
+    padding: 50px;
+  }
+
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  h1 {
+    margin-top: 30px;
+  }
+
+  img {
+    width: 60%;
+  }
+
+  .login-section {
+    min-height: 402px;
+    padding: 0;
+    margin-top: 60px;
+    display: inline-block;
+
+    input {
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 30px;
+    }
+  }
+}
+
+//검색페이지
+.SearchResult {
+  background-color: black;
+  height: 100%;
+  .row {
+    height: 100%;
+  }
+  img {
+    margin-top: 50px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .page-btn {
+    margin: 50px auto;
+    width: 250px;
+
+    button {
+      color: white;
+      margin-right: 10px;
+      border: none;
+      width: 100px;
+      background: none;
+
+      svg {
+        margin-right: 7px;
+      }
+
+      .next {
+        margin-left: 7px;
+      }
+    }
+  }
+}

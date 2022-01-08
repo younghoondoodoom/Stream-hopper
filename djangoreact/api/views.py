@@ -11,8 +11,9 @@ from .models import Review
 
 class ReviewList(APIView):
     def get(self, request):
+        print(request.user)
+        print(request.auth)
         reviews = Review.objects.all()
-
         serializer = ReiviewSerializer(reviews, many=True)
         return Response(serializer.data)
     
@@ -31,6 +32,7 @@ class ReviewDetail(APIView):
             return Review.objects.get(pk=pk)
         except Review.DoesNotExist:
             raise Http404
+        
     def get(self, request, pk, format=None):
         review = self.get_object(pk)
         serializer = ReiviewSerializer(review)
@@ -48,3 +50,4 @@ class ReviewDetail(APIView):
         review = self.get_object(pk)
         review.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    

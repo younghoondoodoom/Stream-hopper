@@ -73,3 +73,16 @@
 
 ## 7. FAQ
   - 자주 받는 질문 정리
+
+
+# 사용방법
+
+## 가상환경 구축
+1. 디렉토리에 가상환경 생성
+  python -m venv venv
+2. 가상환경 활성화
+  source venv/Scripts/activate
+3. requirements.txt 설치
+  pip install -r requirements.txt
+4. 리액트 npm 설치
+  npm install

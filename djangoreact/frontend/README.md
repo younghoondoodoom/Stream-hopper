@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# 사용기술
+- react
+- react-router-dom v6
+- react-modal
+- recoil
+- bootstrap
+- sass
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 폴더 구조
+```bash
+frontend
+├── public  
+│   
+├── src
+│   ├── components 
+│   │       |── access : 라우팅 접근 권한 설정한 component
+|   |       |
+|   |       |── google : google로그인 기능 관련 컴포넌트(미완)
+|   |       |
+|   |       |── 기타 : navBar, Spinner, Routing 등
+|   |
+│   ├── images : 이미지 모음
+│   │
+|   |
+│   ├── pages : Home, Main, Intro, Login, Register 등
+│   │
+|   |
+│   └── store : user / movie store
+└── App.js / App.scss
+``` 
 
-## Available Scripts
+# 구현 기능
+### 1. 회원가입
+- 회원가입 양식이 알맞지 않으면 alert로 경고창 출력
+- 회원가입 후 로그인 페이지로 이동
 
-In the project directory, you can run:
+### 2. 로그인/로그아웃
+- 로그인 후 token을 localstorage에 담음
+- 로그인 양식이 알맞지 않으면 alert로 경고창 출력
+    
 
-### `npm start`
+### 3. 접근제한
+- 페이지가 이동될 대마다 localstorage에 있는 token이 유효한지 확인
+- 확인 후 !valid면 로그인 페이지로 이동
+- 로그인 후 로그인과. 회원가입 페이지 접근 시도하면 메인 페이지로 이동
+- 로그인 전, 후 ui 변경
+- 기본적인 page 라우팅 작업
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 4. Header navBar 구현
+- 로그인 전 후 ui 변경
+- 토글 기능
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 5. TopMovie List 메인페이지에 표시
+- axios로 요청한 Top Rated Movie
+- img 클릭 하면 그 타켓의 detail 정보 모달을 이용해 띄움.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 6. 영화 검색기능
+- pagination 기능
+- img 클릭 시 detail modal
