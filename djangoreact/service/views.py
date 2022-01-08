@@ -139,9 +139,7 @@ class ContentRecommendServiceListView(ListAPIView):
         queryset = OTT.objects.all()[0:1]
 
         result = new_collaborative(current_user)
-        
-        print(result)
-        
+
         for i in range(len(result)):
             tmdb_id = (result[i][0])
             score = result[i][2]
@@ -165,3 +163,5 @@ class ContentRecommendServiceListView(ListAPIView):
             )
     
         return queryset
+    
+        
