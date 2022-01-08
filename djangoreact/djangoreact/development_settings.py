@@ -127,8 +127,8 @@ WSGI_APPLICATION = 'djangoreact.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = { 'default':{ 
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'streamhopper_1', 
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'streamhopper', 
     'USER': 'younghoon',
     'PASSWORD' : 'dudgns2684',
     'HOST' : 'localhost',
