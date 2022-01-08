@@ -50,7 +50,7 @@ const Mypage = () => {
                       newcontent[idx].contents.title}
                   </p>
                   <button onClick={deletContents} value={newcontent[idx].id}>
-                    삭제
+                    삭제X
                   </button>
                 </div>
               );

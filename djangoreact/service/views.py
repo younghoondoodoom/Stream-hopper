@@ -64,7 +64,8 @@ class OTTserviceCreateView(CreateAPIView):
             user_taste.prefer_contents.add(prefer_content)
         user_taste.tmdb_id = ",".join(tmdb_id_list)
         user_taste.save()
-        
+        tmdb_id_list = [int(x) for x in tmdb_id_list]
+
         recommend_ott = get_ott_recommendations(age, gender, member_number, member_child_count, member_adult_count, pixel, price_range, genre, first, second, third, tmdb_id_list)
         
         # mypage에 들어갈 myott
@@ -160,7 +161,7 @@ class ContentRecommendServiceListView(ListAPIView):
         queryset = queryset.prefetch_related(
             Prefetch('contentrecommendation_set', 
                      queryset = ContentRecommendation.objects.filter(user_id=current_user).order_by('-created_at'))
-            )
+            ).order_by('?')
     
         return queryset
     

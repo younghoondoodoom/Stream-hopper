@@ -55,7 +55,7 @@ const SearchResult = () => {
                   <div className="col">
                     <img
                       name={idx}
-                      className="rounded"
+                      className="img-fluid"
                       src={`https://image.tmdb.org/t/p/original${
                         korImg || originalImg
                       } `}
