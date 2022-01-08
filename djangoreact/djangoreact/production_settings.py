@@ -40,7 +40,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*'] # 나중에 변경해줘야 함.
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'elice-kdt-3rd-team-08.koreacentral.cloudapp.azure.com'] # 나중에 변경해줘야 함.
 
 
 # Application definition
@@ -133,7 +133,7 @@ WSGI_APPLICATION = 'djangoreact.wsgi.application'
 DATABASES = { 'default':{ 
     'ENGINE': 'django.db.backends.postgresql', 
     'NAME': 'streamhopper', 
-    'USER': 'younghoon',
+    'USER': 'eight',
     'PASSWORD' : 'dudgns2684',
     'HOST' : 'localhost',
     'PORT' :'', 

@@ -9,25 +9,25 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('mypage', '0001_initial'),
         ('entertainment', '0002_initial'),
-        ('service', '0001_initial'),
         ('users', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ottservice',
+            model_name='myott',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.customuser'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.customuser'),
         ),
         migrations.AddField(
-            model_name='contentrecommendation',
-            name='recommend_content',
+            model_name='mycontents',
+            name='contents',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='entertainment.contents'),
         ),
         migrations.AddField(
-            model_name='contentrecommendation',
+            model_name='mycontents',
             name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='users.customuser'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.customuser'),
         ),
     ]
