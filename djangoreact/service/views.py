@@ -65,8 +65,10 @@ class OTTserviceCreateView(CreateAPIView):
         user_taste.tmdb_id = ",".join(tmdb_id_list)
         user_taste.save()
         
-        recommend_ott = get_ott_recommendations(age, gender, member_number, member_child_count, member_adult_count, pixel, price_range, genre, first, second, third, tmdb_id_list)
+        tmdb_id_list = [int(x) for x in tmdb_id_list]
         
+        recommend_ott = get_ott_recommendations(age, gender, member_number, member_child_count, member_adult_count, pixel, price_range, genre, first, second, third, tmdb_id_list)
+                
         # mypage에 들어갈 myott
         for i in range(4):
             MyOTT.objects.create(user=request.user, ott=OTT.objects.get(name__icontains = recommend_ott[i]))
@@ -135,7 +137,7 @@ class ContentRecommendServiceListView(ListAPIView):
     def get_queryset(self):
         current_user = self.request.user.id
         queryset = OTT.objects.all()[0:1]
-
+        
         result = new_collaborative(current_user)
                 
         for i in range(len(result)):
@@ -156,7 +158,7 @@ class ContentRecommendServiceListView(ListAPIView):
         queryset = queryset.prefetch_related(
             Prefetch('contentrecommendation_set', 
                      queryset = ContentRecommendation.objects.filter(user_id=current_user).order_by('-created_at'))
-            )
+            ).order_by('?')
     
         return queryset
     
