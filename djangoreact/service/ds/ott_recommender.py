@@ -82,21 +82,6 @@ def get_ott_recommendations(age, gender, member_number, member_child_count, memb
         가장 가까운 n개의 ott를 순서대로 반환
         
     '''
-    # user = "4"
-    # age = 20
-    # gender = "Female"
-    # member_number = 2
-    # member_child_count = 0
-    # member_adult_count =3
-    # pixel = int("2160")
-    # price_range = 12000
-    # genre = "International,Thriller,Crime"
-
-    # first = 'genre'
-    # second = 'member_number'
-    # third = 'price_range'
-    # prefer_contents= [ 1096, 1508, 1219 ]    
-
     users=pd.DataFrame({ "gender": [gender],
                           "age": [age],
                          "member_number": [member_number],
