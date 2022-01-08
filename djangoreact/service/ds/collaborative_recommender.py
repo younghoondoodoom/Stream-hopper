@@ -64,8 +64,6 @@ def new_collaborative(user_id ,n=20):
     preferred=pd.DataFrame({'user_id':[user_id]*len(tmdb_id_int)})
     preferred['content_id']=tmdb_id_int
     
-    # preferred['rating']=5
-    # preferred['rating']=preferred['rating'].fillna(np.nanmedian(preferred['rating']))
     ratings= pd.read_csv('./data/tmdb_ratings_processed_v1.csv')
     ratings=ratings[['username','content_id','rating']]
     
