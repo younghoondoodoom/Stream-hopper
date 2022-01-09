@@ -4,6 +4,8 @@
 
 ## [🎬](https://emojipedia.org/clapper-board/)  프로젝트 구성 안내
 
+##  [Stream-Hopper](elice-kdt-3rd-team-08.koreacentral.cloudapp.azure.com) 
+
 ## 1. 프로젝트 소개
 
 **1. 사용하려는 인공지능 모델과 알고리즘을 명시**
@@ -59,6 +61,7 @@
 - seaborn
 - matplotlib
 - geopandas
+- nltk
 ```
 
 ## 2. 프로젝트 목표
