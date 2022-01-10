@@ -4,7 +4,7 @@
 
 ## [🎬](https://emojipedia.org/clapper-board/)  프로젝트 구성 안내
 
-##  [Stream-Hopper](elice-kdt-3rd-team-08.koreacentral.cloudapp.azure.com) 
+##  [Stream-Hopper](http://elice-kdt-3rd-team-08.koreacentral.cloudapp.azure.com) 
 
 ## 1. 프로젝트 소개
 
