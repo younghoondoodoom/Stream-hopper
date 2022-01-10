@@ -9,8 +9,8 @@
 ## 1. 프로젝트 소개
 
 **1. 사용하려는  모델과 알고리즘을 명시**
-- content based filtering : 카운트 기반의 NLP 사용하여 유사도를 구함
-- user based filtering: Latent factor model을 이용하여 예측, 예측한 점수값으로 해당 유저와의 일치도 구함
+- Content Based Filtering : 카운트 기반의 NLP 사용하여 유사도를 구함
+- User Based Collaborative Filtering: Latent factor model을 이용하여 예측, 예측한 점수값으로 해당 유저와의 일치도 구함
 - ott recommender :  사용자가 입력한 OTT 희망값과 좋아하는 장르, 영화를 입력값을 받아 점수화
 - 영화별 리뷰 요약: tf-idf 벡터
 
