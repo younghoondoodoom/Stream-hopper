@@ -8,8 +8,11 @@
 
 ## 1. 프로젝트 소개
 
-**1. 사용하려는 인공지능 모델과 알고리즘을 명시**
-- 카운트 기반의 NLP 와 Latent factor model를 사용하여 유사도를 구함
+**1. 사용하려는  모델과 알고리즘을 명시**
+- content based filtering : 카운트 기반의 NLP 사용하여 유사도를 구함
+- user based filtering: Latent factor model을 이용하여 예측, 예측한 점수값으로 해당 유저와의 일치도 구함
+- ott recommender :  사용자가 입력한 OTT 희망값과 좋아하는 장르, 영화를 입력값을 받아 점수화
+- 영화별 리뷰 요약: tf-idf 벡터
 
 **2. 웹서비스에 대한 자세한 개요**
 - 엔드유저의 희망사항과 취향을 반영한 OTT와 영화를 추천해주는 서비스
@@ -145,3 +148,36 @@
 **## 7. FAQ**
 
 **# 사용방법**
+
+### 가상환경 구축(stream-hopper 디렉토리에서 실행)
+
+1. 디렉토리에 가상환경 생성
+   python -m venv venv
+
+2. 가상환경 활성화
+   source venv/Scripts/activate
+
+3. requirements.txt 설치
+   pip install -r requirements.txt
+
+4. secrets.json 생성
+   stream-hopper/djangoreact에 secrets.json 파일을 만들어서
+
+````
+{
+	"SECRET_KEY": "50글자 공백없이"
+}
+````
+
+
+### 실행(stream-hopper/djangoreact에서 실행)
+1. migrate
+python manage.py migrate 실행
+
+2. runserver
+python manage.py runserver
+
+3. npm start
+cd frontend
+npm install
+npm start
