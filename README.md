@@ -103,9 +103,6 @@
 
 - [와이어프레임 링크](https://whimsical.com/streamhopper-KwykEjScJjPCYgwaNwQ2yW)
 
--스토리보드 추가 
-
-
 ##  5 . 프로젝트 팀원 역할 분담
 
 | 이름 | 담당 업무 |
