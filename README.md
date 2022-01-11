@@ -32,7 +32,7 @@
 ###### 버전 관리
 <img src="https://img.shields.io/badge/GitLab-FCA121?style=flat-square&logo=GitLab&logoColor=white"/></a>
 
-###### FE
+###### Frontend
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"/></a>
@@ -44,14 +44,15 @@
 - scss
 ```
 
-###### BE
+###### Backend
 <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=PostgreSQL&logoColor=white"/></a>
 ```
 - APScheduler
 - djangorestframework
 ```
-###### DS
+
+###### Data Science
 <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
 <img alt="Jupyter" src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=Jupyter&logoColor=white"/></a>
 ```
@@ -91,7 +92,7 @@
 |1. 사용자의 개인 취향에 맞는 OTT 추천을 받을 수 있음  |  1.실제 유저 데이터를 이용해서 유저의 취향을 예측하여 추천해준다. 이용자가 좋아요 한 영화 데이터가 모델 재학습 시 반영된다.  |
 | 2.검색기능으로 영화, TV 쇼 에대한 정보와 실제 유저의 리뷰에서 가져온 키워드, 해당 컨텐츠를 소유하는 OTT확인 가능하다. | 2. 검색결과로 나온 컨텐츠를 클릭한 경우 해당 컨텐츠에 실제 이용자 리뷰를 기반으로 뽑은 키워드로 인사이트 얻음|실제 유저의 리뷰를 기반으로 해당 영화의 키워드를 추출해 인사이트를 준다.   |
 
-**## 4. 프로젝트 구성도**
+## 4. 프로젝트 구성도
 
 - [와이어프레임 링크](https://whimsical.com/streamhopper-KwykEjScJjPCYgwaNwQ2yW)
 
@@ -130,24 +131,31 @@
 - 개발 단계: 데이터 전처리, 학습 모델 구현, 학습 데이터 가공 및 모델 정밀도 향상
 - 수정 단계: 코치님 피드백 반영해서  데이터 시각화 , 모델 반영
 
-**## 6. 버전**
+## 6. 버전
 
 - 1.0
 
-**## 7. FAQ**
+## 7. FAQ
 
-**# 사용방법**
+#### 사용방법
 
-### 가상환경 구축(stream-hopper 디렉토리에서 실행)
+###### 가상환경 구축
 
 1. 디렉토리에 가상환경 생성
+````
    python -m venv venv
+````
 
 2. 가상환경 활성화
+````
    source venv/Scripts/activate
+````
 
 3. requirements.txt 설치
+
+````
    pip install -r requirements.txt
+````
 
 4. secrets.json 생성
    stream-hopper/djangoreact에 secrets.json 파일을 만들어서
@@ -158,15 +166,21 @@
 }
 ````
 
-
-### 실행(stream-hopper/djangoreact에서 실행)
+##### 실행
 1. migrate
-python manage.py migrate 실행
 
+````
+python manage.py migrate
+````
 2. runserver
-python manage.py runserver
 
-3. npm start
+````
+python manage.py runserver
+````
+3. npm 
+
+````
 cd frontend
 npm install
 npm start
+````
