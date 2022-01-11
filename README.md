@@ -12,7 +12,7 @@
 - Content Based Filtering(콘텐츠 기반 필터링) : 카운트 기반의 NLP 사용하여 유사도를 구함
 - User Based Collaborative Filtering(협업 필터링): Latent factor model을 이용하여 예측, 예측한 점수값으로 해당 유저와의 일치도 구함
 - ott recommender :  사용자가 입력한 OTT 희망값과 좋아하는 장르, 영화를 입력값을 받아 점수화하여 구함
-- 영화별 리뷰 요약: tf-idf 벡터
+- 영화별 리뷰 요약: n-gram(uni,bi,tri-gram)고려하여 tf-idf 벡터화하여 주요 n개 키워드 추출
 
 **2. 웹서비스에 대한 자세한 개요**
 - 엔드유저의 희망사항과 취향을 반영한 OTT와 영화를 추천해주는 서비스
