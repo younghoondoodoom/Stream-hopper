@@ -15,7 +15,6 @@ const SearchResult = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIdx, setModalIdx] = useRecoilState(movieIdx);
   const resultModal = result.results;
-  // const words = result.results[modalIdx].keywords.split(",");
 
   const setPageUrl = useSetRecoilState(pageUrl);
 

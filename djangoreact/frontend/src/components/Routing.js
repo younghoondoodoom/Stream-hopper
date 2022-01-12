@@ -17,6 +17,7 @@ import NotFound from "../pages/page-load/NotFound";
 import PrivateRoute from "./access/PrivateRote";
 import LogPrivateRoute from "./access/LogPrivateRoute";
 
+// 서비스 소개 페이지 중첩 라우팅
 import ServiceBackground from "./intro/ServiceBackground";
 import StreamHopper from "./intro/StreamHopper";
 import TeamIntroduction from "./intro/TeamIntroduction";

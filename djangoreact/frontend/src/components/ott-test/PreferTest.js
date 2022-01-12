@@ -16,9 +16,13 @@ const PreferTest = () => {
 
   const handleMovieList = useCallback(
     async (e) => {
+      if (movieList.length >= 3) e.target.checked = false;
+
       const value = e.target.value;
-      let newData = await movieList.filter((item) => item !== value);
-      if (e.target.checked) newData.push(value);
+      let newData = movieList.filter((item) => item !== value);
+      if (newData.length < 3 && e.target.checked) {
+        newData.push(value);
+      }
       setMovieList(newData);
     },
     [movieList]
@@ -34,9 +38,6 @@ const PreferTest = () => {
   );
 
   useEffect(() => {
-    if (movieList.length > 3) {
-      alert("최대 3개 까지만 선택해주세요.");
-    }
     setTestData({ ...testData, preferContents: movieList });
   }, [movieList]);
 
