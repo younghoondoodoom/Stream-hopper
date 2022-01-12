@@ -4,10 +4,15 @@
 
 ## [🎬](https://emojipedia.org/clapper-board/)  프로젝트 구성 안내
 
+##  [Stream-Hopper](http://elice-kdt-3rd-team-08.koreacentral.cloudapp.azure.com) 
+
 ## 1. 프로젝트 소개
 
-**1. 사용하려는 인공지능 모델과 알고리즘을 명시**
-- 카운트 기반의 NLP 와 Latent factor model를 사용하여 유사도를 구함
+**1. 사용하려는  모델과 알고리즘을 명시**
+- Content Based Filtering(콘텐츠 기반 필터링) : 카운트 기반의 NLP 사용하여 유사도를 구함
+- User Based Collaborative Filtering(협업 필터링): Latent factor model을 이용하여 예측, 예측한 점수값으로 해당 유저와의 일치도 구함
+- ott recommender :  사용자가 입력한 OTT 희망값과 좋아하는 장르, 영화를 입력값을 받아 점수화하여 구함
+- 영화별 리뷰 요약: n-gram(uni,bi,tri-gram)고려하여 tf-idf 벡터화하여 주요 n개 키워드 추출
 
 **2. 웹서비스에 대한 자세한 개요**
 - 엔드유저의 희망사항과 취향을 반영한 OTT와 영화를 추천해주는 서비스
@@ -27,7 +32,7 @@
 ###### 버전 관리
 <img src="https://img.shields.io/badge/GitLab-FCA121?style=flat-square&logo=GitLab&logoColor=white"/></a>
 
-###### FE
+###### Frontend
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"/></a>
@@ -39,14 +44,15 @@
 - scss
 ```
 
-###### BE
+###### Backend
 <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=Django&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=PostgreSQL&logoColor=white"/></a>
 ```
 - APScheduler
 - djangorestframework
 ```
-###### DS
+
+###### Data Science
 <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
 <img alt="Jupyter" src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=Jupyter&logoColor=white"/></a>
 ```
@@ -59,6 +65,7 @@
 - seaborn
 - matplotlib
 - geopandas
+- nltk
 ```
 
 ## 2. 프로젝트 목표
@@ -79,26 +86,15 @@
 ## 3. 프로젝트 기능 설명
 
 1. ***웹서비스의 유용성, 편의성 및 시각화의 실용성에 대한 설명****
-* 주요 기능
-* 서브 기능
-  1. 세계적 코로나 확진자의 증가와 넷플릭스 구독자들의 증가에 대한 상관관계 분석
-  1. 국가별 코로나 기간동안 넷플릭스 Top contents의 장르를 분석하여 가설을 검증한다.
-  1. 컨텐츠 랜덤 추천 서비스 (Dice Rec)
-* 프로젝트만의 차별점, 기대 효과
-  * 코로나 확진자 추세에 따라 선호되는 장르가 어떻게 변화하는지 시각적으로 알 수 있다.
-
 
 | 주요 기능     | 서브 기능 |
 | ----------- |-------- |
-|1. 사용자의 개인 취향에 맞는 OTT 추천을 받을 수 있음  |  1.실제 유저 데이터를 이용해서 유저의 취향을 예측하여 추천해준다.  |
-| 2.검색기능으로 영화, TV 쇼 에대한 정보 확인가능하고 해당 컨텐츠를 소유하는 OTT확인 가능 | 2. 검색결과로 나온 컨텐츠를 클릭한 경우 해당 컨텐츠에 실제 이용자 리뷰를 기반으로 뽑은 키워드로 인사이트 얻음|실제 유저의 리뷰를 기반으로 해당 영화의 키워드를 추출해 인사이트를 준다.   |
+|1. 사용자의 개인 취향에 맞는 OTT 추천을 받을 수 있음  |  1.실제 유저 데이터를 이용해서 유저의 취향을 예측하여 추천해준다. 이용자가 좋아요 한 영화 데이터가 모델 재학습 시 반영된다.  |
+| 2.검색기능으로 영화, TV 쇼 에대한 정보와 실제 유저의 리뷰에서 가져온 키워드, 해당 컨텐츠를 소유하는 OTT확인 가능하다. | 2. 검색결과로 나온 컨텐츠를 클릭한 경우 해당 컨텐츠에 실제 이용자 리뷰를 기반으로 뽑은 키워드로 인사이트 얻음|실제 유저의 리뷰를 기반으로 해당 영화의 키워드를 추출해 인사이트를 준다.   |
 
-**## 4. 프로젝트 구성도**
+## 4. 프로젝트 구성도
 
 - [와이어프레임 링크](https://whimsical.com/streamhopper-KwykEjScJjPCYgwaNwQ2yW)
-
--스토리보드 추가 
-
 
 ##  5 . 프로젝트 팀원 역할 분담
 
@@ -135,10 +131,56 @@
 - 개발 단계: 데이터 전처리, 학습 모델 구현, 학습 데이터 가공 및 모델 정밀도 향상
 - 수정 단계: 코치님 피드백 반영해서  데이터 시각화 , 모델 반영
 
-**## 6. 버전**
+## 6. 버전
 
 - 1.0
 
-**## 7. FAQ**
+## 7. FAQ
 
-**# 사용방법**
+#### 사용방법
+
+###### 가상환경 구축
+
+1. 디렉토리에 가상환경 생성
+````
+   python -m venv venv
+````
+
+2. 가상환경 활성화
+````
+   source venv/Scripts/activate
+````
+
+3. requirements.txt 설치
+
+````
+   pip install -r requirements.txt
+````
+
+4. secrets.json 생성
+   stream-hopper/djangoreact에 secrets.json 파일을 만들어서
+
+````
+{
+	"SECRET_KEY": "50글자 공백없이"
+}
+````
+
+##### 실행
+1. migrate
+
+````
+python manage.py migrate
+````
+2. runserver
+
+````
+python manage.py runserver
+````
+3. npm 
+
+````
+cd frontend
+npm install
+npm start
+````

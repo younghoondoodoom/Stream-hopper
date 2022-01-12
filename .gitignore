@@ -72,7 +72,6 @@ cover/
 
 # Translations
 *.mo
-
 # Django stuff:
 
 # Flask stuff:
@@ -139,7 +138,10 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# js REACT
+.DS_STORE
 /node_modules
+
 
 secrets.josn
 djangoreact/secrets.json
@@ -147,3 +149,5 @@ djangoreact/secrets.json
 .svd
 djangoreact/svd
 
+.flake8
+pyproject.toml
