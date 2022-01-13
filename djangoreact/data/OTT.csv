@@ -1,0 +1,10 @@
+name,cost,pixel,max_user_count,img_path
+Netflix Basic,9500,SD(480p),1,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
+Netflix Standard,13500,FHD(1080p),2,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
+Netflix Premium,17000,UHD(2160p),4,https://cdn.discordapp.com/attachments/920135064241729544/926871169771143208/netflix-logo-app-png-16.png
+Disney+ Monthly,9900,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926869665215565845/icon.png
+Disney+ Yearly,8250,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926869665215565845/icon.png
+Amazon Monthly,5500,FHD(1080p),3,https://cdn.discordapp.com/attachments/920135064241729544/926871447371153429/prime-video-logo.png
+Hulu Advertising,6000,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926870392101040169/icon.png
+Hulu No Advertising,14500,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926870392101040169/icon.png
+Hulu + LIVE TV,66000,FHD(1080p),4,https://cdn.discordapp.com/attachments/920135064241729544/926870392101040169/icon.png

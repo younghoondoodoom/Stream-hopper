@@ -1,0 +1,1037 @@
+$orange: rgb(255, 187, 0);
+
+// 폰트
+@font-face {
+  font-family: "GmarketSansBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.Spinner {
+  height: 100vh;
+  padding-top: 50px;
+  display: block;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 70%;
+  }
+}
+
+//네비바
+.NavBar {
+  select {
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+  }
+
+  input {
+    background-color: black;
+    color: white;
+    margin-left: 10px;
+    min-width: 250px;
+    min-height: 40px;
+  }
+  .navbar-brand {
+    color: $orange;
+  }
+  .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .nav-link {
+    color: black;
+  }
+  .offcanvas-title {
+    color: black;
+  }
+
+  .logbutton {
+    padding-top: 30px;
+    font-size: 13px;
+    border: none;
+    background-color: white;
+  }
+}
+
+// 홈페이지 /
+.HomePage {
+  .background {
+    position: absolute;
+    z-index: 1;
+  }
+  img {
+    margin-top: 90px;
+    width: 50%;
+  }
+
+  // 홈페이지 - 버튼 컴포넌트 애니메이션
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+    }
+  }
+  button {
+    margin: 30px;
+  }
+
+  .w-btn {
+    position: relative;
+    border: none;
+    min-width: 150px;
+    min-height: 50px;
+    background: #999bc9;
+    border-radius: 1rem;
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.3s;
+
+    &:hover {
+      color: white;
+      background-color: rgb(16, 16, 80);
+    }
+
+    &reg {
+      background: #999bc9;
+    }
+
+    &intro {
+      background: #999bc9;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+
+      &:after {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        border: 6px solid #999bc9;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ring 1.5s infinite;
+      }
+    }
+  }
+}
+
+//메인 페이지 /main
+.Main {
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+
+  img {
+    margin-top: 10px;
+    height: 60%;
+  }
+
+  h3 {
+    margin-top: 60px;
+    text-align: left;
+  }
+
+  h5 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  p {
+    margin-top: 20px;
+  }
+
+  select {
+    width: 60px;
+    height: 40px;
+  }
+  .wrap {
+    max-width: 100%;
+    min-height: 100%;
+    vertical-align: middle;
+    margin: 0 auto;
+    background: black;
+  }
+
+  .imgmodal {
+    max-height: 500px;
+    overflow: hidden;
+  }
+
+  .main-img {
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .TopMovie {
+    h3 {
+      color: $orange;
+    }
+    h5 {
+      color: rgb(240, 252, 243);
+    }
+  }
+
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #logo {
+    text-decoration: none;
+    color: white;
+    font-size: 5vh;
+    font-weight: bold;
+  }
+
+  #menu-icon {
+    font-family: Geneva, sans-serif;
+    font-size: 6vh;
+  }
+
+  // hero
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+    padding: 1em;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    background: url("https://images.unsplash.com/photo-1587906697501-7821f0a7423d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80")
+      center center no-repeat;
+    background-size: cover;
+
+    img {
+      width: 15%;
+      height: 30%;
+    }
+
+    span {
+      color: $orange;
+    }
+  }
+
+  .hero-header {
+    text-align: left;
+  }
+
+  .hero-title {
+    max-width: 20em;
+    margin: 0;
+    font-size: 12vh;
+    font-weight: bold;
+    line-height: 0.9;
+  }
+
+  // Small devices (landscape phones, 576px and up)
+  @media (min-width: 300px) {
+    .hero-header {
+      font-size: 2vh;
+    }
+    .hero-title {
+      font-size: 2.5vh;
+    }
+    .hero-footer {
+      font-size: 0.5vh;
+    }
+  }
+
+  // Medium devices (tablets, 768px and up)
+  @media (min-width: 768px) {
+    .hero-header {
+      font-size: 3vh;
+    }
+    .hero-title {
+      font-size: 5vh;
+    }
+    .hero-footer {
+      font-size: 1.5vh;
+    }
+  }
+
+  // Large devices (desktops, 992px and up)
+  @media (min-width: 992px) {
+    .hero-title {
+      font-size: 6vh;
+    }
+  }
+
+  // X-Large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    .hero-title {
+      font-size: 6vh;
+    }
+  }
+
+  // XX-Large devices (larger desktops, 1400px and up)
+  @media (min-width: 1400px) {
+    .hero-title {
+      font-size: 6vh;
+    }
+  }
+
+  .hero-footer {
+    display: flex;
+    margin-bottom: 1em;
+  }
+
+  .button {
+    padding: 0.5em 0.67em;
+    text-decoration: none;
+    border: 0.1em solid white;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 15px;
+
+    &:hover {
+      background-color: $orange;
+      color: rgb(7, 16, 70);
+    }
+  }
+}
+
+//모달
+.ReactModal__Body--open {
+  .mymodal {
+    position: fixed;
+    top: 15%;
+    left: 20%;
+    right: 0;
+    bottom: 15%;
+    max-width: 60%;
+    border: 0px solid #ccc;
+    background: #141414;
+    overflow: auto;
+    border-radius: 1rem;
+    outline: none;
+    padding: 0px;
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 50%;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(50, 50);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: auto;
+    }
+
+    .modal-title {
+      padding-top: 10px;
+      color: rgb(206, 118, 18);
+    }
+
+    .detailBox {
+      padding: 15px;
+    }
+    p {
+      font-size: 1.125rem;
+      line-height: 2em;
+    }
+    .smfont {
+      font-size: 0.9rem;
+      margin: 0 5% 0 5%;
+    }
+    .overview {
+      color: $orange;
+    }
+    small {
+      display: inline-block;
+      margin: 5px;
+      border-radius: 1rem;
+    }
+    .key0 {
+      background-color: rgb(123, 123, 214);
+      padding: 5px;
+    }
+    .key1 {
+      background-color: rgb(123, 199, 176);
+      padding: 5px;
+    }
+    .key2 {
+      background-color: rgb(187, 93, 93);
+      padding: 5px;
+    }
+    .key3 {
+      background-color: rgb(71, 153, 207);
+      padding: 5px;
+    }
+    .key4 {
+      background-color: rgb(251, 152, 251);
+      padding: 5px;
+    }
+  }
+
+  .myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+//회원가입 페이지 /register
+.Register {
+  height: 100%;
+  align-items: center;
+
+  h1 {
+    padding-bottom: 25px;
+  }
+
+  img {
+    width: 60%;
+  }
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  .container {
+    background-color: white;
+    color: black;
+    border: solid 2px white;
+    padding: 50px;
+  }
+
+  input {
+    text-align: center;
+    width: 70%;
+    margin-left: 15%;
+  }
+
+  .btn {
+    margin: 10px;
+  }
+}
+
+//로그인 페이지 /login
+.Login {
+  height: 100%;
+  align-items: center;
+
+  .container {
+    background-color: white;
+    color: black;
+    padding: 50px;
+  }
+
+  .wrap {
+    max-width: 700px;
+    min-height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    vertical-align: middle;
+  }
+
+  h1 {
+    margin-top: 30px;
+  }
+
+  img {
+    width: 60%;
+  }
+
+  .login-section {
+    min-height: 402px;
+    padding: 0;
+    margin-top: 60px;
+    display: inline-block;
+
+    input {
+      margin-top: 10px;
+    }
+  }
+}
+
+//검색페이지
+.SearchResult {
+  height: 100%;
+  .row {
+    height: 100%;
+  }
+  img {
+    margin-top: 50px;
+    min-height: 150px;
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .page-btn {
+    margin: 50px auto;
+    width: 250px;
+
+    button {
+      color: white;
+      margin-right: 10px;
+      border: none;
+      width: 100px;
+      background: none;
+
+      svg {
+        margin-right: 7px;
+      }
+
+      .next {
+        margin-left: 7px;
+      }
+    }
+  }
+}
+
+// 서비스 소개 페이지 /intro
+.Intro {
+  height: 100%;
+  .logo {
+    margin: 20px;
+    width: 30%;
+  }
+  h3 {
+    margin-bottom: 10px;
+  }
+  img {
+    object-fit: cover;
+  }
+  ul {
+    text-align: center;
+  }
+  .nav-item {
+    a {
+      color: $orange;
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+  .StreamHopper {
+    padding-top: 30px;
+    color: rgb(255, 255, 255);
+    height: 100%;
+
+    h4 {
+      line-height: normal;
+    }
+
+    span {
+      color: $orange;
+    }
+
+    // button {
+    //   display: flex;
+    //   justify-content: center;
+    // }
+    .service-button {
+      button {
+        border: 1px solid $orange;
+        border-radius: 5px;
+        background-color: rgba(56, 21, 21, 0);
+        color: $orange;
+        padding: 10px 10px;
+        margin: 5px;
+
+        &:hover {
+          background-color: $orange;
+          color: black;
+        }
+      }
+    }
+    .bi-arrow-down {
+      color: $orange;
+    }
+
+    .intro-start {
+      padding: 30px;
+      height: 25%;
+      text-align: center;
+      background: linear-gradient(
+        to bottom,
+        rgba(209, 164, 16, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+      h3 {
+        text-align: center;
+        color: $orange;
+        line-height: normal;
+      }
+    }
+
+    .example-box {
+      background: linear-gradient(
+        to bottom,
+        rgba(209, 164, 16, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+
+      .bi-check {
+        color: $orange;
+        border: $orange 3px solid;
+        margin-right: 10px;
+      }
+      h3 {
+        text-align: center;
+        color: $orange;
+        padding: 25px;
+        margin: 30px auto;
+      }
+      h4 {
+        padding: 25px;
+        margin: 30px auto;
+        text-align: left;
+      }
+    }
+
+    .intro-result {
+      color: white;
+    }
+  }
+
+  .TeamIntroduction {
+    height: 100vh;
+    object-fit: cover;
+    padding-top: 50px;
+
+    .data {
+      color: rgb(232, 142, 240);
+    }
+    .frontend {
+      color: rgb(39, 91, 235);
+    }
+    .backend {
+      color: brown;
+    }
+
+    h5 {
+      padding: 30px 0 30px 0;
+    }
+
+    img {
+      min-height: 250px;
+      max-height: 25%;
+    }
+  }
+
+  .ServiceBg {
+    height: 100%;
+    padding: 50px 0;
+
+    h3 {
+      padding-top: 20px;
+    }
+
+    h5 {
+      padding-top: 25px;
+    }
+    p {
+      line-height: 1.8;
+      font-style: italic;
+      color: grey;
+    }
+    span {
+      color: $orange;
+    }
+    .squid-game {
+      margin-left: 25%;
+      width: 50%;
+      padding-bottom: 30px;
+    }
+    .netflix {
+      color: red;
+    }
+
+    .disney {
+      color: rgb(9, 56, 184);
+    }
+    .amazon {
+      color: #00a8e1;
+    }
+    .hulu {
+      color: #66aa33;
+    }
+
+    .col {
+      padding-top: 10px;
+    }
+    .text-box {
+      padding: 50px 20px;
+      text-align: left;
+      background: linear-gradient(
+        to right,
+        rgba(209, 164, 16, 0) 10%,
+        rgba(20, 20, 20, 0.25) 25%,
+        rgba(20, 20, 20, 0.5) 50%,
+        rgba(20, 20, 20, 0.75) 75%,
+        rgba(20, 20, 20, 1) 100%
+      );
+      h4 {
+        line-height: 1.8;
+      }
+    }
+  }
+}
+
+.OttTest {
+  height: 100%;
+  padding-top: 50px;
+  h3 {
+    padding: 30px 0;
+    color: $orange;
+  }
+  h4 {
+    padding: 10px 0;
+  }
+  img {
+    min-height: 150px;
+    max-height: 300px;
+    object-fit: cover;
+    padding-bottom: 15px;
+  }
+
+  button {
+    margin: 30px;
+    border: none;
+    background-color: gray;
+    padding: 0.5em 0.67em;
+    &:hover {
+      cursor: pointer;
+      background-color: $orange;
+    }
+  }
+  .qustion-list {
+    height: 100%;
+    display: flex;
+    padding: 30px;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(16, 15, 19);
+    input {
+      text-align: center;
+      margin: 10px;
+      min-width: 60px;
+
+      &[type="range"] {
+        min-width: 300px;
+      }
+    }
+    .genre {
+      margin: 15px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .radio-group {
+      div {
+        margin-bottom: 30px;
+      }
+
+      input[type="radio"] {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -9999px;
+
+        & + label {
+          max-width: 140px;
+          color: black;
+          margin: 0;
+          padding: 0.75em 1.5em;
+          box-sizing: border-box;
+          position: relative;
+          display: inline-block;
+          border: solid 1px #ddd;
+          background-color: #fff;
+          line-height: 140%;
+          text-align: center;
+          box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+          transition: border-color 0.15s ease-out, color 0.25s ease-out,
+            background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+          cursor: pointer;
+        }
+      }
+      .m input[type="radio"]:checked + label {
+        background-color: #4b9dea;
+        color: #021b79;
+        box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+        border-color: #4b9dea;
+        z-index: 1;
+      }
+      .f input[type="radio"]:checked + label {
+        background-color: #eaafc8;
+        color: #b91d73;
+        box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+        border-color: #eaafc8;
+        z-index: 1;
+      }
+
+      .pixel input[type="radio"]:checked + label {
+        background-color: #71c771;
+        color: #00331afd;
+        box-shadow: 0 0 10px rgba(40, 177, 131, 0.5);
+        border-color: #71c771;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.OttResult {
+  text-align: center;
+  h1 {
+    padding: 30px;
+  }
+  h3 {
+    color: $orange;
+  }
+  span {
+    color: $orange;
+  }
+
+  .card {
+    width: 60%;
+    margin-left: 20%;
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    span {
+      color: rgb(158, 128, 128);
+    }
+  }
+  img {
+    max-width: 150px;
+  }
+
+  button {
+    background-color: $orange;
+    border: none;
+    padding: 15px;
+    width: 150px;
+    border-radius: 1rem;
+    margin-bottom: 30px;
+  }
+}
+
+.movie-box {
+  img {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      transition: transform 1s;
+      filter: brightness(30%);
+    }
+  }
+  label {
+    display: block;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  input[type="checkbox"] {
+    display: none;
+    &:checked + label {
+      color: red;
+      -webkit-animation: grow 0.5s;
+      animation: grow 0.5s;
+      -webkit-animation-timing-function: cubic-bezier(0.21, 0.61, 0.35, 1);
+      animation-timing-function: cubic-bezier(0.21, 0.61, 0.35, 1);
+    }
+  }
+
+  @-webkit-keyframes grow {
+    0% {
+      font-size: 2em;
+    }
+    30% {
+      font-size: 1.5em;
+    }
+    85% {
+      font-size: 3em;
+    }
+    100% {
+      font-size: 2em;
+    }
+  }
+
+  @keyframes grow {
+    0% {
+      font-size: 2em;
+    }
+    30% {
+      font-size: 1.5em;
+    }
+    85% {
+      font-size: 3em;
+    }
+    100% {
+      font-size: 2em;
+    }
+  }
+
+  .col {
+    object-fit: cover;
+    padding: 10px;
+    img {
+      max-height: 260px;
+    }
+  }
+}
+
+.ContentTest {
+  h3 {
+    padding: 50px;
+  }
+  span {
+    color: $orange;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+  .overlay {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+  }
+
+  .transition {
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    transition: 0.3s;
+  }
+
+  .match-rate {
+    position: relative;
+    display: block;
+    a {
+      color: white;
+      &:hover .overlay {
+        opacity: 1;
+      }
+    }
+    h5 {
+      position: relative;
+      transition: 0.5s;
+    }
+  }
+
+  button {
+    background-color: grey;
+    border: none;
+    width: 100px;
+    color: rgb(228, 228, 228);
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 191, 73);
+      transform: scale(1.2);
+    }
+  }
+}
+
+.MyPage {
+  h3 {
+    width: 100%;
+    padding: 50px;
+    background-color: rgb(39, 37, 37);
+    margin: 30px 0;
+  }
+
+  h4 {
+    text-align: left;
+    background-color: rgb(46, 43, 43);
+    padding: 15px;
+    width: max-content;
+    border-radius: 1rem;
+    margin: 30px 0;
+  }
+  p {
+    padding-top: 15px;
+  }
+  span {
+    color: $orange;
+  }
+  img {
+    max-height: 300px;
+    min-height: 190px;
+  }
+  button {
+    background-color: red;
+    border: none;
+    width: 60px;
+    color: white;
+    font-size: 1.3vh;
+    &:hover {
+      color: white;
+      background-color: rgb(94, 17, 3);
+      transform: scale(1.2);
+    }
+  }
+  .ott-box {
+    background-color: none;
+
+    img {
+      max-height: 150px;
+      min-height: 190px;
+    }
+  }
+}
