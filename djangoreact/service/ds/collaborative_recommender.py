@@ -29,7 +29,7 @@ def colloborative_recommender(user_id, n=20):
     df = pd.DataFrame(list(Contents.objects.all().values()))
 
     movies = df[["title", "vote_count", "release", "tmdb_id", "rating"]]
-    svd = dump.load("./svd")[1]
+    svd = dump.load("./service/ds/svd")[1]
     movies["est"] = movies["tmdb_id"].apply(lambda x: svd.predict(user_id, x).est)
 
     movies = movies.sort_values("est", ascending=False)
@@ -88,7 +88,7 @@ def new_collaborative(user_id, n=20):
         lambda x: svd.predict(user_id, x).est
     )
     updated_contents = updated_contents.sort_values("est", ascending=False)
-    dump.dump("./svd", algo=svd)
+    dump.dump("./service/ds/svd", algo=svd)
 
     return [
         (
