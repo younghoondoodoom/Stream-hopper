@@ -6,7 +6,7 @@ from rest_framework.authentication import TokenAuthentication
 from django.db.models import Prefetch, Q
 
 from .ds.collaborative_recommender import *
-from .ds.ott_recommnder import get_ott_recommendations
+from .ds.ott_recommender import get_ott_recommendations
 from .serializers import OTTserviceSerializer
 from .models import OTTservice, ContentRecommendation
 from entertainment.models import Contents, OTT
